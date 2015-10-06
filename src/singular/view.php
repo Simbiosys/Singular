@@ -48,7 +48,7 @@
       $renderer = include($template_path);
 
       echo $renderer(array(
-        "page" => self::get_page_info($title, $navigation),
+        "page" => self::get_page_info($page_title, $page_navigation),
         "data" => $data
       ));
     }

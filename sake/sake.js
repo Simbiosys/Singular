@@ -21,7 +21,8 @@ var sake = {
     "current": process.cwd(),
     "singular": "{HOME}/.singular",
     "repo": "{HOME}/.singular/repo",
-    "base": "{HOME}/.singular/repo/Singular/src"
+    "src": "{HOME}/.singular/repo/Singular/src",
+    "base": "{HOME}/.singular/repo/Singular/base"
   },
   //////////////////////////////////////////////////////////////////////////////
   //                             AUX FUNCTIONS
@@ -37,7 +38,7 @@ var sake = {
   //////////////////////////////////////////////////////////////////////////////
   "createDir": function(dir) {
     var fs = this.dependencies.fs;
-    
+
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
@@ -83,14 +84,23 @@ var sake = {
 
     this.updateRepo();
 
-    var repo_path = this.getPath(this.folders.base);
+    var src_path = this.getPath(this.folders.src);
     var current_path = this.folders.current;
     var base_path = current_path + "/base";
 
     this.createDir(base_path);
 
     // Copy Framework files
-    ncp(repo_path, base_path, function (err) {
+    ncp(src_path, base_path, function (err) {
+      if (err) {
+        throw err;
+      }
+    });
+
+    var framework_base = this.getPath(this.folders.base);
+
+    // Copy base files
+    ncp(framework_base, current_path, function (err) {
       if (err) {
         throw err;
       }
