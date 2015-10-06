@@ -10,6 +10,7 @@
     "sake": "sake.js"
   },
   "dependencies": {
-    "ncp": "*"
+    "ncp": "*",
+    "is-there": "*"
   }
 }
