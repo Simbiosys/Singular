@@ -49,7 +49,7 @@
   //////////////////////////////////////////////////////////////////////////////
   //                              LISTAR NOTAS
   //////////////////////////////////////////////////////////////////////////////
-  \Singular\Controller::get("/notas", "notas", "ver", function() {
+  \Singular\Controller::get_private("/notas", "notas", "ver", function() {
 //    \Singular\Controller::debug(ModeloNotas::get_all());
 
     \Singular\View::render(array(
@@ -61,7 +61,7 @@
   //////////////////////////////////////////////////////////////////////////////
   //                             CREAR NUEVA NOTA
   //////////////////////////////////////////////////////////////////////////////
-  \Singular\Controller::get("/notas/nuevo", "notas", "editar", function() {
+  \Singular\Controller::get_private("/notas/nuevo", "notas", "editar", function() {
     \Singular\View::render(array(
         "template" => "notas_nuevo",
         "data" => ModeloNotas::get_all()
@@ -71,7 +71,7 @@
   //////////////////////////////////////////////////////////////////////////////
   //                            GUARDAR NUEVA NOTA
   //////////////////////////////////////////////////////////////////////////////
-  \Singular\Controller::post("/notas/nuevo", "notas", "editar", function() {
+  \Singular\Controller::post_private("/notas/nuevo", "notas", "editar", function() {
     $nota = \Singular\Controller::get_post_variable("nota");
 
     ModeloNotas::create(array(
@@ -86,7 +86,7 @@
   //////////////////////////////////////////////////////////////////////////////
   //                                BORRAR NOTA
   //////////////////////////////////////////////////////////////////////////////
-  \Singular\Controller::get("/notas/:nota/borrar", "notas", "editar", function($nota_id) {
+  \Singular\Controller::get_private("/notas/:nota/borrar", "notas", "editar", function($nota_id) {
     ModeloNotas::delete($nota_id);
 
     \Singular\Controller::flash("Nota borrada correctamente");
@@ -97,7 +97,7 @@
   //////////////////////////////////////////////////////////////////////////////
   //                                GUARDAR NOTA
   //////////////////////////////////////////////////////////////////////////////
-  \Singular\Controller::post("/notas/:nota/guardar", "notas", "editar", function($nota_id) {
+  \Singular\Controller::post_private("/notas/:nota/guardar", "notas", "editar", function($nota_id) {
     $nota = ModeloNotas::find($nota_id);
 
     if (!empty($nota)) {

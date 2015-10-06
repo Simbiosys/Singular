@@ -8,7 +8,7 @@
     //                     GET: requires authentication
     //                          Checks authorisation
     ////////////////////////////////////////////////////////////////////////////
-    public static function get($path, $entity, $action, $handler) {
+    public static function get_private($path, $entity, $action, $handler) {
       $api = Configuration::obtener_api();
       $api->get($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
@@ -25,7 +25,7 @@
     //                     POST: requires authentication
     //                          Checks authorisation
     ////////////////////////////////////////////////////////////////////////////
-    public static function post($path, $entity, $action, $handler) {
+    public static function post_private($path, $entity, $action, $handler) {
       $api = Configuration::obtener_api();
       $api->post($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
