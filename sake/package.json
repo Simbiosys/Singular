@@ -1,0 +1,15 @@
+{
+  "name": "sake",
+  "version": "1.0.0",
+  "description": "Singular MVC PHP Framework command line tool",
+  "main": "sake.js",
+  "author": "Juan Castro Fernández",
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "sake": "sake.js"
+  },
+  "dependencies": {
+    "ncp": "*"
+  }
+}
