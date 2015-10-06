@@ -1,0 +1,14 @@
+{
+  "name": "slim",
+  "homepage": "https://github.com/slimphp/Slim",
+  "version": "2.6.2",
+  "_release": "2.6.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.6.2",
+    "commit": "870d77f1615db4ebc2a25a97c39beb38e898047b"
+  },
+  "_source": "git://github.com/slimphp/Slim.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/slimphp/Slim.git"
+}

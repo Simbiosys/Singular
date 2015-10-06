@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    {{>head}}
+  </head>
+  <body>
+    <main class="cuerpo">
+      {{> cabecera}}
+      <section class="notas">
+        <h3>¡Bienvenido a Mis notas!</h3>
+        <form method="POST" action="{{page.host}}/iniciar_sesion">
+          <label for="usuario" class="etiqueta">Cuenta de usuario</label>
+          <input type="text" value="" class="campo-texto" id="usuario" name="usuario" placeholder="Introduzca su cuenta de usuario" />
+          <label for="clave" class="etiqueta">Contraseña</label>
+          <input type="password" value="" class="campo-texto" id="clave" name="clave" placeholder="Introduzca su contraseña" />
+          <input type="submit" value="Enviar" class="btn-enviar" id="" name="" />
+        </form>
+      </section>
+    </main>
+    {{> pie}}
+  </body>
+</html>

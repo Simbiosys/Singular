@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "controllers": "/controllers",
+  "models": "/models",
+  "services": "/services",
+  "views": {
+    "server": "/views/server",
+    "client": "/views/client",
+    "partials": "/views/server/partials"
+  },
+  "settings": "/config/app.json",
+  "index": "/index.php",
+  "mode": "development",
+  "modes": {
+    "development": {
+      "debug": true,
+      "root": "/mnt/simbionas/singular/example",
+      "host": "http://192.168.1.102/singular",
+      "database": {
+        "server": "localhost",
+        "user": "root",
+        "password": "simPHP00",
+        "data_base": "singular",
+        "provider": "\\singular\\ProveedorMySQL"
+      },
+      "cache": "\\Singular\\MemcacheCache",
+      "cache_server": "localhost",
+      "cache_port": "11211",
+      "authentication": "AppAuthentication",
+      "authorisation": "AppAuthorisation"
+    },
+    "production": {
+
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    {{> debug}}
+    <main class="cuerpo">
+      {{> navigation}}
+      {{> cabecera}}
+      {{> flash}}
+      <section class="notas">
+        {{> tabla-notas}}
+        <a href="{{page.host}}/notas/nuevo" class="btn-nueva-nota">
+          Nueva nota
+          <i class="fa fa-pencil-square-o"></i>
+        </a>
+      </section>
+    </main>
+    {{> pie}}
+  </body>
+</html>

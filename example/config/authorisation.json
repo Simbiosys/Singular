@@ -1,0 +1,34 @@
+{
+  "notas": {
+    "listar": {
+      "administrador": true,
+      "usuario": true
+    },
+    "ver": {
+      "administrador": true,
+      "usuario": true
+    },
+    "editar": {
+      "administrador": true,
+      "usuario": false
+    }
+  },
+  "usuarios": {
+    "listar": {
+      "administrador": true,
+      "usuario": false
+    },
+    "editar": {
+      "administrador": true,
+      "usuario": false
+    },
+    "ver": {
+      "administrador": true,
+      "usuario": false
+    },
+    "ver_propio": {
+      "administrador": true,
+      "usuario": true
+    }
+  }
+}
