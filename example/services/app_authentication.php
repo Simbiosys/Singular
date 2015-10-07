@@ -1,5 +1,7 @@
 <?php
   class AppAuthentication extends \Singular\AuthenticationMethod  {
+  	protected static $identifier = "mis_notas";
+  	
     public static function log_in($user, $password) {
       $modelo = new ModeloUsuarios();
       $usuario = $modelo->valida_usuario($user, $password);

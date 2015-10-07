@@ -38,18 +38,34 @@
     ////////////////////////////////////////////////////////////////////////////
     //                            Get app settings
     ////////////////////////////////////////////////////////////////////////////
-    public static function get_app_settings($property = NULL) {
+    public static function get_app_settings($properties = NULL) {
       if (empty(static::$app_settings)) {
         static::$app_settings = self::load_app_settings();
       }
 
       $settings = static::$app_settings;
 
-      if ($property && $settings) {
-        return isset($settings[$property]) ? $settings[$property] : NULL;
+      if (empty($properties) || empty($settings)) {
+        return $settings;
       }
 
-      return $settings;
+      if (!is_array($properties)) {
+        $properties = array($properties);
+      }
+
+      $value = $settings;
+
+      for ($i = 0; $i < count($properties); $i++) {
+        $property = $properties[$i];
+
+        if (!isset($value[$property])) {
+          return NULL;
+        }
+
+        $value = $value[$property];
+      }
+
+      return $value;
     }
 
     ////////////////////////////////////////////////////////////////////////////

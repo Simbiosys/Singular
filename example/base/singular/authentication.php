@@ -14,6 +14,11 @@
       return empty($authentication_method) ? NULL : $authentication_method->get_user();
     }
 
+    public static function get_user_data() {
+      $authentication_method = self::load_authentication_method();
+      return empty($authentication_method) ? NULL : $authentication_method->get_user_data();
+    }
+
     public static function log_out() {
       $authentication_method = self::load_authentication_method();
 
