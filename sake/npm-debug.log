@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--global',
+1 verbose cli   'singular_sake' ]
+2 info using npm@2.3.0
+3 info using node@v0.10.35
+4 silly cache add args [ 'singular_sake', null ]
+5 verbose cache add spec singular_sake
+6 silly cache add parsed spec { raw: 'singular_sake',
+6 silly cache add   scope: null,
+6 silly cache add   name: 'singular_sake',
+6 silly cache add   rawSpec: '',
+6 silly cache add   spec: '*',
+6 silly cache add   type: 'range' }
+7 verbose addNamed singular_sake@*
+8 silly addNamed semver.valid null
+9 silly addNamed semver.validRange *
+10 silly addNameRange { name: 'singular_sake', range: '*', hasData: false }
+11 silly mapToRegistry name singular_sake
+12 silly mapToRegistry scope (from config) @juan.castro.simbiosys
+13 verbose mapToRegistry no registry URL found in config for scope @juan.castro.simbiosys
+14 silly mapToRegistry using default registry
+15 silly mapToRegistry registry https://registry.npmjs.org/
+16 silly mapToRegistry uri https://registry.npmjs.org/singular_sake
+17 verbose addNameRange registry:https://registry.npmjs.org/singular_sake not in flight; fetching
+18 verbose request uri https://registry.npmjs.org/singular_sake
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 08:32:59
+21 verbose request using bearer token for auth
+22 verbose request id 3efaf027b56d2ee1
+23 http request GET https://registry.npmjs.org/singular_sake
+24 http 200 https://registry.npmjs.org/singular_sake
+25 silly get cb [ 200,
+25 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+25 silly get     etag: '"9MSAHJFKTJ5XCEUWSCTDKRX4S"',
+25 silly get     'content-type': 'application/json',
+25 silly get     'cache-control': 'max-age=60',
+25 silly get     'content-length': '2098',
+25 silly get     'accept-ranges': 'bytes',
+25 silly get     date: 'Wed, 07 Oct 2015 06:33:00 GMT',
+25 silly get     via: '1.1 varnish',
+25 silly get     connection: 'keep-alive',
+25 silly get     'x-served-by': 'cache-lcy1120-LCY',
+25 silly get     'x-cache': 'MISS',
+25 silly get     'x-cache-hits': '0',
+25 silly get     'x-timer': 'S1444199579.922767,VS0,VE100',
+25 silly get     vary: 'Accept' } ]
+26 silly addNameRange number 2 { name: 'singular_sake', range: '*', hasData: true }
+27 silly addNameRange versions [ 'singular_sake', [ '1.0.0', '1.0.1' ] ]
+28 verbose addNamed singular_sake@1.0.1
+29 silly addNamed semver.valid 1.0.1
+30 silly addNamed semver.validRange 1.0.1
+31 silly cache afterAdd singular_sake@1.0.1
+32 verbose afterAdd /Users/imac02/.npm/singular_sake/1.0.1/package/package.json not in flight; writing
+33 verbose afterAdd /Users/imac02/.npm/singular_sake/1.0.1/package/package.json written
+34 silly install resolved [ { name: 'singular_sake',
+34 silly install resolved     version: '1.0.1',
+34 silly install resolved     description: 'Singular MVC PHP Framework command line tool',
+34 silly install resolved     main: 'sake.js',
+34 silly install resolved     author: { name: 'Juan Castro Fernández' },
+34 silly install resolved     license: 'ISC',
+34 silly install resolved     preferGlobal: true,
+34 silly install resolved     bin: { sake: 'sake.js' },
+34 silly install resolved     dependencies: { ncp: '*', 'is-there': '*' },
+34 silly install resolved     readme: '# Sake\nInstall: npm install --global singular_sake\n',
+34 silly install resolved     readmeFilename: 'README.md',
+34 silly install resolved     _id: 'singular_sake@1.0.1',
+34 silly install resolved     scripts: {},
+34 silly install resolved     _shasum: 'f7d78931729581d68edf7cb5854f3a421ddbce45',
+34 silly install resolved     _from: 'singular_sake@*' } ]
+35 info install singular_sake@1.0.1 into /usr/local/lib
+36 info installOne singular_sake@1.0.1
+37 verbose installOne of singular_sake to /usr/local/lib not in flight; installing
+38 warn locking Error: EACCES, open '/Users/imac02/.npm/_locks/singular-sake-4df26a43e94d4c30.lock'
+38 warn locking  /Users/imac02/.npm/_locks/singular-sake-4df26a43e94d4c30.lock failed { [Error: EACCES, open '/Users/imac02/.npm/_locks/singular-sake-4df26a43e94d4c30.lock']
+38 warn locking   errno: 3,
+38 warn locking   code: 'EACCES',
+38 warn locking   path: '/Users/imac02/.npm/_locks/singular-sake-4df26a43e94d4c30.lock' }
+39 verbose stack Error: Attempt to unlock /usr/local/lib/node_modules/singular_sake, which hasn't been locked
+39 verbose stack     at unlock (/usr/local/lib/node_modules/npm/lib/utils/locker.js:66:11)
+39 verbose stack     at cb (/usr/local/lib/node_modules/npm/lib/install.js:929:5)
+39 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:933:20
+39 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:40:9
+39 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+39 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+39 verbose stack     at Object.oncomplete (fs.js:108:15)
+40 verbose cwd /Volumes/proyectos/singular/sake
+41 error Darwin 15.0.0
+42 error argv "node" "/usr/local/bin/npm" "install" "--global" "singular_sake"
+43 error node v0.10.35
+44 error npm  v2.3.0
+45 error Attempt to unlock /usr/local/lib/node_modules/singular_sake, which hasn't been locked
+46 error If you need help, you may report this error at:
+46 error     <http://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]

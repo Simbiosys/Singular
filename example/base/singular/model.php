@@ -161,7 +161,7 @@
       $sql_query = self::get_query();
 
       if ($condition) {
-        $sql_query .= " WHERE $condition ";
+        $sql_query .= " AND $condition ";
       }
 
       $sql_query .= self::get_order();

@@ -1,6 +1,6 @@
 {
   "name": "singular_sake",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Singular MVC PHP Framework command line tool",
   "main": "sake.js",
   "author": "Juan Castro Fernández",

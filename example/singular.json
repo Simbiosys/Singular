@@ -24,7 +24,7 @@
         "provider": "\\singular\\ProveedorMySQL"
       },
       "cache": "\\Singular\\MemcacheCache",
-      "cache_server": "localhost",
+      "cache_server": "192.168.1.102",
       "cache_port": "11211",
       "authentication": "AppAuthentication",
       "authorisation": "AppAuthorisation"
