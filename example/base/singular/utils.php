@@ -29,6 +29,7 @@
       // First we process files, so we store directories to process them at the
       // end.
       $dir_list = array();
+      $file_list = array();
 
       while (false !== ($file_name = readdir($directory))) {
         if ($file_name === "." || $file_name == "..")
@@ -44,9 +45,15 @@
           $extension = pathinfo($file_name, PATHINFO_EXTENSION);
 
           if ($extension == $extension_to_check) {
-            $callback($file_path);
+            array_push($file_list, $file_path);
           }
         }
+      }
+      
+      sort($file_list);
+      
+      foreach ($file_list as $file) {
+      	$callback($file);
       }
 
       foreach ($dir_list as $dir) {

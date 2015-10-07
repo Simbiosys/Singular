@@ -35,6 +35,8 @@
       return;
     }
 
+    \Singular\Controller::flash("Usuario y/o contraseña incorrectos");
+
     \Singular\Controller::redirect("/login");
   });
 
@@ -111,6 +113,20 @@
     }
 
     \Singular\Controller::redirect("/notas");
+  });
+
+  //////////////////////////////////////////////////////////////////////////////
+  //                                EDITAR NOTA
+  //////////////////////////////////////////////////////////////////////////////
+  \Singular\Controller::get_private("/notas/:nota", "notas", "editar", function($nota_id) {
+    $nota = ModeloNotas::find($nota_id);
+
+    // \Singular\Controller::debug($nota);
+
+    \Singular\View::render(array(
+        "template" => "notas_editar",
+        "data" => $nota
+    ));
   });
 
   //////////////////////////////////////////////////////////////////////////////
