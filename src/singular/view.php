@@ -86,6 +86,7 @@
         "full_title" => $full_title,
         "navigation" => array($navigation => TRUE),
         "user" => Authentication::get_user(),
+				"user_data" => Authentication::get_user_data(),
 				"flash" => Flash::get_message(),
 				"debug" => Debug::get_message()
       );
