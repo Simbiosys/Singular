@@ -42,6 +42,12 @@
       self::set_user_data($data);
     }
 
+    public static function get_user_attribute($name) {
+      $data = self::get_user_data();
+
+      return isset($data[$name]) ? $data[$name] : NULL;
+    }
+
     public static function get_identifier() {
       return static::$identifier;
     }
