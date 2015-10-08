@@ -70,6 +70,10 @@
     //                        QUERY AUXILIARY METHODS
     ////////////////////////////////////////////////////////////////////////////
 
+    protected function init() {
+      // Lets you perform initial tasks
+    }
+
     protected static function get_query() {
       self::auto_generation();
 
@@ -128,6 +132,8 @@
       }
 
       $class = get_called_class();
+      $obj = new $class();
+      $obj->init();
 
       $objs = NULL;
       self::get_connection();
@@ -141,7 +147,6 @@
       if ($results) {
         for ($i = 0; $i < sizeof($results); $i++) {
           $fields = self::$data_base->format_fields($results[$i], static::$fields);
-          $obj = new $class();
           $objs[] = $obj->process($fields);
         }
       }
@@ -165,6 +170,8 @@
       }
 
       $class = get_called_class();
+      $obj = new $class();
+      $obj->init();
 
       $objs = NULL;
       self::get_connection();
@@ -182,7 +189,6 @@
       if ($results) {
           foreach ($results as $index => $data) {
             $fields = self::$data_base->format_fields($data, static::$fields);
-            $obj = new $class();
             $objs[] = $obj->process($fields);
           }
       }
@@ -247,6 +253,7 @@
 
       $class = get_called_class();
       $obj = new $class($values);
+      $obj->init();
 
       $obj->save();
     }
@@ -254,6 +261,7 @@
     public static function create($values) {
       $class = get_called_class();
       $obj = new $class($values);
+      $obj->init();
 
       $obj->save();
     }

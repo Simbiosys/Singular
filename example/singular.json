@@ -23,14 +23,14 @@
         "data_base": "singular",
         "provider": "\\singular\\ProveedorMySQL"
       },
-      "cache": "\\Singular\\MemcacheCache",
-      "cache_server": "192.168.1.102",
-      "cache_port": "11211",
+      "cache": null,
       "authentication": "AppAuthentication",
       "authorisation": "AppAuthorisation"
     },
     "production": {
-
+	  "cache": "\\Singular\\MemcacheCache",
+      "cache_server": "192.168.1.102",
+      "cache_port": "11211"
     }
   }
 }
