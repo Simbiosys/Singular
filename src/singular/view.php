@@ -10,6 +10,7 @@
 			$page_title = isset($parameters["page_title"]) ? $parameters["page_title"] : NULL;
 			$page_navigation = isset($parameters["page_navigation"]) ? $parameters["page_navigation"] : NULL;
 			$data = isset($parameters["data"]) ? $parameters["data"] : array();
+			$extra = isset($parameters["extra"]) ? $parameters["extra"] : array();
 
       $view_config = Configuration::get_view_path();
       $view_path = $view_config["server"];
@@ -49,7 +50,8 @@
 
       echo $renderer(array(
         "page" => self::get_page_info($page_title, $page_navigation),
-        "data" => $data
+        "data" => $data,
+				"extra" => $extra
       ));
     }
 
