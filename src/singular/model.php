@@ -184,7 +184,7 @@
       }
 
       $sql_query .= self::get_order();
-var_dump($sql_query);
+
       $results = self::$data_base->run($sql_query, NULL, NULL);
 
       if ($results) {
