@@ -14,6 +14,11 @@
       $_SESSION[$identifier . "_logged_user_data"] = $data;
     }
 
+    public static function set_user_data($data) {
+      $identifier = self::get_identifier();
+      $_SESSION[$identifier . "_logged_user_data"] = $data;
+    }
+
     public static function get_user() {
       $identifier = self::get_identifier();
       $key = $identifier . "_logged_user";
@@ -29,6 +34,12 @@
     public static function is_logged_in() {
       $identifier = self::get_identifier();
       return isset($_SESSION[$identifier . "_logged_user"]);
+    }
+
+    public static function set_user_attribute($name, $value) {
+      $data = self::get_user_data();
+      $data[$name] = $value;
+      self::set_user_data($data);
     }
 
     public static function get_identifier() {
