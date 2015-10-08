@@ -93,6 +93,15 @@
 				"debug" => Debug::get_message()
       );
 
-      return $options;
+			$class = get_called_class();
+      $obj = new $class();
+
+			$custom_options = $obj->add_custom_page_info();
+
+      return array_merge($options, $custom_options);
     }
+
+		protected function add_custom_page_info() {
+				return array();
+		}
   }
