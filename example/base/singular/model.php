@@ -2,9 +2,10 @@
   namespace Singular;
 
   class Model {
-    private static $data_base;
+    protected static $data_base;
     protected static $table;
     protected static $sql_query;
+    protected static $where = NULL;
     protected static $order;
 
     protected static $fields;
@@ -43,7 +44,7 @@
     //                          DATABASE CONNECTION
     ////////////////////////////////////////////////////////////////////////////
 
-    private static function get_connection() {
+    protected static function get_connection() {
       $configuration = Configuration::get_database_configuration();
       self::$data_base = Database::get_connection($configuration["provider"], $configuration["server"], $configuration["user"], $configuration["password"], $configuration["data_base"]);
     }
@@ -52,7 +53,7 @@
     //                                CACHE
     ////////////////////////////////////////////////////////////////////////////
 
-    private static function get_cache() {
+    protected static function get_cache() {
       if (empty(static::$cache)) {
         $cache = Configuration::get_cache();
 
@@ -69,7 +70,7 @@
     //                        QUERY AUXILIARY METHODS
     ////////////////////////////////////////////////////////////////////////////
 
-    private static function get_query() {
+    protected static function get_query() {
       self::auto_generation();
 
       $sql_query = static::$sql_query;
@@ -79,13 +80,23 @@
       }
 
       if (strpos($sql_query, "WHERE") === false) {
-          $sql_query .= " WHERE deleted = 0";
+          $sql_query .= self::get_where();
       }
 
       return $sql_query;
     }
 
-    private static function get_order() {
+    protected static function get_where() {
+      $where = static::$where;
+
+      if (empty($where)) {
+        $where = "1 = 1";
+      }
+
+      return " WHERE $where AND deleted = 0";
+    }
+
+    protected static function get_order() {
       $order = static::$order;
 
       if (!isset($order)) {
@@ -273,12 +284,12 @@
     //                             AUTO GENERATION
     ////////////////////////////////////////////////////////////////////////////
 
-    private static function auto_generation() {
+    protected static function auto_generation() {
       self::check_table();
       self::check_fields();
     }
 
-    private static function check_table() {
+    protected static function check_table() {
       $table = static::$table;
       $fields = static::$fields;
       $primary_key = static::$primary_key;
@@ -286,7 +297,7 @@
       self::$data_base->check_table($table, $fields, $primary_key);
     }
 
-    private static function check_fields() {
+    protected static function check_fields() {
       $table = static::$table;
       $fields = static::$fields;
       $primary_key = static::$primary_key;
