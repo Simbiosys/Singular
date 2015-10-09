@@ -8,6 +8,7 @@
     "client": "/views/client",
     "partials": "/views/server/partials"
   },
+  "layouts": "/views/server/layouts",
   "settings": "/config/app.json",
   "index": "/index.php",
   "mode": "development",

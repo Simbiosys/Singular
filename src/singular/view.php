@@ -11,18 +11,34 @@
 			$page_navigation = isset($parameters["page_navigation"]) ? $parameters["page_navigation"] : NULL;
 			$data = isset($parameters["data"]) ? $parameters["data"] : array();
 			$extra = isset($parameters["extra"]) ? $parameters["extra"] : array();
+			$layout = isset($parameters["layout"]) ? $parameters["layout"] : NULL;
 
       $view_config = Configuration::get_view_path();
       $view_path = $view_config["server"];
       $partial_path = $view_config["partials"];
 
-      if (Configuration::debug_enabled() || !file_exists($template_path)) {
-        self::check_compiled_folder($view_path);
+			self::check_compiled_folder($view_path);
+			$sufix = empty($layout) ? "" : "-$layout";
+			$template_path = "$view_path/compiled/$template$sufix";
 
-        $template_path = "$view_path/compiled/$template";
+      if (Configuration::debug_enabled() || !file_exists($template_path)) {
         $compiled = NULL;
 
-        $source = file_get_contents("$view_path/$template.hbs");
+				$source = file_get_contents("$view_path/$template.hbs");
+
+				// Set layout
+				if (!empty($layout)) {
+					$layout_path = Configuration::get_layout_path();
+					$layout_full_path = "$layout_path/$layout";
+
+					if (file_exists($layout_full_path)) {
+						$layout_contents = file_get_contents($layout_full_path);
+
+						if ($layout_contents) {
+							$source = str_replace("{{@content}}", $source, $layout_contents);
+						}
+					}
+				}
 
         $compiled = \LightnCandy::compile($source, Array(
           'flags' => \LightnCandy::FLAG_STANDALONE | \LightnCandy::FLAG_RUNTIMEPARTIAL | \LightnCandy::FLAG_PARENT | \LightnCandy::FLAG_SPVARS | \LightnCandy::FLAG_HANDLEBARS,
@@ -96,12 +112,12 @@
 			$class = get_called_class();
       $obj = new $class();
 
-			$custom_options = $obj->add_custom_page_info();
+			$custom_options = $obj->add_custom_page_info($options);
 
       return array_merge($options, $custom_options);
     }
 
-		protected function add_custom_page_info() {
+		protected function add_custom_page_info($defaults) {
 				return array();
 		}
   }
