@@ -9,8 +9,11 @@
     "partials": "/views/server/partials"
   },
   "layouts": "/views/server/layouts",
+  "languages": "/lang",
   "settings": "/config/app.json",
   "index": "/index.php",
+  "available_languages": ["es", "en"],
+  "default_language": "es",
   "mode": "development",
   "modes": {
     "development": {

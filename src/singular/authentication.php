@@ -39,6 +39,11 @@
       $authentication_method = self::load_authentication_method();
       return empty($authentication_method) ? NULL : $authentication_method->get_log_in();
     }
+    
+    public function get_language() {
+      $authentication_method = self::load_authentication_method();
+      return empty($authentication_method) ? NULL : $authentication_method->get_language();
+    }
 
     private static function load_authentication_method() {
       if (empty(static::$authentication_method)) {

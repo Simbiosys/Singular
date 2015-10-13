@@ -51,6 +51,33 @@
     public static function get_identifier() {
       return static::$identifier;
     }
+    
+    public static function set_language($language) {
+      $identifier = self::get_identifier();
+      $_SESSION[$identifier . "_language"] = $language;
+    }
+    
+    public static function get_language() {
+      $available_languages = Configuration::get_available_languages();
+      $default_language = Configuration::get_default_language();
+      
+      $identifier = self::get_identifier();
+      $selected_language = isset($_SESSION[$identifier . "_language"]) ?
+      						$_SESSION[$identifier . "_language"] : NULL;
+ 						
+      if ($selected_language && in_array($selected_language, $available_languages)) {
+      	return $selected_language;
+      }
+      
+      $request_language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+      if ($request_language && in_array($request_language, $available_languages)) {
+        self::set_language($request_language);
+        return $request_language;
+      }
+      
+      return $default_language;
+    }
 
     abstract public static function log_in($user, $password);
 

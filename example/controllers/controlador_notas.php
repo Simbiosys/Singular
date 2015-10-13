@@ -47,6 +47,14 @@
     AppAuthentication::log_out();
     \Singular\Controller::redirect("/login");
   });
+  
+  //////////////////////////////////////////////////////////////////////////////
+  //                              IDIOMA
+  //////////////////////////////////////////////////////////////////////////////
+  \Singular\Controller::get_public("/language/:language", function($language) {
+    AppAuthentication::set_language($language);
+    \Singular\Controller::redirect("/notas");
+  });
 
   //////////////////////////////////////////////////////////////////////////////
   //                              LISTAR NOTAS

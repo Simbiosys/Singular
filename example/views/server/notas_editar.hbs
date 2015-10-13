@@ -11,9 +11,9 @@
       <section class="notas">
         {{#data}}
           <form method="POST" action="{{@root.page.host}}/notas/{{id}}/guardar">
-            <label for="nota" class="etiqueta">Nota</label>
-            <textarea class="campo-texto campo-nota" id="mensaje" name="mensaje" placeholder="Escriba su nota">{{mensaje}}</textarea>
-            <input type="submit" value="Guardar" class="btn-enviar" id="" name="" />
+            <label for="nota" class="etiqueta">{{labels.note}}</label>
+            <textarea class="campo-texto campo-nota" id="mensaje" name="mensaje" placeholder="{{labels.note}}">{{mensaje}}</textarea>
+            <input type="submit" value="{{labels.save}}" class="btn-enviar" id="" name="" />
           </form>
         {{/data}}
       </section>

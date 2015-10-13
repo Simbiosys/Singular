@@ -1,8 +1,20 @@
 <nav class="navegacion">
+  <ul class="pull-left">
+  	<li class="pull-left idioma">
+  	  <a href="{{page.host}}/language/es">
+        ES
+      </a>
+  	</li>
+  	<li class="pull-left idioma">
+  	  <a href="{{page.host}}/language/en">
+        EN
+      </a>
+  	</li>
+  </ul>
   <ul>
     <li>
       <a href="{{page.host}}/cerrar_sesion">
-        Cerrar sesión
+        {{labels.logout}}
         <i class="fa fa-power-off cerrar-sesion"></i>
       </a>
     </li>

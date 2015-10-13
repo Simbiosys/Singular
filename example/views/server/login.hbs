@@ -8,12 +8,12 @@
       {{> cabecera}}
       {{> flash}}
       <section class="notas">
-        <h3>¡Bienvenido a Mis notas!</h3>
+        <h3>{{labels.welcome}}</h3>
         <form method="POST" action="{{page.host}}/iniciar_sesion">
-          <label for="usuario" class="etiqueta">Cuenta de usuario</label>
-          <input type="text" value="" class="campo-texto" id="usuario" name="usuario" placeholder="Introduzca su cuenta de usuario" />
-          <label for="clave" class="etiqueta">Contraseña</label>
-          <input type="password" value="" class="campo-texto" id="clave" name="clave" placeholder="Introduzca su contraseña" />
+          <label for="usuario" class="etiqueta">{{labels.user_account}}</label>
+          <input type="text" value="" class="campo-texto" id="usuario" name="usuario" placeholder="{{labels.user_account}}" />
+          <label for="clave" class="etiqueta">{{labels.password}}</label>
+          <input type="password" value="" class="campo-texto" id="clave" name="clave" placeholder="{{labels.password}}" />
           <input type="submit" value="Enviar" class="btn-enviar" id="" name="" />
         </form>
       </section>
