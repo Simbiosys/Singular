@@ -61,6 +61,9 @@
       $available_languages = Configuration::get_available_languages();
       $default_language = Configuration::get_default_language();
       
+      if (empty($available_languages))
+      	return NULL;
+      
       $identifier = self::get_identifier();
       $selected_language = isset($_SESSION[$identifier . "_language"]) ?
       						$_SESSION[$identifier . "_language"] : NULL;
