@@ -146,7 +146,7 @@
     //                          Get available languages
     ////////////////////////////////////////////////////////////////////////////
     public static function get_languages_path() {
-      return self::get_configuration_path("languages");
+      return self::get_configuration_path("languages", FALSE);
     }
     
     ////////////////////////////////////////////////////////////////////////////
