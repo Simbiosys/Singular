@@ -263,9 +263,13 @@
     ////////////////////////////////////////////////////////////////////////////
     //                        Load configuration path
     ////////////////////////////////////////////////////////////////////////////
-    private static function get_configuration_path($element) {
+    private static function get_configuration_path($element, $required = TRUE) {
       $root = self::get_root();
-      $element_path = self::get_configuration_element($element);
+      $element_path = self::get_configuration_element($element, $required);
+      
+      if (empty($element_path)) {
+        return NULL;
+      }
 
       if (is_string($element_path)) {
         return "$root$element_path";
