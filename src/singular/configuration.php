@@ -153,14 +153,14 @@
     //                         Get available languages
     ////////////////////////////////////////////////////////////////////////////
     public static function get_available_languages() {
-      return self::get_configuration_element('available_languages');
+      return self::get_configuration_element('available_languages', FALSE);
     }
     
     ////////////////////////////////////////////////////////////////////////////
     //                          Get default language
     ////////////////////////////////////////////////////////////////////////////
     public static function get_default_language() {
-      return self::get_configuration_element('default_language');
+      return self::get_configuration_element('default_language', FALSE);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -282,11 +282,16 @@
     ////////////////////////////////////////////////////////////////////////////
     //                        Load configuration element
     ////////////////////////////////////////////////////////////////////////////
-    private static function get_configuration_element($element) {
+    private static function get_configuration_element($element, $required = TRUE) {
       $configuration = self::get_full_configuration();
 
       if (!isset($configuration[$element])) {
-        throw new \Exception("singular.json has no attribute '$element'.");
+      	if ($required) {
+          throw new \Exception("singular.json has no attribute '$element'.");
+        }
+        else {
+          return NULL;
+        }
       }
 
       return $configuration["$element"];
