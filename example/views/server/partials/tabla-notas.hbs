@@ -4,7 +4,9 @@
       <tr>
         <td>
           {{#notas_traducciones}}
-            {{mensaje}}
+            <div class="{{idioma_habilitado idioma}}">
+              {{mensaje}}
+            </div>
           {{/notas_traducciones}}
         </td>
         <td>{{notas.creacion}}</td>

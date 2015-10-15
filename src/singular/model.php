@@ -2,25 +2,28 @@
   namespace Singular;
 
   class Model {
-    protected static $data_base;
-    protected static $table;
-    protected static $query;
-    protected static $filter = NULL;
-    protected static $order;
+    protected $data_base;
+    protected $table;
+    protected $query;
+    protected $filter = NULL;
+    protected $order;
 
-    protected static $fields;
-    protected static $primary_key = NULL;
-    protected static $dependencies = NULL;
+    protected $fields;
+    protected $query_fields;
+    protected $primary_key = NULL;
+    protected $dependencies = NULL;
 
-    protected static $cache = NULL;
+    protected $cache = NULL;
 
     function __construct($values = NULL) {
-      self::get_connection();
-      self::get_cache();
+      $this->get_connection();
+      $this->get_cache();
 
       if (!empty($values)) {
         $this->set($values);
       }
+
+      $this->init();
     }
 
     protected $attributes = array(
@@ -41,34 +44,34 @@
       return isset($this->attributes[$name]) ? $this->attributes[$name] : NULL;
     }
 
-    public static function get_table() {
-      return static::$table;
+    public function get_table() {
+      return $this->table;
     }
 
     ////////////////////////////////////////////////////////////////////////////
     //                          DATABASE CONNECTION
     ////////////////////////////////////////////////////////////////////////////
 
-    protected static function get_connection() {
+    protected function get_connection() {
       $configuration = Configuration::get_database_configuration();
-      self::$data_base = Database::get_connection($configuration["provider"], $configuration["server"], $configuration["user"], $configuration["password"], $configuration["data_base"]);
+      $this->data_base = Database::get_connection($configuration["provider"], $configuration["server"], $configuration["user"], $configuration["password"], $configuration["data_base"]);
     }
 
     ////////////////////////////////////////////////////////////////////////////
     //                                CACHE
     ////////////////////////////////////////////////////////////////////////////
 
-    protected static function get_cache() {
-      if (empty(static::$cache)) {
+    protected function get_cache() {
+      if (empty($this->cache)) {
         $cache = Configuration::get_cache();
 
         if ($cache) {
           $r = new \ReflectionClass($cache);
-          static::$cache = $r->newInstanceArgs(array(static::$table));
+          $this->cache = $r->newInstanceArgs(array($this->table));
         }
       }
 
-      return static::$cache;
+      return $this->cache;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -77,42 +80,50 @@
 
     protected function init() {
       // Lets you perform initial tasks
-      static::$filter = self::$data_base->get_default_filter();
+      $this->filter = $this->data_base->get_default_filter();
     }
 
-    protected static function get_query() {
-      self::auto_generation();
+    protected function get_query() {
+      $this->auto_generation();
 
-      $query = static::$query;
-      $table = static::$table;
-      $filter = static::$filter;
+      $query = $this->query;
+      $query_fields = $this->query_fields;
+      $table = $this->table;
+      $filter = $this->filter;
 
-      return self::$data_base->get_query($query, $table, $filter);
+      return $this->data_base->get_query($query, $query_fields, $table, $filter);
     }
 
-    protected static function get_filter() {
-      $filter = static::$filter;
+    protected function get_filter() {
+      $filter = $this->filter;
 
-      return self::$data_base->get_filter($filter);
+      return $this->data_base->get_filter($filter);
     }
 
-    protected static function get_order() {
-      $order = static::$order;
+    protected function get_order() {
+      $order = $this->order;
 
-      return self::$data_base->get_order($order);
+      return $this->data_base->get_order($order);
     }
 
-    protected static function wrap_data(&$data, $model, $info) {
+    protected function wrap_data(&$data, $model, $info) {
       $data[$model] = $info;
 
       return $data;
     }
 
-    protected static function set_dependencies($id, &$data, $cache_identifier) {
-      $dependencies = static::$dependencies;
+    private function is_assoc(array $array) {
+      $keys = array_keys($array);
+      return array_keys($keys) !== $keys;
+    }
 
-      if (empty($dependencies))
+    protected function set_dependencies($entity, $id, &$data, $cache_identifier) {
+      $object = new $entity();
+      $dependencies = $object->dependencies;
+
+      if (empty($dependencies)) {
         return $data;
+      }
 
       foreach ($dependencies as $dependency) {
         $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
@@ -121,14 +132,15 @@
         $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
         $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
 
-        $table = self::get_table_by_entity($entity);
-        $key = self::get_dependency_key($table);
+        $table = $this->get_table_by_entity($entity);
+        $key = $this->get_dependency_key($table);
 
         $condition = "$key = '$id'";
-        $query = self::$data_base->get_query_by_condition(NULL, $table, $filter, $order, $condition);
+        $query_fields = NULL;
+        $query = $this->data_base->get_query_by_condition(NULL, $query_fields, $table, $filter, $order, $condition);
 
         $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
-        $results = self::process_query_results($table, $query, NULL, $dependency_cache_identifier);
+        $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
         $data[$table] = $results;
       }
@@ -136,12 +148,13 @@
       return $data;
     }
 
-    private static function get_table_by_entity($entity) {
-      return call_user_func(array($entity, 'get_table'));
+    private function get_table_by_entity($entity) {
+      $object = new $entity();
+      return $object->get_table();
     }
 
-    private static function get_cached_data($identifier) {
-      $cache = self::get_cache();
+    private function get_cached_data($identifier) {
+      $cache = $this->get_cache();
 
       if ($cache) {
         $cached_data = $cache->get($cache_identifier);
@@ -153,29 +166,44 @@
       return NULL;
     }
 
-    private static function process_query_results($table, $query, $params, $cache_identifier) {
-      $results = self::$data_base->run($query, NULL, $params);
+    private function process_query_results($entity, $table, $query, $params, $cache_identifier, $wrap_data = TRUE) {
+      $results = $this->data_base->run($query, NULL, $params);
 
       $class = get_called_class();
       $obj = new $class();
-      $obj->init();
 
       $objs = NULL;
 
+      if (empty($entity)) {
+        $entity = $obj;
+      }
+      else {
+        $entity = new $entity();
+      }
+
       if ($results) {
         for ($i = 0; $i < sizeof($results); $i++) {
-          $fields = self::$data_base->format_fields($results[$i], static::$fields);
+          $fields = $this->data_base->format_fields($results[$i], $this->fields);
           $id = isset($fields["id"]) ? $fields["id"] : NULL;
 
           $data = array();
-          self::wrap_data($data, $table, $obj->process($fields));
-          self::set_dependencies($id, $data, $cache_identifier);
+
+          $processed_fields = $obj->process($fields);
+
+          if ($wrap_data) {
+            $this->wrap_data($data, $table, $processed_fields);
+          }
+          else {
+            $data = $processed_fields;
+          }
+
+          $this->set_dependencies($entity, $id, $data, $cache_identifier);
 
           $objs[] = $data;
         }
       }
 
-      $cache = self::get_cache();
+      $cache = $this->get_cache();
 
       if ($cache) {
         $cache->set($cache_identifier, $objs);
@@ -184,37 +212,50 @@
       return $objs;
     }
 
-    private static function filter_by_entity($entities) {
+    private function filter_by_entity($entities, $exists) {
       $filtered_data = array();
 
       foreach ($entities as $entity => $rows) {
-        if (count($rows) == 0) {
-          array_push($rows, array());
+        if (!is_array($rows)) {
+          $rows = array($rows);
         }
 
-        foreach ($rows as $row) {
-          $filtered = array();
-          $id = NULL;
-
-          foreach ($row as $key => $value) {
-            if ($value !== NULL && $value !== '' && $key !== 'id') {
-              if ($value === false) {
-                $value = 0;
-              }
-
-              $filtered[$key] = $value;
-            }
-            else if ($key === 'id') {
-              $id = $value;
-            }
+        if (count($rows) == 0) {
+          array_push($filtered_data, array(
+            "entity" => $entity
+          ));
+        }
+        else {
+          if ($this->is_assoc($rows)) {
+            $rows = array($rows);
           }
 
-          if (!self::is_dependency($entity) || $id !== NULL || count($filtered) > 0) {
-            array_push($filtered_data, array(
-              "entity" => $entity,
-              "id" => $id,
-              "filtered" => $filtered
-            ));
+          foreach ($rows as $row) {
+            $filtered = array();
+            $id = NULL;
+
+            foreach ($row as $key => $value) {
+              if ($value !== NULL && $value !== '' && $key !== 'id') {
+                if ($value === false) {
+                  $value = 0;
+                }
+
+                $filtered[$key] = $value;
+              }
+              else if ($key === 'id') {
+                $id = $value;
+              }
+            }
+
+            if ( (!$this->is_dependency($entity) && !$exists)
+                  || $id !== NULL
+                  || count($filtered) > 0 ) {
+              array_push($filtered_data, array(
+                "entity" => $entity,
+                "id" => $id,
+                "filtered" => $filtered
+              ));
+            }
           }
         }
       }
@@ -222,14 +263,14 @@
       return $filtered_data;
     }
 
-    private static function is_dependency($table) {
-      $dependencies = static::$dependencies;
+    private function is_dependency($table) {
+      $dependencies = $this->dependencies;
 
       return isset($dependencies[$table]);
     }
 
-    private static function get_dependency_key($table) {
-      $dependencies = static::$dependencies;
+    private function get_dependency_key($table) {
+      $dependencies = $this->dependencies;
       $dependency = isset($dependencies[$table]) ? $dependencies[$table] : array();
 
       return isset($dependency["key"]) ? $dependency["key"] : $table . "_id";
@@ -239,56 +280,58 @@
     //                             QUERY METHODS
     ////////////////////////////////////////////////////////////////////////////
 
-    public static function find($id) {
-      $results = self::find_all_by_value('id', $id);
+    public function find($id) {
+      $results = $this->find_all_by_value('id', $id);
 
       return count($results) > 0 ? $results[0] : NULL;
     }
 
-    public static function find_all_by_value($field, $value) {
+    public function find_all_by_value($field, $value) {
       $cache_identifier = "$field_$value";
-      $cached = self::get_cached_data($cache_identifier);
+      $cached = $this->get_cached_data($cache_identifier);
 
       if ($cached) {
         return $cached;
       }
 
-      self::get_connection();
+      $this->get_connection();
 
-      $query = self::$data_base->get_query_by_value(static::$query, static::$table, static::$filter, static::$order, $field, $value);
+      $query = $this->data_base->get_query_by_value($this->query, $this->query_fields, $this->table, $this->filter, $this->order, $field, $value);
 
-      return self::process_query_results(static::$table, $query, array($value), $cache_identifier);
+      return $this->process_query_results(NULL, $this->table, $query, array($value), $cache_identifier);
     }
 
-    public static function get_all($condition = NULL) {
+    public function get_all($condition = NULL) {
       $cache_identifier = "condition_$condition";
-      $cached = self::get_cached_data($cache_identifier);
+      $cached = $this->get_cached_data($cache_identifier);
 
       if ($cached) {
         return $cached;
       }
 
-      self::get_connection();
+      $this->get_connection();
 
-      $query = self::$data_base->get_query_by_condition(static::$query, static::$table, static::$filter, static::$order, $condition);
+      $query = $this->data_base->get_query_by_condition($this->query, $this->query_fields, $this->table, $this->filter, $this->order, $condition);
 
-      return self::process_query_results(static::$table, $query, NULL, $cache_identifier);
+      return $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
     }
 
-    public function save() {
-      self::auto_generation();
-      self::get_connection();
+    public function save($the_id, $values) {
+      $this->auto_generation();
+      $this->get_connection();
 
-      $values = $this->attributes;
-      $filtered_data = self::filter_by_entity($values);
+      $filtered_data = $this->filter_by_entity($values, isset($the_id));
 
-      $table = static::$table;
-      //$main_entity_id = isset($filtered_data[$table]["id"]) ? $filtered_data[$table]["id"] : NULL;
-      $main_entity_id = self::get_attribute("id");
+      $table = $this->table;
+
+      $main_entity_id = $this->get_attribute("id");
+
+      if (empty($main_entity_id)) {
+        $main_entity_id = $the_id;
+      }
 
       // Sort entities, this model must be first to generate ID in INSERT
       // to have it for following INSERTs
-
       usort($filtered_data, function($a, $b) use ($table) {
         $a_entity = $a["entity"];
         $b_entity = $b["entity"];
@@ -312,79 +355,128 @@
         $id = $info["id"];
 
         // Set foreign key in dependent entities
-        if (self::is_dependency($entity)) {
-          $key = self::get_dependency_key($entity);
+        if ($this->is_dependency($entity)) {
+          $key = $this->get_dependency_key($entity);
 
           if (!isset($filtered[$key])) {
             $filtered[$key] = $main_entity_id;
           }
         }
 
-        $columns = array_keys($filtered);
+        $columns = NULL;
+
+        if (!empty($filtered)) {
+          $columns = array_keys($filtered);
+        }
 
         if ($id) {
-          $query = self::$data_base->get_update($entity, $columns, $id);
+          $query = $this->data_base->get_update($entity, $columns, $id);
         }
         else {
-          $query = self::$data_base->get_insert($entity, $columns, $params);
+          $query = $this->data_base->get_insert($entity, $columns, $params);
         }
 
-        $result = self::$data_base->run($query, NULL, $filtered);
+        $result = $this->data_base->run($query, NULL, $filtered);
 
         if ($result) {
-          $new_id = self::$data_base->get_id();
+          $new_id = $this->data_base->get_id();
           $result = array('error' => FALSE, 'message' => $new_id);
 
-          if (empty($main_entity_id) && !self::is_dependency($entity)) {
+          if (empty($main_entity_id) && !$this->is_dependency($entity)) {
             $main_entity_id = $new_id;
           }
 
           // Cache invalidation
-          $cache = self::get_cache();
+          $cache = $this->get_cache();
 
           if ($cache) {
             $cache->clear();
           }
         } else {
-          return array('error' => TRUE, 'message' => self::$data_base->get_error());
+          return array('error' => TRUE, 'message' => $this->data_base->get_error());
         }
       }
 
       return $result;
     }
 
-    public static function update($id, $values) {
-      $table = static::$table;
+    public function update($id, $values) {
+      $result = $this->save($id, $values);
 
-      if (!isset($values[$table])) {
-        $values[$table] = array();
+      if ($result["error"]) {
+        Controller::debug("Update error: " . $result["message"]);
+      }
+    }
+
+    public function create($values) {
+      if (!isset($values[$this->table])) {
+        $values[$this->table] = array();
       }
 
-      $values[$table]["id"] = $id;
+      $result = $this->save(NULL, $values);
 
-      $class = get_called_class();
-      $obj = new $class($values);
-      $obj->init();
-
-      $obj->save();
+      if ($result["error"]) {
+        Controller::debug("Insert error: " . $result["message"]);
+      }
     }
 
-    public static function create($values) {
-      $class = get_called_class();
-      $obj = new $class($values);
-      $obj->init();
+    public function delete($id) {
+      $this->get_connection();
+      $query = $this->data_base->get_delete($this->table, $id);
+      $result = $this->data_base->run($query, NULL, NULL);
 
-      $obj->save();
-    }
+      if (!$result) {
+        Controller::debug("Delete error: " . $this->data_base->get_error());
+        return;
+      }
 
-    public static function delete($id) {
-      self::get_connection();
-      $query = self::$data_base->get_delete(static::$table, $id);
+      // Cascade delete
+      $dependencies = $this->dependencies;
 
-      $result = self::$data_base->run($query, NULL, NULL);
+      foreach ($dependencies as $dependency) {
+        $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
+        $filter = isset($dependency["filter"]) ? $dependency["filter"] : NULL;
+        $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
+        $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
+
+        if ($dependent) {
+          $table = $this->get_table_by_entity($entity);
+          $key = $this->get_dependency_key($table);
+          $condition = "$key = '$id'";
+
+          $query = $this->data_base->get_query_by_condition(NULL, NULL, $table, $filter, $order, $condition);
+          $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
+          $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
+
+          $object = new $entity();
+
+          if ($results) {
+            foreach ($results as $result) {
+              $element_id = isset($result["id"]) ? $result["id"] : NULL;
+
+              if ($element_id) {
+                $query = $this->data_base->get_delete($object->table, $element_id);
+                $result = $this->data_base->run($query, NULL, NULL);
+
+                if (!$result) {
+                  Controller::debug("Delete error: " . $this->data_base->get_error());
+                  return;
+                }
+              }
+            }
+
+            // Cache invalidation
+            $cache = $object->get_cache();
+
+            if ($cache) {
+              $cache->clear();
+            }
+          }
+        }
+      }
 
       // Cache invalidation
-      $cache = self::get_cache();
+      $cache = $this->get_cache();
 
       if ($cache) {
         $cache->clear();
@@ -403,12 +495,12 @@
     //                             AUTO GENERATION
     ////////////////////////////////////////////////////////////////////////////
 
-    protected static function auto_generation() {
-      self::check_table();
-      self::check_fields();
+    protected function auto_generation() {
+      $this->check_table();
+      $this->check_fields();
 
       // Check table and fields for dependencies
-      $dependencies = static::$dependencies;
+      $dependencies = $this->dependencies;
 
       foreach ($dependencies as $key => $info) {
         $entity = isset($info["entity"]) ? $info["entity"] : NULL;
@@ -417,23 +509,24 @@
           continue;
         }
 
-        call_user_func(array($entity, 'check_table'));
-        call_user_func(array($entity, 'check_fields'));
+        $object = new $entity();
+        $object->check_table();
+        $object->check_fields();
       }
     }
 
-    protected static function check_table() {
-      $table = static::$table;
-      $fields = static::$fields;
-      $primary_key = static::$primary_key;
+    protected function check_table() {
+      $table = $this->table;
+      $fields = $this->fields;
+      $primary_key = $this->primary_key;
 
-      self::$data_base->check_table($table, $fields, $primary_key);
+      $this->data_base->check_table($table, $fields, $primary_key);
     }
 
-    protected static function check_fields() {
-      $table = static::$table;
-      $fields = static::$fields;
-      $primary_key = static::$primary_key;
+    protected function check_fields() {
+      $table = $this->table;
+      $fields = $this->fields;
+      $primary_key = $this->primary_key;
 
       // Deleted
       if (!isset($fields["deleted"])) {
@@ -444,6 +537,6 @@
         );
       }
 
-      self::$data_base->check_fields($table, $fields, $primary_key);
+      $this->data_base->check_fields($table, $fields, $primary_key);
     }
   }

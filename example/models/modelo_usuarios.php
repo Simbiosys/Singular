@@ -1,29 +1,29 @@
 <?php
 
 class ModeloUsuarios extends \Singular\Model {
-      protected static $table = "usuarios";
-      protected static $query = "SELECT id, cuenta, nombre
+      protected $table = "usuarios";
+      protected $query = "SELECT id, cuenta, nombre
                                      FROM usuarios";
-      protected static $order = array("nombre ASC");
+      protected $order = array("nombre ASC");
 
-      protected static $fields = array(
+      protected $fields = array(
         "id" => array(
-          "type" => "integer", // Si no se especifica se define como string
+          "type" => "integer",
           "null" => FALSE,
           "auto_increment" => TRUE
         ),
         "cuenta" => array(
-          "type" => "string", // Si no se especifica se define como string
+          "type" => "string",
           "size" => 200,
           "null" => FALSE
         ),
         "clave" => array(
-          "type" => "string", // Si no se especifica se define como string
+          "type" => "string",
           "size" => 200,
           "null" => FALSE
         ),
         "nombre" => array(
-          "type" => "string", // Si no se especifica se define como string
+          "type" => "string",
           "size" => 200,
           "null" => FALSE
         ),
@@ -33,7 +33,7 @@ class ModeloUsuarios extends \Singular\Model {
         )
       );
 
-      protected static $primary_key = "id";
+      protected $primary_key = "id";
 
       // No obligatorio
       public function process($data) {

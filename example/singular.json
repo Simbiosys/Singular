@@ -29,7 +29,8 @@
       },
       "cache": null,
       "authentication": "AppAuthentication",
-      "authorisation": "AppAuthorisation"
+      "authorisation": "AppAuthorisation",
+      "helpers": "AppHelpers"
     },
     "production": {
 	  "cache": "\\Singular\\MemcacheCache",

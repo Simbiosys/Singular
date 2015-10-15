@@ -9,13 +9,14 @@
       {{> navigation}}
       {{> cabecera}}
       <section class="notas">
-        {{#data.notas}}
-          <form method="POST" action="{{@root.page.host}}/notas/{{id}}/guardar">
-            <label for="nota" class="etiqueta">{{labels.note}}</label>
-            <textarea class="campo-texto campo-nota" id="mensaje" name="notas.mensaje" placeholder="{{labels.note}}">{{mensaje}}</textarea>
-            <input type="submit" value="{{@root.labels.save}}" class="btn-enviar" id="" name="" />
-          </form>
-        {{/data.notas}}
+        <form method="POST" action="{{@root.page.host}}/notas/{{data.notas.id}}/guardar">
+          {{#data.notas_traducciones}}
+            <label for="nota_{{idioma}}" class="etiqueta">{{@root.labels.note}} ({{idioma}})</label>
+            <textarea class="campo-texto campo-nota" id="nota_{{idioma}}" name="mensaje_{{idioma}}" placeholder="{{labels.note}} ({{idioma}})">{{mensaje}}</textarea>
+            <input type="hidden" name="traduccion_id" value="{{id}}" />
+          {{/data.notas_traducciones}}
+          <input type="submit" value="{{labels.save}}" class="btn-enviar" id="" name="" />
+        </form>
       </section>
     </main>
     {{> pie}}

@@ -60,11 +60,13 @@
   //                              LISTAR NOTAS
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas", "notas", "ver", function() {
-    \Singular\Controller::debug(ModeloNotas::get_all());
+    $modelo_notas = new ModeloNotas();
+
+  //  \Singular\Controller::debug($modelo_notas->get_all());
 
     \Singular\View::render(array(
         "template" => "notas",
-        "data" => ModeloNotas::get_all()
+        "data" => $modelo_notas->get_all()
     ));
   });
 
@@ -72,9 +74,11 @@
   //                             CREAR NUEVA NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas/nuevo", "notas", "editar", function() {
+    $modelo_notas = new ModeloNotas();
+
     \Singular\View::render(array(
         "template" => "notas_nuevo",
-        "data" => ModeloNotas::get_all()
+        "data" => $modelo_notas->get_all()
     ));
   });
 
@@ -85,7 +89,9 @@
     $nota_en = \Singular\Controller::get_post_variable("mensaje_en");
     $nota_es = \Singular\Controller::get_post_variable("mensaje_es");
 
-    ModeloNotas::create(array(
+    $modelo_notas = new ModeloNotas();
+
+    $modelo_notas->create(array(
       "notas" => array(
 
       ),
@@ -110,7 +116,8 @@
   //                                BORRAR NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas/:nota/borrar", "notas", "editar", function($nota_id) {
-    ModeloNotas::delete($nota_id);
+    $modelo_notas = new ModeloNotas();
+    $modelo_notas->delete($nota_id);
 
     \Singular\Controller::flash("Nota borrada correctamente");
 
@@ -121,16 +128,20 @@
   //                                GUARDAR NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::post_private("/notas/:nota/guardar", "notas", "editar", function($nota_id) {
-    $nota = ModeloNotas::find($nota_id);
+    $modelo_notas = new ModeloNotas();
+    $nota = $modelo_notas->find($nota_id);
 
     if (!empty($nota)) {
-      $mensaje = \Singular\Controller::get_post_variable("notas.mensaje");
+      $traduccion_id = \Singular\Controller::get_post_variable("traduccion_id");
 
-      ModeloNotas::update($nota_id, array(
-        "notas" => array(
+      $mensaje_es = \Singular\Controller::get_post_variable("mensaje_es");
+      $mensaje_en = \Singular\Controller::get_post_variable("mensaje_en");
 
-        ),
+      $mensaje = empty($mensaje_es) ? $mensaje_en : $mensaje_es;
+
+      $modelo_notas->update($nota_id, array(
         "notas_traducciones" => array(
+          "id" => $traduccion_id,
           "mensaje" => $mensaje
         )
       ));
@@ -145,7 +156,8 @@
   //                                EDITAR NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas/:nota", "notas", "editar", function($nota_id) {
-    $nota = ModeloNotas::find($nota_id);
+    $modelo_notas = new ModeloNotas();
+    $nota = $modelo_notas->find($nota_id);
 
   //   \Singular\Controller::debug($nota);
 

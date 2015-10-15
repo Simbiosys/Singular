@@ -224,3 +224,11 @@ a:hover {
 .idioma {
   margin-left: 1em !important;
 }
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}

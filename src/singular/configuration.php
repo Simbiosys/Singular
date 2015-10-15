@@ -141,21 +141,21 @@
     public static function get_view_path() {
       return self::get_configuration_path("views");
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
-    //                          Get available languages
+    //                          Get language path
     ////////////////////////////////////////////////////////////////////////////
     public static function get_languages_path() {
       return self::get_configuration_path("languages", FALSE);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //                         Get available languages
     ////////////////////////////////////////////////////////////////////////////
     public static function get_available_languages() {
       return self::get_configuration_element('available_languages', FALSE);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //                          Get default language
     ////////////////////////////////////////////////////////////////////////////
@@ -184,6 +184,14 @@
     public static function get_authorisation() {
       $configuration = self::get_current_configuration();
       return $configuration['authorisation'];
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    //                           Get helpers
+    ////////////////////////////////////////////////////////////////////////////
+    public static function get_helpers() {
+      $configuration = self::get_current_configuration();
+      return $configuration['helpers'];
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -266,7 +274,7 @@
     private static function get_configuration_path($element, $required = TRUE) {
       $root = self::get_root();
       $element_path = self::get_configuration_element($element, $required);
-      
+
       if (empty($element_path)) {
         return NULL;
       }

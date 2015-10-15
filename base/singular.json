@@ -31,7 +31,8 @@
       "cache_server": "localhost",
       "cache_port": "11211",
       "authentication": "AppAuthentication",
-      "authorisation": "AppAuthorisation"
+      "authorisation": "AppAuthorisation",
+      "helpers": "AppHelpers"
     },
     "production": {
 

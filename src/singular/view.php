@@ -40,7 +40,7 @@
 					}
 				}
 
-        $compiled = \LightnCandy::compile($source, Array(
+				$compile_options = Array(
           'flags' => \LightnCandy::FLAG_STANDALONE | \LightnCandy::FLAG_RUNTIMEPARTIAL | \LightnCandy::FLAG_PARENT | \LightnCandy::FLAG_SPVARS | \LightnCandy::FLAG_HANDLEBARS,
           'basedir' => Array(
             $view_path,
@@ -48,13 +48,20 @@
           ),
           'fileext' => Array(
             '.hbs'
-        	),
-          'helpers' => Array(
-            'select_equals' => function ($args) {
-              return $args[0] == $args[1] ? "selected" : "";
-            }
-          )
-        ));
+        	)
+        );
+
+				$helpers = Helper::get_helpers();
+
+				$custom_helpers = Configuration::get_helpers();
+
+				if ($custom_helpers) {
+					$helpers = call_user_func(array($custom_helpers, 'get_helpers'));
+				}
+
+				$compile_options['helpers'] = $helpers;
+
+        $compiled = \LightnCandy::compile($source, $compile_options);
 
         file_put_contents($template_path, $compiled);
       }
@@ -68,7 +75,7 @@
         "page" => self::get_page_info($page_title, $page_navigation),
         "data" => $data,
         "labels" => self::get_labels(),
-		"extra" => $extra
+				"extra" => $extra
       ));
     }
 
@@ -95,21 +102,23 @@
       if (!empty($subtitle)) {
         $full_title = "$title :: $subtitle";
 	  }
-	
+
 	  $host = Configuration::get_host();
 
-      $options = array(
-        "version" => Configuration::get_app_settings("version"),
-        "host" => $host,
-		"web" => "$host/web",
-        "title" => $title,
-        "full_title" => $full_title,
-        "navigation" => array($navigation => TRUE),
-        "user" => Authentication::get_user(),
-		"user_data" => Authentication::get_user_data(),
-		"flash" => Flash::get_message(),
-		"debug" => Debug::get_message()
-      );
+    $options = array(
+      "version" => Configuration::get_app_settings("version"),
+      "host" => $host,
+			"web" => "$host/web",
+      "title" => $title,
+      "full_title" => $full_title,
+      "navigation" => array($navigation => TRUE),
+      "user" => Authentication::get_user(),
+			"user_data" => Authentication::get_user_data(),
+			"language" => Authentication::get_language(),
+			"languages" => Configuration::get_available_languages(),
+			"flash" => Flash::get_message(),
+			"debug" => Debug::get_message()
+    );
 
 	  $class = get_called_class();
       $obj = new $class();
@@ -122,7 +131,7 @@
 	protected function add_custom_page_info($defaults) {
 	  return array();
 	}
-	
+
 	protected static function get_labels() {
 	  $language = Authentication::get_language();
 	  $path = Configuration::get_languages_path();
