@@ -47,7 +47,7 @@
     AppAuthentication::log_out();
     \Singular\Controller::redirect("/login");
   });
-  
+
   //////////////////////////////////////////////////////////////////////////////
   //                              IDIOMA
   //////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
   //                              LISTAR NOTAS
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas", "notas", "ver", function() {
-//    \Singular\Controller::debug(ModeloNotas::get_all());
+    \Singular\Controller::debug(ModeloNotas::get_all());
 
     \Singular\View::render(array(
         "template" => "notas",
@@ -82,10 +82,23 @@
   //                            GUARDAR NUEVA NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::post_private("/notas/nuevo", "notas", "editar", function() {
-    $nota = \Singular\Controller::get_post_variable("nota");
+    $nota_en = \Singular\Controller::get_post_variable("mensaje_en");
+    $nota_es = \Singular\Controller::get_post_variable("mensaje_es");
 
     ModeloNotas::create(array(
-      "mensaje" => $nota
+      "notas" => array(
+
+      ),
+      "notas_traducciones" => array(
+        array(
+          "mensaje" => $nota_es,
+          "idioma" => "es"
+        ),
+        array(
+          "mensaje" => $nota_en,
+          "idioma" => "en"
+        )
+      )
     ));
 
     \Singular\Controller::flash("Nota guardada correctamente");
@@ -111,10 +124,15 @@
     $nota = ModeloNotas::find($nota_id);
 
     if (!empty($nota)) {
-      $mensaje = \Singular\Controller::get_post_variable("mensaje");
+      $mensaje = \Singular\Controller::get_post_variable("notas.mensaje");
 
       ModeloNotas::update($nota_id, array(
-        "mensaje" => $mensaje
+        "notas" => array(
+
+        ),
+        "notas_traducciones" => array(
+          "mensaje" => $mensaje
+        )
       ));
 
       \Singular\Controller::flash("Nota actualizada correctamente");
@@ -129,7 +147,7 @@
   \Singular\Controller::get_private("/notas/:nota", "notas", "editar", function($nota_id) {
     $nota = ModeloNotas::find($nota_id);
 
-    // \Singular\Controller::debug($nota);
+  //   \Singular\Controller::debug($nota);
 
     \Singular\View::render(array(
         "template" => "notas_editar",

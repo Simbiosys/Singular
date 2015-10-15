@@ -50,12 +50,32 @@
     ////////////////////////////////////////////////////////////////////////////
     //                           Get variables
     ////////////////////////////////////////////////////////////////////////////
+    // Prevent dot replacing
+    private static function get_input($source) {
+      $pairs = explode("&", $source == 'POST' ? file_get_contents("php://input") : $_SERVER['QUERY_STRING']);
+
+      $vars = array();
+
+      foreach ($pairs as $pair) {
+          $nv = explode("=", $pair);
+          $name = urldecode($nv[0]);
+          $value = urldecode($nv[1]);
+          $vars[$name] = $value;
+      }
+
+      return $vars;
+    }
+
     public static function get_post_variable($name, $default = NULL) {
-      return isset($_POST[$name]) ? $_POST[$name] : $default;
+      $post = self::get_input('POST');
+
+      return isset($post[$name]) ? $post[$name] : $default;
     }
 
     public static function get_get_variable($name, $default = NULL) {
-      return isset($_GET[$name]) ? $_GET[$name] : $default;
+      $get = self::get_input('GET');
+
+      return isset($get[$name]) ? $get[$name] : $default;
     }
 
     ////////////////////////////////////////////////////////////////////////////

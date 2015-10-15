@@ -2,9 +2,9 @@
 
 class ModeloUsuarios extends \Singular\Model {
       protected static $table = "usuarios";
-      protected static $sql_query = "SELECT id, cuenta, nombre
+      protected static $query = "SELECT id, cuenta, nombre
                                      FROM usuarios";
-      protected static $order = "nombre ASC";
+      protected static $order = array("nombre ASC");
 
       protected static $fields = array(
         "id" => array(

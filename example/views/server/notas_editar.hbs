@@ -9,13 +9,13 @@
       {{> navigation}}
       {{> cabecera}}
       <section class="notas">
-        {{#data}}
+        {{#data.notas}}
           <form method="POST" action="{{@root.page.host}}/notas/{{id}}/guardar">
             <label for="nota" class="etiqueta">{{labels.note}}</label>
-            <textarea class="campo-texto campo-nota" id="mensaje" name="mensaje" placeholder="{{labels.note}}">{{mensaje}}</textarea>
-            <input type="submit" value="{{labels.save}}" class="btn-enviar" id="" name="" />
+            <textarea class="campo-texto campo-nota" id="mensaje" name="notas.mensaje" placeholder="{{labels.note}}">{{mensaje}}</textarea>
+            <input type="submit" value="{{@root.labels.save}}" class="btn-enviar" id="" name="" />
           </form>
-        {{/data}}
+        {{/data.notas}}
       </section>
     </main>
     {{> pie}}

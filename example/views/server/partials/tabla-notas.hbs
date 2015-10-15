@@ -3,18 +3,18 @@
     {{#data}}
       <tr>
         <td>
-          <form method="POST" action="{{@root.page.host}}/notas/{{id}}/guardar">
-            <input type="text" value="{{mensaje}}" class="campo-texto campo-texto-actualizacion" name="mensaje" />
-          </form>
+          {{#notas_traducciones}}
+            {{mensaje}}
+          {{/notas_traducciones}}
         </td>
-        <td>{{creacion}}</td>
+        <td>{{notas.creacion}}</td>
         <td class="acciones">
-          <a href="{{@root.page.host}}/notas/{{id}}" class="btn-editar">
+          <a href="{{@root.page.host}}/notas/{{notas.id}}" class="btn-editar">
             <i class="fa fa-pencil-square-o"></i>
           </a>
         </td>
         <td class="acciones">
-          <a href="{{@root.page.host}}/notas/{{id}}/borrar" class="btn-borrar">
+          <a href="{{@root.page.host}}/notas/{{notas.id}}/borrar" class="btn-borrar">
             <i class="fa fa-trash-o"></i>
           </a>
         </td>
@@ -22,16 +22,3 @@
     {{/data}}
   </tbody>
 </table>
-
-<script>
-  var notas = document.querySelectorAll(".campo-texto-actualizacion");
-  var notas_length = notas.length;
-
-  for (var i = 0; i < notas_length; i++) {
-    var nota = notas[i];
-
-    nota.onchange = function() {
-      this.parentNode.submit();
-    }
-  }
-</script>

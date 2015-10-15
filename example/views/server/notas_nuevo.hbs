@@ -10,8 +10,10 @@
       {{> cabecera}}
       <section class="notas">
         <form method="POST" action="{{page.host}}/notas/nuevo">
-          <label for="nota" class="etiqueta">{{labels.note}}</label>
-          <textarea class="campo-texto campo-nota" id="nota" name="nota" placeholder="{{labels.note}}"></textarea>
+          <label for="nota_es" class="etiqueta">{{@root.labels.note}} (Español)</label>
+          <textarea class="campo-texto campo-nota" id="nota_es" name="mensaje_es" placeholder="{{labels.note}} (Español)"></textarea>
+          <label for="nota_en" class="etiqueta">{{@root.labels.note}} (English)</label>
+          <textarea class="campo-texto campo-nota" id="nota_en" name="mensaje_en" placeholder="{{labels.note}} (English)"></textarea>
           <input type="submit" value="{{labels.save}}" class="btn-enviar" id="" name="" />
         </form>
       </section>

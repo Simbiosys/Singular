@@ -30,21 +30,33 @@
 '.$sp.'  '.htmlentities((string)((isset($in['page']['debug']) && is_array($in['page'])) ? $in['page']['debug'] : null), ENT_QUOTES, 'UTF-8').'
 '.$sp.'</pre>
 '.$sp.'' : '').'';},'navigation' => function ($cx, $in, $sp) {return ''.$sp.'<nav class="navegacion">
+'.$sp.'  <ul class="pull-left">
+'.$sp.'  	<li class="pull-left idioma">
+'.$sp.'  	  <a href="'.htmlentities((string)((isset($in['page']['host']) && is_array($in['page'])) ? $in['page']['host'] : null), ENT_QUOTES, 'UTF-8').'/language/es">
+'.$sp.'        ES
+'.$sp.'      </a>
+'.$sp.'  	</li>
+'.$sp.'  	<li class="pull-left idioma">
+'.$sp.'  	  <a href="'.htmlentities((string)((isset($in['page']['host']) && is_array($in['page'])) ? $in['page']['host'] : null), ENT_QUOTES, 'UTF-8').'/language/en">
+'.$sp.'        EN
+'.$sp.'      </a>
+'.$sp.'  	</li>
+'.$sp.'  </ul>
 '.$sp.'  <ul>
 '.$sp.'    <li>
 '.$sp.'      <a href="'.htmlentities((string)((isset($in['page']['host']) && is_array($in['page'])) ? $in['page']['host'] : null), ENT_QUOTES, 'UTF-8').'/cerrar_sesion">
-'.$sp.'        Cerrar sesión
+'.$sp.'        '.htmlentities((string)((isset($in['labels']['logout']) && is_array($in['labels'])) ? $in['labels']['logout'] : null), ENT_QUOTES, 'UTF-8').'
 '.$sp.'        <i class="fa fa-power-off cerrar-sesion"></i>
 '.$sp.'      </a>
 '.$sp.'    </li>
 '.$sp.'  </ul>
 '.$sp.'</nav>
 ';},'cabecera' => function ($cx, $in, $sp) {return ''.$sp.'<header class="cabecera">
-'.$sp.'  <h1>Mis notas</h1>
-'.$sp.'  <h2 class="con-singular">con Singular</h2>
+'.$sp.'  <h1>'.htmlentities((string)((isset($in['labels']['title']) && is_array($in['labels'])) ? $in['labels']['title'] : null), ENT_QUOTES, 'UTF-8').'</h1>
+'.$sp.'  <h2 class="con-singular">'.htmlentities((string)((isset($in['labels']['with_singular']) && is_array($in['labels'])) ? $in['labels']['with_singular'] : null), ENT_QUOTES, 'UTF-8').'</h2>
 '.$sp.'</header>
 ';},'pie' => function ($cx, $in, $sp) {return ''.$sp.'<footer class="pie">
-'.$sp.'  Un producto de
+'.$sp.'  '.htmlentities((string)((isset($in['labels']['product']) && is_array($in['labels'])) ? $in['labels']['product'] : null), ENT_QUOTES, 'UTF-8').'
 '.$sp.'  <a href="http://www.simbiosys.es/">
 '.$sp.'    <img src="'.htmlentities((string)((isset($in['page']['web']) && is_array($in['page'])) ? $in['page']['web'] : null), ENT_QUOTES, 'UTF-8').'/img/simbiosys.png" class="logo-simbiosys" />
 '.$sp.'  </a>
@@ -182,10 +194,10 @@
   <body>
 '.$cx['funcs']['p']($cx, 'debug', array(array($in),array()), '    ').'    <main class="cuerpo">
 '.$cx['funcs']['p']($cx, 'navigation', array(array($in),array()), '      ').''.$cx['funcs']['p']($cx, 'cabecera', array(array($in),array()), '      ').'      <section class="notas">
-'.$cx['funcs']['sec']($cx, ((isset($in['data']) && is_array($in)) ? $in['data'] : null), $in, false, function($cx, $in) {return '          <form method="POST" action="'.htmlentities((string)((isset($cx['sp_vars']['root']['page']['host']) && is_array($cx['sp_vars']['root']['page'])) ? $cx['sp_vars']['root']['page']['host'] : null), ENT_QUOTES, 'UTF-8').'/notas/'.htmlentities((string)((isset($in['id']) && is_array($in)) ? $in['id'] : null), ENT_QUOTES, 'UTF-8').'/guardar">
-            <label for="nota" class="etiqueta">Nota</label>
-            <textarea class="campo-texto campo-nota" id="mensaje" name="mensaje" placeholder="Escriba su nota">'.htmlentities((string)((isset($in['mensaje']) && is_array($in)) ? $in['mensaje'] : null), ENT_QUOTES, 'UTF-8').'</textarea>
-            <input type="submit" value="Guardar" class="btn-enviar" id="" name="" />
+'.$cx['funcs']['sec']($cx, ((isset($in['data']['notas']) && is_array($in['data'])) ? $in['data']['notas'] : null), $in, false, function($cx, $in) {return '          <form method="POST" action="'.htmlentities((string)((isset($cx['sp_vars']['root']['page']['host']) && is_array($cx['sp_vars']['root']['page'])) ? $cx['sp_vars']['root']['page']['host'] : null), ENT_QUOTES, 'UTF-8').'/notas/'.htmlentities((string)((isset($in['id']) && is_array($in)) ? $in['id'] : null), ENT_QUOTES, 'UTF-8').'/guardar">
+            <label for="nota" class="etiqueta">'.htmlentities((string)((isset($in['labels']['note']) && is_array($in['labels'])) ? $in['labels']['note'] : null), ENT_QUOTES, 'UTF-8').'</label>
+            <textarea class="campo-texto campo-nota" id="mensaje" name="notas.mensaje" placeholder="'.htmlentities((string)((isset($in['labels']['note']) && is_array($in['labels'])) ? $in['labels']['note'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['mensaje']) && is_array($in)) ? $in['mensaje'] : null), ENT_QUOTES, 'UTF-8').'</textarea>
+            <input type="submit" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['labels']['save']) && is_array($cx['sp_vars']['root']['labels'])) ? $cx['sp_vars']['root']['labels']['save'] : null), ENT_QUOTES, 'UTF-8').'" class="btn-enviar" id="" name="" />
           </form>
 ';}).'      </section>
     </main>
