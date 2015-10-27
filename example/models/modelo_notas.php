@@ -32,6 +32,7 @@ class ModeloNotas extends \Singular\Model {
       "dependent" => TRUE // Si se borra una nota se borran sus traducciones
     )
   );
+  
 /*
   protected function init() {
     $idioma = AppAuthentication::get_language();
