@@ -66,6 +66,14 @@
       return $vars;
     }
 
+    public static function get_post() {
+      return self::get_input('POST');
+    }
+
+    public static function get_get() {
+      return self::get_input('GET');
+    }
+
     public static function get_post_variable($name, $default = NULL) {
       $post = self::get_input('POST');
 
