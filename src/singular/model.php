@@ -287,6 +287,8 @@
     }
 
     public function find_all_by_value($field, $value) {
+      $this->auto_generation();
+
       $cache_identifier = "$field_$value";
       $cached = $this->get_cached_data($cache_identifier);
 
@@ -302,6 +304,8 @@
     }
 
     public function get_all($condition = NULL) {
+      $this->auto_generation();
+
       $cache_identifier = "condition_$condition";
       $cached = $this->get_cached_data($cache_identifier);
 
@@ -501,6 +505,10 @@
 
       // Check table and fields for dependencies
       $dependencies = $this->dependencies;
+
+      if (empty($dependencies)) {
+        return;
+      }
 
       foreach ($dependencies as $key => $info) {
         $entity = isset($info["entity"]) ? $info["entity"] : NULL;
