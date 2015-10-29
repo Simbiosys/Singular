@@ -284,7 +284,18 @@
       }
       else {
         foreach ($element_path as $element => $value) {
-          $element_path[$element] = "$root$value";
+          if (is_array($element_path[$element])) {
+            $result = array();
+
+            foreach ($element_path[$element] as $item) {
+              array_push($result, "$root$item");
+            }
+
+            $element_path[$element] = $result;
+          }
+          else {
+            $element_path[$element] = "$root$value";
+          }
         }
 
         return $element_path;

@@ -13,18 +13,36 @@
 			$extra = isset($parameters["extra"]) ? $parameters["extra"] : array();
 			$layout = isset($parameters["layout"]) ? $parameters["layout"] : NULL;
 
-      $view_config = Configuration::get_view_path();
-      $view_path = $view_config["server"];
-      $partial_path = $view_config["partials"];
+      		$view_config = Configuration::get_view_path();
+      		$view_path = is_array($view_config["server"]) ?
+									$view_config["server"] : array($view_config["server"]);
+      		$partial_path = is_array($view_config["partials"]) ?
+									$view_config["partials"] : array($view_config["partials"]);
+
+			$all_paths = array();
+			$all_paths = array_merge($all_paths, $view_path);
+			$all_paths = array_merge($all_paths, $partial_path);
 
 			self::check_compiled_folder($view_path);
 			$sufix = empty($layout) ? "" : "-$layout";
-			$template_path = "$view_path/compiled/$template$sufix";
+
+			$template_path = NULL;
+			$source = NULL;
+
+			// Loop all posible paths
+			foreach ($view_path as $path) {
+				if (file_exists("$path/$template.hbs")) {
+					$template_path = "$path/compiled/$template$sufix";
+					$source = "$path/$template.hbs";
+				}
+			}
+
+			//$template_path = "$view_path/compiled/$template$sufix";
 
       if (Configuration::debug_enabled() || !file_exists($template_path)) {
         $compiled = NULL;
 
-				$source = file_get_contents("$view_path/$template.hbs");
+				$source = file_get_contents($source);
 
 				// Set layout
 				if (!empty($layout)) {
@@ -42,17 +60,13 @@
 
 				$compile_options = Array(
           'flags' => \LightnCandy::FLAG_STANDALONE | \LightnCandy::FLAG_RUNTIMEPARTIAL | \LightnCandy::FLAG_PARENT | \LightnCandy::FLAG_SPVARS | \LightnCandy::FLAG_HANDLEBARS,
-          'basedir' => Array(
-            $view_path,
-            $partial_path
-          ),
+          'basedir' => $all_paths,
           'fileext' => Array(
             '.hbs'
         	)
         );
 
 				$helpers = Helper::get_helpers();
-
 				$custom_helpers = Configuration::get_helpers();
 
 				if ($custom_helpers) {
@@ -83,11 +97,15 @@
     //                     Check compiled folder exists
     ////////////////////////////////////////////////////////////////////////////
     private static function check_compiled_folder($view_path) {
-      $compiled_path = "$view_path/compiled";
+			$list = is_array($view_path) ? $view_path : array($view_path);
 
-      if (!file_exists($compiled_path)) {
-        mkdir($compiled_path);
-      }
+			foreach ($list as $path) {
+				$compiled_path = "$path/compiled";
+
+	      if (!file_exists($compiled_path)) {
+	        mkdir($compiled_path);
+	      }
+			}
     }
 
     ////////////////////////////////////////////////////////////////////////////
