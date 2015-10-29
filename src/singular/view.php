@@ -13,17 +13,21 @@
 			$extra = isset($parameters["extra"]) ? $parameters["extra"] : array();
 			$layout = isset($parameters["layout"]) ? $parameters["layout"] : NULL;
 
-      		$view_config = Configuration::get_view_path();
-      		$view_path = is_array($view_config["server"]) ?
-									$view_config["server"] : array($view_config["server"]);
-      		$partial_path = is_array($view_config["partials"]) ?
-									$view_config["partials"] : array($view_config["partials"]);
+      $view_config = Configuration::get_view_path();
+
+      $view_path = is_array($view_config["server"]) ?
+					$view_config["server"] : array($view_config["server"]);
+
+      $partial_path = is_array($view_config["partials"]) ?
+					$view_config["partials"] : array($view_config["partials"]);
+
+			$compiled_path = $view_config["compiled"];
 
 			$all_paths = array();
 			$all_paths = array_merge($all_paths, $view_path);
 			$all_paths = array_merge($all_paths, $partial_path);
 
-			self::check_compiled_folder($view_path);
+			self::check_compiled_folder($view_config["compiled"]);
 			$sufix = empty($layout) ? "" : "-$layout";
 
 			$template_path = NULL;
@@ -32,7 +36,7 @@
 			// Loop all posible paths
 			foreach ($view_path as $path) {
 				if (file_exists("$path/$template.hbs")) {
-					$template_path = "$path/compiled/$template$sufix";
+					$template_path = "$compiled_path/$template$sufix";
 					$source = "$path/$template.hbs";
 				}
 			}
@@ -77,6 +81,9 @@
 
         $compiled = \LightnCandy::compile($source, $compile_options);
 
+				// Check if directory exists
+				self::check_compiled_folder(dirname($template_path));
+
         file_put_contents($template_path, $compiled);
       }
       else {
@@ -96,16 +103,10 @@
     ////////////////////////////////////////////////////////////////////////////
     //                     Check compiled folder exists
     ////////////////////////////////////////////////////////////////////////////
-    private static function check_compiled_folder($view_path) {
-			$list = is_array($view_path) ? $view_path : array($view_path);
-
-			foreach ($list as $path) {
-				$compiled_path = "$path/compiled";
-
-	      if (!file_exists($compiled_path)) {
-	        mkdir($compiled_path);
-	      }
-			}
+    private static function check_compiled_folder($compiled_path) {
+	    if (!file_exists($compiled_path)) {
+	      mkdir($compiled_path, 0777, TRUE);
+	    }
     }
 
     ////////////////////////////////////////////////////////////////////////////

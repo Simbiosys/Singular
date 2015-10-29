@@ -6,7 +6,8 @@
   "views": {
     "server": "/views/server",
     "client": "/views/client",
-    "partials": "/views/server/partials"
+    "partials": "/views/server/partials",
+    "compiled": "/views/compiled"
   },
   "layouts": "/views/server/layouts",
   "languages": "/lang",
