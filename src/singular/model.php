@@ -422,6 +422,8 @@
       if ($result["error"]) {
         Controller::debug("Insert error: " . $result["message"]);
       }
+
+      return $result;
     }
 
     public function delete($id) {
