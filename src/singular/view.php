@@ -101,47 +101,53 @@
 
       if (!empty($subtitle)) {
         $full_title = "$title :: $subtitle";
-	  }
+		  }
 
-	  $host = Configuration::get_host();
+		  $host = Configuration::get_host();
 
-    $options = array(
-      "version" => Configuration::get_app_settings("version"),
-      "host" => $host,
-			"web" => "$host/web",
-      "title" => $title,
-      "full_title" => $full_title,
-      "navigation" => array($navigation => TRUE),
-      "user" => Authentication::get_user(),
-			"user_data" => Authentication::get_user_data(),
-			"language" => Authentication::get_language(),
-			"languages" => Configuration::get_available_languages(),
-			"flash" => Flash::get_message(),
-			"debug" => Debug::get_message()
-    );
+	    $options = array(
+	      "version" => Configuration::get_app_settings("version"),
+	      "host" => $host,
+				"web" => "$host/web",
+	      "title" => $title,
+	      "full_title" => $full_title,
+	      "navigation" => array($navigation => TRUE),
+	      "user" => Authentication::get_user(),
+				"user_data" => Authentication::get_user_data(),
+				"language" => Authentication::get_language(),
+				"languages" => Configuration::get_available_languages(),
+				"flash" => Flash::get_message(),
+				"debug" => Debug::get_message()
+	    );
 
-	  $class = get_called_class();
-      $obj = new $class();
+		  $class = get_called_class();
+	      $obj = new $class();
 
-	  $custom_options = $obj->add_custom_page_info($options);
+		  $custom_options = $obj->add_custom_page_info($options);
 
       return array_merge($options, $custom_options);
     }
 
-	protected function add_custom_page_info($defaults) {
-	  return array();
-	}
+		protected function add_custom_page_info($defaults) {
+		  return array();
+		}
 
-	protected static function get_labels() {
-	  $language = Authentication::get_language();
-	  $path = Configuration::get_languages_path();
-	  $language_path = "$path/$language.json";
+		public static function get_labels() {
+		  $language = Authentication::get_language();
+		  $path = Configuration::get_languages_path();
+		  $language_path = "$path/$language.json";
 
-	  if (file_exists($language_path)) {
-	  	return json_decode(file_get_contents($language_path), true);
-	  }
-	  else {
-	  	return array();
-	  }
-	}
+		  if (file_exists($language_path)) {
+		  	return json_decode(file_get_contents($language_path), true);
+		  }
+		  else {
+		  	return array();
+		  }
+		}
+
+		public static function get_label($key) {
+			$labels = self::get_labels();
+
+			return isset($labels[$key]) ? $labels[$key] : NULL;
+		}
   }
