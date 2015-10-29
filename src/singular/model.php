@@ -351,6 +351,9 @@
         return 0;
       });
 
+      $results = array();
+      $main_result = NULL;
+
       for ($i = 0; $i < count($filtered_data); $i++) {
         $info = $filtered_data[$i];
 
@@ -396,12 +399,22 @@
           if ($cache) {
             $cache->clear();
           }
-        } else {
+        }
+        else {
           return array('error' => TRUE, 'message' => $this->data_base->get_error());
         }
+
+        if (!$this->is_dependency($entity)) {
+          $main_result = $result;
+        }
+
+        array_push($results, $result);
       }
 
-      return $result;
+      return array(
+        "main" => $main_result,
+        "all" => $results
+      );
     }
 
     public function update($id, $values) {
