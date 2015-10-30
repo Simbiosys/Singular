@@ -83,6 +83,8 @@
     protected $data_base;
     protected $cache = NULL;
 
+    protected $search_fields = array();
+
     public function __construct($values = NULL) {
       $this->get_connection();
       $this->get_cache();
@@ -229,6 +231,95 @@
       return NULL;
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    //                                 SEARCH
+    ////////////////////////////////////////////////////////////////////////////
+
+    protected function get_search_results($condition = NULL) {
+      return $this->get_all($condition);
+    }
+
+    public function search($terms, $condition = NULL) {
+      $search_fields = $this->search_fields;
+      $table = $this->table;
+
+      $terms = explode(" ", $terms);
+
+      for ($i = 0; $i < count($search_fields); $i++) {
+        $search_field = $search_fields[$i];
+
+        $parts = explode(".", $search_field);
+
+        $search_field_table = "";
+        $search_field_name = "";
+
+        if (count($parts) > 1) {
+          $search_field_table = $parts[0];
+          $search_field_name = $parts[1];
+        }
+        else {
+          $search_field_table = $table;
+          $search_field_name = $parts[0];
+        }
+
+        $search_fields[$i] = array(
+          "table" => $search_field_table,
+          "name" => $search_field_name
+        );
+      }
+
+      $results = $this->get_search_results($condition);
+      $occurrences = array();
+
+      foreach ($results as $result) {
+        $valid = TRUE;
+
+        foreach ($terms as $term) {
+          $term = strtolower($term);
+          $found = FALSE;
+
+          foreach ($search_fields as $search_field) {
+            $table = $search_field["table"];
+            $name = $search_field["name"];
+
+            if (!isset($result[$table])) {
+              continue;
+            }
+
+            $data = $result[$table];
+
+            if ($this->is_assoc($data)) {
+              $data = array($data);
+            }
+
+            foreach ($data as $item) {
+              if (!isset($item[$name])) {
+                continue;
+              }
+
+              $item = strtolower($item[$name]);
+
+              if (strpos($item, $term) !== FALSE) {
+                $found = TRUE;
+                break;
+              }
+            }
+          }
+
+          if (!$found) {
+            $valid = FALSE;
+            break;
+          }
+        }
+
+        if ($valid) {
+          array_push($occurrences, $result);
+        }
+      }
+
+      return $occurrences;
+    }
+
     private function process_query_results($entity, $table, $query, $params, $cache_identifier, $wrap_data = TRUE) {
       $results = $this->data_base->run($query, NULL, $params);
 
@@ -366,7 +457,17 @@
       return $this->process_query_results(NULL, $this->table, $query, array($value), $cache_identifier);
     }
 
-    public function get_all($condition = NULL) {
+    public function get_all($params = NULL) {
+      $condition = NULL;
+      $start = 0;
+      $limit = Configuration::get_app_settings("page_limit", NULL);
+
+      if (is_array($params)) {
+        $condition = isset($params["condition"]) ? $params["condition"] : NULL;
+        $start = isset($params["start"]) ? $params["start"] : $start;
+        $limit = isset($params["limit"]) ? $params["limit"] : $limit;
+      }
+
       $this->auto_generation();
 
       $cache_identifier = "condition_$condition";
@@ -380,7 +481,9 @@
 
       $query = $this->data_base->get_query_by_condition($this, $condition);
 
-      return $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
+      $results = $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
+
+      return array_slice($results, $start, $limit);
     }
 
     public function save($the_id, $values) {
