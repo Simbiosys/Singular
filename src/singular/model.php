@@ -1,21 +1,89 @@
 <?php
   namespace Singular;
 
-  class Model {
-    protected $data_base;
-    protected $table;
-    protected $query;
+  class BasicModel {
+    protected $query = NULL;
+    protected $query_fields = NULL;
+    protected $table = NULL;
     protected $filter = NULL;
-    protected $order;
+    protected $order = NULL;
 
-    protected $fields;
-    protected $query_fields;
-    protected $primary_key = NULL;
     protected $dependencies = NULL;
+    protected $fields = NULL;
+    protected $primary_key = NULL;
 
+    public function __construct($params) {
+      if (isset($params["query"])) {
+        $this->query = $params["query"];
+      }
+
+      if (isset($params["query_fields"])) {
+        $this->query_fields = $params["query_fields"];
+      }
+
+      if (isset($params["table"])) {
+        $this->table = $params["table"];
+      }
+
+      if (isset($params["filter"])) {
+        $this->filter = $params["filter"];
+      }
+
+      if (isset($params["order"])) {
+        $this->order = $params["order"];
+      }
+
+      if (isset($params["dependencies"])) {
+        $this->dependencies = $params["dependencies"];
+      }
+
+      if (isset($params["fields"])) {
+        $this->fields = $params["fields"];
+      }
+
+      if (isset($params["primary_key"])) {
+        $this->order = $params["primary_key"];
+      }
+    }
+
+    public function get_table() {
+      return $this->table;
+    }
+
+    public function get_query() {
+      return $this->query;
+    }
+
+    public function get_filter() {
+      return $this->filter;
+    }
+
+    public function get_order() {
+      return $this->order;
+    }
+
+    public function get_query_fields() {
+      return $this->query_fields;
+    }
+
+    public function get_dependencies() {
+      return $this->dependencies;
+    }
+
+    public function get_fields() {
+      return $this->fields;
+    }
+
+    public function get_primary_key() {
+      return $this->primary_key;
+    }
+  }
+
+  class Model extends BasicModel {
+    protected $data_base;
     protected $cache = NULL;
 
-    function __construct($values = NULL) {
+    public function __construct($values = NULL) {
       $this->get_connection();
       $this->get_cache();
 
@@ -42,10 +110,6 @@
 
     public function get_attribute($name) {
       return isset($this->attributes[$name]) ? $this->attributes[$name] : NULL;
-    }
-
-    public function get_table() {
-      return $this->table;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -83,27 +147,18 @@
       $this->filter = $this->data_base->get_default_filter();
     }
 
-    protected function get_query() {
+    protected function get_the_query() {
       $this->auto_generation();
 
-      $query = $this->query;
-      $query_fields = $this->query_fields;
-      $table = $this->table;
-      $filter = $this->filter;
-
-      return $this->data_base->get_query($query, $query_fields, $table, $filter);
+      return $this->data_base->get_query($this);
     }
 
-    protected function get_filter() {
-      $filter = $this->filter;
-
-      return $this->data_base->get_filter($filter);
+    protected function get_the_filter() {
+      return $this->data_base->get_filter($this);
     }
 
-    protected function get_order() {
-      $order = $this->order;
-
-      return $this->data_base->get_order($order);
+    protected function get_the_order() {
+      return $this->data_base->get_order($this);
     }
 
     protected function wrap_data(&$data, $model, $info) {
@@ -136,8 +191,16 @@
         $key = $this->get_dependency_key($table);
 
         $condition = "$key = '$id'";
-        $query_fields = NULL;
-        $query = $this->data_base->get_query_by_condition(NULL, $query_fields, $table, $filter, $order, $condition);
+
+        $fake_model = new BasicModel(array(
+          "query" => NULL,
+          "query_fields" => NULL,
+          "table" => $table,
+          "filter" => $filter,
+          "order" => $order
+        ));
+
+        $query = $this->data_base->get_query_by_condition($fake_model, $condition);
 
         $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
         $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
@@ -298,7 +361,7 @@
 
       $this->get_connection();
 
-      $query = $this->data_base->get_query_by_value($this->query, $this->query_fields, $this->table, $this->filter, $this->order, $field, $value);
+      $query = $this->data_base->get_query_by_value($this, $field, $value);
 
       return $this->process_query_results(NULL, $this->table, $query, array($value), $cache_identifier);
     }
@@ -315,7 +378,7 @@
 
       $this->get_connection();
 
-      $query = $this->data_base->get_query_by_condition($this->query, $this->query_fields, $this->table, $this->filter, $this->order, $condition);
+      $query = $this->data_base->get_query_by_condition($this, $condition);
 
       return $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
     }
@@ -463,7 +526,15 @@
           $key = $this->get_dependency_key($table);
           $condition = "$key = '$id'";
 
-          $query = $this->data_base->get_query_by_condition(NULL, NULL, $table, $filter, $order, $condition);
+          $fake_model = new BasicModel(array(
+            "query" => NULL,
+            "query_fields" => NULL,
+            "table" => $table,
+            "filter" => $filter,
+            "order" => $order
+          ));
+
+          $query = $this->data_base->get_query_by_condition($fake_model, $condition);
           $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
           $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 

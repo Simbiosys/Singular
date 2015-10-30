@@ -28,17 +28,15 @@
     //                                 Get index
     ////////////////////////////////////////////////////////////////////////////
     public static function get_index() {
-      //$index = self::get_configuration_element("index");
       $host = self::get_host();
 
-      //return "$host$index";
       return $host;
     }
 
     ////////////////////////////////////////////////////////////////////////////
     //                            Get app settings
     ////////////////////////////////////////////////////////////////////////////
-    public static function get_app_settings($properties = NULL) {
+    public static function get_app_settings($properties = NULL, $default = NULL) {
       if (empty(static::$app_settings)) {
         static::$app_settings = self::load_app_settings();
       }
@@ -59,7 +57,7 @@
         $property = $properties[$i];
 
         if (!isset($value[$property])) {
-          return NULL;
+          return $default;
         }
 
         $value = $value[$property];
