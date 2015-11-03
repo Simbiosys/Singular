@@ -458,7 +458,7 @@
     }
 
     public function get_all($params = NULL) {
-      $condition = NULL;
+      $condition = $params;
       $start = 0;
       $limit = Configuration::get_app_settings("page_limit", NULL);
 
@@ -483,7 +483,12 @@
 
       $results = $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
 
-      return array_slice($results, $start, $limit);
+      if (!empty($results)) {
+        return array_slice($results, $start, $limit);
+      }
+      else {
+        return array();
+      }
     }
 
     public function save($the_id, $values) {
