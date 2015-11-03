@@ -645,7 +645,7 @@
       }
 
       // Cascade delete
-      $dependencies = $this->dependencies;
+      $dependencies = empty($this->dependencies) ? array() : $this->dependencies;
 
       foreach ($dependencies as $dependency) {
         $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
