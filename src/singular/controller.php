@@ -48,6 +48,67 @@
     }
 
     ////////////////////////////////////////////////////////////////////////////
+    //                         Get Data By Entity
+    ////////////////////////////////////////////////////////////////////////////
+    public static function get_data_by_entity($default_model) {
+      $parameters = \Singular\Controller::get_post();
+
+      $data = array();
+      $data_translations = array();
+
+      foreach ($parameters as $name => $value) {
+        $parts = explode("#", $name);
+
+        $name = $parts[0];
+        $language = count($parts) > 1 ? $parts[1] : NULL;
+
+        $parts = explode(".", $name);
+
+        $model = NULL;
+
+        if (count($parts) > 1) {
+          $model = $parts[0];
+          $name = $parts[1];
+        }
+
+        if (empty($model)) {
+          $model = $default_model;
+        }
+
+        if (!empty($language)) {
+          if (!isset($data_translations[$model])) {
+            $data_translations[$model] = array();
+          }
+
+          if (!isset($data_translations[$model][$language])) {
+            $data_translations[$model][$language] = array();
+          }
+
+          $data_translations[$model][$language][$name] = $value;
+        }
+        else {
+          if (!isset($data[$model])) {
+            $data[$model] = array();
+          }
+
+          $data[$model][$name] = $value;
+        }
+      }
+
+      foreach ($data_translations as $model => $languages) {
+        $data[$model] = array();
+
+        foreach ($languages as $language => $items) {
+          $items["language"] = $language;
+
+          array_push($data[$model], $items);
+        }
+      }
+
+      return $data;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
     //                           Get variables
     ////////////////////////////////////////////////////////////////////////////
     // Prevent dot replacing
