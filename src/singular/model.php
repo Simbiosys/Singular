@@ -470,6 +470,12 @@
       return isset($result["count"]) ? $result["count"] : NULL;
     }
 
+    public function number_search($terms, $condition = NULL) {
+      $occurrences = $this->search($terms, $condition);
+
+      return count($occurrences);
+    }
+
     public function get_all($params = NULL) {
       $condition = $params;
       $start = 0;
@@ -551,6 +557,11 @@
 
           if (!isset($filtered[$key])) {
             $filtered[$key] = $main_entity_id;
+          }
+        }
+        else {
+          if (empty($id)) {
+            $id = $main_entity_id;
           }
         }
 
