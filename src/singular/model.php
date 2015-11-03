@@ -457,6 +457,13 @@
       return $this->process_query_results(NULL, $this->table, $query, array($value), $cache_identifier);
     }
 
+    public function number($condition = NULL) {
+      $query = $this->data_base->get_count($this, $condition);
+      $count = $this->data_base->run($query, NULL, $params);
+      
+      return $count;
+    }
+
     public function get_all($params = NULL) {
       $condition = $params;
       $start = 0;
