@@ -104,6 +104,10 @@
     //                     Check compiled folder exists
     ////////////////////////////////////////////////////////////////////////////
     private static function check_compiled_folder($compiled_path) {
+			if (empty($compiled_path)) {
+				return;
+			}
+			
 	    if (!file_exists($compiled_path)) {
 	      mkdir($compiled_path, 0777, TRUE);
 	    }
