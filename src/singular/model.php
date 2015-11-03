@@ -459,9 +459,15 @@
 
     public function number($condition = NULL) {
       $query = $this->data_base->get_count($this, $condition);
-      $count = $this->data_base->run($query, NULL, $params);
-      
-      return $count;
+      $result = $this->data_base->run($query, NULL, $params);
+
+      if (empty($result) || count($result) < 1) {
+        return NULL;
+      }
+
+      $result = $result[0];
+
+      return isset($result["count"]) ? $result["count"] : NULL;
     }
 
     public function get_all($params = NULL) {
