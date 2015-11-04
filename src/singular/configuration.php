@@ -9,7 +9,7 @@
     ////////////////////////////////////////////////////////////////////////////
     //                            Get API instance
     ////////////////////////////////////////////////////////////////////////////
-    public static function obtener_api() {
+    public static function get_api() {
       if (empty(static::$api)) {
         static::$api = new \Slim\Slim();
       }

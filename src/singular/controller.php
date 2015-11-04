@@ -9,7 +9,7 @@
     //                          Checks authorisation
     ////////////////////////////////////////////////////////////////////////////
     public static function get_private($path, $entity, $action, $handler) {
-      $api = Configuration::obtener_api();
+      $api = Configuration::get_api();
       $api->get($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
 
@@ -17,7 +17,7 @@
     //               PUBLIC GET: it doesn't check authentication
     ////////////////////////////////////////////////////////////////////////////
     public static function get_public($path, $handler) {
-      $api = Configuration::obtener_api();
+      $api = Configuration::get_api();
       $api->get($path, $handler);
     }
 
@@ -26,7 +26,7 @@
     //                          Checks authorisation
     ////////////////////////////////////////////////////////////////////////////
     public static function post_private($path, $entity, $action, $handler) {
-      $api = Configuration::obtener_api();
+      $api = Configuration::get_api();
       $api->post($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
 
@@ -34,7 +34,7 @@
     //                PUBLIC POST: it doesn't check authentication
     ////////////////////////////////////////////////////////////////////////////
     public static function post_public($path, $handler) {
-      $api = Configuration::obtener_api();
+      $api = Configuration::get_api();
       $api->post($path, $handler);
     }
 
@@ -43,7 +43,7 @@
     ////////////////////////////////////////////////////////////////////////////
     public static function redirect($path) {
       $index_path = Configuration::get_index();
-      $api = Configuration::obtener_api();
+      $api = Configuration::get_api();
       $api->redirect("$index_path$path");
     }
 
@@ -168,7 +168,7 @@
       return function () use ($entity, $action) {
         // Redirect if no session started
         if (!Authentication::is_logged_in()) {
-          $api = Configuration::obtener_api();
+          $api = Configuration::get_api();
           $login = Authentication::get_log_in();
 
           $api->redirect($login);
@@ -176,7 +176,7 @@
 
         // Redirect if the user has no permissions to access the path
         if (!Authorisation::is_allowed($entity, $action)) {
-          $api = Configuration::obtener_api();
+          $api = Configuration::get_api();
           $login = Authentication::get_log_in();
 
           $api->redirect($login);

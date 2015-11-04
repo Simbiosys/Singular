@@ -26,7 +26,7 @@
         "user": "",
         "password": "",
         "data_base": "",
-        "provider": "\\singular\\ProveedorMySQL"
+        "provider": "\\singular\\MySQLProvider"
       },
       "cache": "\\Singular\\MemcacheCache",
       "cache_server": "localhost",

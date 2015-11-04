@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<checkstyle version="1.3.0">
+  <file name="flash.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Flash" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="5" severity="error" message="No summary for method get_message()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="12" severity="error" message="Argument $message is missing from the Docblock of set_message" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="12" severity="error" message="No summary for method set_message()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+  <file name="utils.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Utils" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="10" severity="error" message="Argument $path is missing from the Docblock of load_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="10" severity="error" message="Argument $extension is missing from the Docblock of load_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="10" severity="error" message="No summary for method load_files()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="16" severity="error" message="Argument $path is missing from the Docblock of get_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="16" severity="error" message="Argument $extension is missing from the Docblock of get_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="16" severity="error" message="No summary for method get_files()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="26" severity="error" message="Argument $path is missing from the Docblock of process_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="Argument $extension_to_check is missing from the Docblock of process_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="Argument $callback is missing from the Docblock of process_files" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="No summary for method process_files()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+  <file name="services/authentication_method.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\AuthenticationMethod" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="No summary for method log_out()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="11" severity="error" message="Argument $user is missing from the Docblock of set_user" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="Argument $data is missing from the Docblock of set_user" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="No summary for method set_user()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="17" severity="error" message="Argument $data is missing from the Docblock of set_user_data" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="17" severity="error" message="No summary for method set_user_data()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="22" severity="error" message="No summary for method get_user()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="28" severity="error" message="No summary for method get_user_data()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="34" severity="error" message="No summary for method is_logged_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="39" severity="error" message="Argument $name is missing from the Docblock of set_user_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="Argument $value is missing from the Docblock of set_user_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="No summary for method set_user_attribute()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="45" severity="error" message="Argument $name is missing from the Docblock of get_user_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="45" severity="error" message="No summary for method get_user_attribute()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="51" severity="error" message="No summary for method get_identifier()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="55" severity="error" message="Argument $language is missing from the Docblock of set_language" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="55" severity="error" message="No summary for method set_language()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="60" severity="error" message="No summary for method get_language()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="85" severity="error" message="Argument $user is missing from the Docblock of log_in" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="85" severity="error" message="Argument $password is missing from the Docblock of log_in" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="85" severity="error" message="No summary for method log_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="87" severity="error" message="No summary for method get_log_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $identifier" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="debug.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Debug" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="5" severity="error" message="No summary for method get_message()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="12" severity="error" message="Argument $message is missing from the Docblock of set_message" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="12" severity="error" message="No summary for method set_message()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+  <file name="services/authorisation.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Authorisation" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="Argument $entity is missing from the Docblock of is_allowed" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="Argument $action is missing from the Docblock of is_allowed" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="No summary for method is_allowed()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="13" severity="error" message="No summary for method load_authorisation_method()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $authorisation_method" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="cache/filecache.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\FileCache" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="Argument $table_name is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="18" severity="error" message="No summary for method clear()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="26" severity="error" message="Argument $path is missing from the Docblock of get" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="No summary for method get()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="35" severity="error" message="Argument $path is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="35" severity="error" message="Argument $data is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="35" severity="error" message="No summary for method set()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="41" severity="error" message="Argument $path is missing from the Docblock of get_full_path" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="41" severity="error" message="No summary for method get_full_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $root" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="db/db_provider_mysql.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\ProveedorMySQL" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="9" severity="error" message="Argument $data is missing from the Docblock of integer_formatter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="No summary for method integer_formatter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="13" severity="error" message="Argument $data is missing from the Docblock of string_formatter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="13" severity="error" message="No summary for method string_formatter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="17" severity="error" message="Argument $data is missing from the Docblock of timestamp_formatter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="17" severity="error" message="No summary for method timestamp_formatter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="21" severity="error" message="Argument $data is missing from the Docblock of boolean_formatter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="21" severity="error" message="No summary for method boolean_formatter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="45" severity="error" message="Argument $field_name is missing from the Docblock of field_generator" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="45" severity="error" message="Argument $field_structure is missing from the Docblock of field_generator" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="45" severity="error" message="No summary for method field_generator()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="82" severity="error" message="Argument $servidor is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="82" severity="error" message="Argument $usuario is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="82" severity="error" message="Argument $clave is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="82" severity="error" message="Argument $base_datos is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="82" severity="error" message="No summary for method connect()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="93" severity="error" message="No summary for method disconnect()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="97" severity="error" message="No summary for method get_error_number()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="101" severity="error" message="No summary for method get_error()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="105" severity="error" message="Argument $q is missing from the Docblock of query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="105" severity="error" message="No summary for method query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="109" severity="error" message="Argument $database_resource is missing from the Docblock of number_of_rows" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="109" severity="error" message="No summary for method number_of_rows()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="119" severity="error" message="Argument $result is missing from the Docblock of get_array" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="119" severity="error" message="No summary for method get_array()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="123" severity="error" message="No summary for method is_there_connection()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="127" severity="error" message="Argument $var is missing from the Docblock of escape" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="127" severity="error" message="No summary for method escape()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="131" severity="error" message="No summary for method get_id()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="135" severity="error" message="Argument $database is missing from the Docblock of change_database" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="135" severity="error" message="No summary for method change_database()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="139" severity="error" message="Argument $charset is missing from the Docblock of set_charset" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="139" severity="error" message="No summary for method set_charset()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="146" severity="error" message="Argument $data is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="146" severity="error" message="Argument $fields_structure is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="146" severity="error" message="No summary for method format_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="164" severity="error" message="Argument $model is missing from the Docblock of get_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="164" severity="error" message="Argument $with_dependencies is missing from the Docblock of get_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="164" severity="error" message="No summary for method get_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="232" severity="error" message="Argument $model is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="232" severity="error" message="Argument $condition is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="232" severity="error" message="No summary for method get_count()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="242" severity="error" message="Argument $model is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="242" severity="error" message="Argument $condition is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="242" severity="error" message="No summary for method get_query_by_condition()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="256" severity="error" message="Argument $model is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="256" severity="error" message="Argument $field is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="256" severity="error" message="Argument $value is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="256" severity="error" message="No summary for method get_query_by_value()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="264" severity="error" message="Argument $model is missing from the Docblock of get_filter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="264" severity="error" message="No summary for method get_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="275" severity="error" message="No summary for method get_default_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="279" severity="error" message="Argument $model is missing from the Docblock of get_order" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="279" severity="error" message="No summary for method get_order()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="291" severity="error" message="Argument $table is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="291" severity="error" message="Argument $columns is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="291" severity="error" message="Argument $id is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="291" severity="error" message="No summary for method get_update()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="298" severity="error" message="Argument $table is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="298" severity="error" message="Argument $columns is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="298" severity="error" message="No summary for method get_insert()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="311" severity="error" message="Argument $table is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="311" severity="error" message="Argument $id is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="311" severity="error" message="No summary for method get_delete()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="319" severity="error" message="Argument $table is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="319" severity="error" message="Argument $fields is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="319" severity="error" message="Argument $primary_key is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="319" severity="error" message="No summary for method check_table()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="342" severity="error" message="Argument $table is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="342" severity="error" message="Argument $fields is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="342" severity="error" message="Argument $primary_key_definition is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="342" severity="error" message="No summary for method check_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="388" severity="error" message="Argument $table is missing from the Docblock of create_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="388" severity="error" message="Argument $field_name is missing from the Docblock of create_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="388" severity="error" message="Argument $field_attributes is missing from the Docblock of create_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="388" severity="error" message="No summary for method create_field()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="394" severity="error" message="Argument $table is missing from the Docblock of delete_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="394" severity="error" message="Argument $field_name is missing from the Docblock of delete_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="394" severity="error" message="No summary for method delete_field()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="399" severity="error" message="Argument $table is missing from the Docblock of modify_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="399" severity="error" message="Argument $field_name is missing from the Docblock of modify_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="399" severity="error" message="Argument $field_attributes is missing from the Docblock of modify_field" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="399" severity="error" message="No summary for method modify_field()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="405" severity="error" message="Argument $table is missing from the Docblock of change_primary_key" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="405" severity="error" message="Argument $primary_key is missing from the Docblock of change_primary_key" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="405" severity="error" message="No summary for method change_primary_key()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="410" severity="error" message="Argument $table is missing from the Docblock of check_field_attributes" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="410" severity="error" message="Argument $field is missing from the Docblock of check_field_attributes" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="410" severity="error" message="Argument $field_attributes is missing from the Docblock of check_field_attributes" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="410" severity="error" message="No summary for method check_field_attributes()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="457" severity="error" message="Argument $sentence is missing from the Docblock of execute_sentence" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="457" severity="error" message="No summary for method execute_sentence()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="25" severity="error" message="No summary for property $formatter" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="37" severity="error" message="No summary for property $data_types" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="cache/memcache.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\MemcacheCache" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="Argument $table_name is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="18" severity="error" message="No summary for method clear()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="23" severity="error" message="Argument $path is missing from the Docblock of get" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="23" severity="error" message="No summary for method get()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="32" severity="error" message="Argument $path is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="32" severity="error" message="Argument $data is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="32" severity="error" message="No summary for method set()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $memcache" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="services/authorisation_method.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\AuthorisationMethod" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="5" severity="error" message="Argument $entity is missing from the Docblock of is_allowed" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="5" severity="error" message="Argument $action is missing from the Docblock of is_allowed" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="5" severity="error" message="No summary for method is_allowed()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+  <file name="db/db_provider_class.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\DataBaseProvider" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="Argument $host is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="Argument $user is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="Argument $pass is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="Argument $dbname is missing from the Docblock of connect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="No summary for method connect()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="8" severity="error" message="No summary for method disconnect()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="9" severity="error" message="No summary for method get_error_number()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="10" severity="error" message="No summary for method get_error()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="11" severity="error" message="Argument $q is missing from the Docblock of query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="No summary for method query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="12" severity="error" message="Argument $resource is missing from the Docblock of number_of_rows" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="12" severity="error" message="No summary for method number_of_rows()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="13" severity="error" message="Argument $resource is missing from the Docblock of get_array" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="13" severity="error" message="No summary for method get_array()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="14" severity="error" message="No summary for method is_there_connection()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="15" severity="error" message="Argument $var is missing from the Docblock of escape" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="15" severity="error" message="No summary for method escape()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="16" severity="error" message="No summary for method get_id()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="17" severity="error" message="Argument $database is missing from the Docblock of change_database" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="17" severity="error" message="No summary for method change_database()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="18" severity="error" message="Argument $charset is missing from the Docblock of set_charset" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="18" severity="error" message="No summary for method set_charset()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="20" severity="error" message="Argument $table is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="20" severity="error" message="Argument $fields is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="20" severity="error" message="Argument $primary_key is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="20" severity="error" message="No summary for method check_table()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="21" severity="error" message="Argument $table is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="21" severity="error" message="Argument $fields is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="21" severity="error" message="Argument $primary_key is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="21" severity="error" message="No summary for method check_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="22" severity="error" message="Argument $data is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="22" severity="error" message="Argument $fields_structure is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="22" severity="error" message="No summary for method format_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="24" severity="error" message="Argument $model is missing from the Docblock of get_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="Argument $with_dependencies is missing from the Docblock of get_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="No summary for method get_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="25" severity="error" message="Argument $model is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="25" severity="error" message="Argument $condition is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="25" severity="error" message="No summary for method get_count()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="26" severity="error" message="Argument $model is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="Argument $condition is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="26" severity="error" message="No summary for method get_query_by_condition()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="27" severity="error" message="Argument $model is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="27" severity="error" message="Argument $field is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="27" severity="error" message="Argument $value is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="27" severity="error" message="No summary for method get_query_by_value()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="28" severity="error" message="Argument $model is missing from the Docblock of get_filter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="28" severity="error" message="No summary for method get_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="29" severity="error" message="No summary for method get_default_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="30" severity="error" message="Argument $model is missing from the Docblock of get_order" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="30" severity="error" message="No summary for method get_order()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="31" severity="error" message="Argument $table is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="31" severity="error" message="Argument $columns is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="31" severity="error" message="Argument $id is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="31" severity="error" message="No summary for method get_update()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="32" severity="error" message="Argument $table is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="32" severity="error" message="Argument $columns is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="32" severity="error" message="No summary for method get_insert()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="33" severity="error" message="Argument $table is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="33" severity="error" message="Argument $id is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="33" severity="error" message="No summary for method get_delete()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $resource" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="controller.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Controller" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="11" severity="error" message="Argument $path is missing from the Docblock of get_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="Argument $entity is missing from the Docblock of get_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="Argument $action is missing from the Docblock of get_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="Argument $handler is missing from the Docblock of get_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="No summary for method get_private()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="19" severity="error" message="Argument $path is missing from the Docblock of get_public" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="19" severity="error" message="Argument $handler is missing from the Docblock of get_public" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="19" severity="error" message="No summary for method get_public()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="28" severity="error" message="Argument $path is missing from the Docblock of post_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="28" severity="error" message="Argument $entity is missing from the Docblock of post_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="28" severity="error" message="Argument $action is missing from the Docblock of post_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="28" severity="error" message="Argument $handler is missing from the Docblock of post_private" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="28" severity="error" message="No summary for method post_private()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="36" severity="error" message="Argument $path is missing from the Docblock of post_public" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="36" severity="error" message="Argument $handler is missing from the Docblock of post_public" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="36" severity="error" message="No summary for method post_public()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="44" severity="error" message="Argument $path is missing from the Docblock of redirect" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="44" severity="error" message="No summary for method redirect()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="53" severity="error" message="Argument $default_model is missing from the Docblock of get_data_by_entity" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="53" severity="error" message="No summary for method get_data_by_entity()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="115" severity="error" message="Argument $source is missing from the Docblock of get_input" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="115" severity="error" message="No summary for method get_input()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="130" severity="error" message="No summary for method get_post()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="134" severity="error" message="No summary for method get_get()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="138" severity="error" message="Argument $name is missing from the Docblock of get_post_variable" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="138" severity="error" message="Argument $default is missing from the Docblock of get_post_variable" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="138" severity="error" message="No summary for method get_post_variable()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="144" severity="error" message="Argument $name is missing from the Docblock of get_get_variable" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="144" severity="error" message="Argument $default is missing from the Docblock of get_get_variable" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="144" severity="error" message="No summary for method get_get_variable()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="153" severity="error" message="Argument $message is missing from the Docblock of flash" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="153" severity="error" message="No summary for method flash()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="160" severity="error" message="Argument $message is missing from the Docblock of debug" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="160" severity="error" message="No summary for method debug()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="167" severity="error" message="Argument $entity is missing from the Docblock of check_authentication_and_authorisation" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="167" severity="error" message="Argument $action is missing from the Docblock of check_authentication_and_authorisation" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="167" severity="error" message="No summary for method check_authentication_and_authorisation()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $flash_message" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="model.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\BasicModel" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="82" severity="error" message="No summary for class \Singular\Model" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="15" severity="error" message="Argument $params is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="15" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="49" severity="error" message="No summary for method get_table()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="53" severity="error" message="No summary for method get_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="57" severity="error" message="No summary for method get_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="61" severity="error" message="No summary for method get_order()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="65" severity="error" message="No summary for method get_query_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="69" severity="error" message="No summary for method get_dependencies()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="73" severity="error" message="No summary for method get_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="77" severity="error" message="No summary for method get_primary_key()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $query" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="6" severity="error" message="No summary for property $query_fields" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="7" severity="error" message="No summary for property $table" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="8" severity="error" message="No summary for property $filter" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="9" severity="error" message="No summary for property $order" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="11" severity="error" message="No summary for property $dependencies" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="12" severity="error" message="No summary for property $fields" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="13" severity="error" message="No summary for property $primary_key" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="88" severity="error" message="Argument $values is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="88" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="103" severity="error" message="Argument $values is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="103" severity="error" message="No summary for method set()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="109" severity="error" message="Argument $name is missing from the Docblock of set_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="109" severity="error" message="Argument $value is missing from the Docblock of set_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="109" severity="error" message="No summary for method set_attribute()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="113" severity="error" message="Argument $name is missing from the Docblock of get_attribute" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="113" severity="error" message="No summary for method get_attribute()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="121" severity="error" message="No summary for method get_connection()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="130" severity="error" message="No summary for method get_cache()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="147" severity="error" message="No summary for method init()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="152" severity="error" message="No summary for method get_the_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="158" severity="error" message="No summary for method get_the_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="162" severity="error" message="No summary for method get_the_order()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="166" severity="error" message="Argument $data is missing from the Docblock of wrap_data" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="166" severity="error" message="Argument $model is missing from the Docblock of wrap_data" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="166" severity="error" message="Argument $info is missing from the Docblock of wrap_data" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="166" severity="error" message="No summary for method wrap_data()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="172" severity="error" message="Argument $array is missing from the Docblock of is_assoc" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="172" severity="error" message="No summary for method is_assoc()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="177" severity="error" message="Argument $entity is missing from the Docblock of set_dependencies" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="177" severity="error" message="Argument $id is missing from the Docblock of set_dependencies" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="177" severity="error" message="Argument $data is missing from the Docblock of set_dependencies" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="177" severity="error" message="Argument $cache_identifier is missing from the Docblock of set_dependencies" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="177" severity="error" message="No summary for method set_dependencies()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="216" severity="error" message="Argument $entity is missing from the Docblock of get_table_by_entity" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="216" severity="error" message="No summary for method get_table_by_entity()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="221" severity="error" message="Argument $identifier is missing from the Docblock of get_cached_data" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="221" severity="error" message="No summary for method get_cached_data()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="238" severity="error" message="Argument $condition is missing from the Docblock of get_search_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="238" severity="error" message="No summary for method get_search_results()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="242" severity="error" message="Argument $terms is missing from the Docblock of search" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="242" severity="error" message="Argument $condition is missing from the Docblock of search" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="242" severity="error" message="No summary for method search()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="323" severity="error" message="Argument $entity is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="Argument $table is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="Argument $query is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="Argument $params is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="Argument $cache_identifier is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="Argument $wrap_data is missing from the Docblock of process_query_results" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="323" severity="error" message="No summary for method process_query_results()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="369" severity="error" message="Argument $entities is missing from the Docblock of filter_by_entity" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="369" severity="error" message="Argument $exists is missing from the Docblock of filter_by_entity" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="369" severity="error" message="No summary for method filter_by_entity()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="420" severity="error" message="Argument $table is missing from the Docblock of is_dependency" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="420" severity="error" message="No summary for method is_dependency()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="426" severity="error" message="Argument $table is missing from the Docblock of get_dependency_key" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="426" severity="error" message="No summary for method get_dependency_key()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="437" severity="error" message="Argument $id is missing from the Docblock of find" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="437" severity="error" message="No summary for method find()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="443" severity="error" message="Argument $field is missing from the Docblock of find_all_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="443" severity="error" message="Argument $value is missing from the Docblock of find_all_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="443" severity="error" message="No summary for method find_all_by_value()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="460" severity="error" message="Argument $condition is missing from the Docblock of number" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="460" severity="error" message="No summary for method number()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="473" severity="error" message="Argument $terms is missing from the Docblock of number_search" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="473" severity="error" message="Argument $condition is missing from the Docblock of number_search" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="473" severity="error" message="No summary for method number_search()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="479" severity="error" message="Argument $params is missing from the Docblock of get_all" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="479" severity="error" message="No summary for method get_all()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="513" severity="error" message="Argument $the_id is missing from the Docblock of save" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="513" severity="error" message="Argument $values is missing from the Docblock of save" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="513" severity="error" message="No summary for method save()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="615" severity="error" message="Argument $id is missing from the Docblock of update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="615" severity="error" message="Argument $values is missing from the Docblock of update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="615" severity="error" message="No summary for method update()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="623" severity="error" message="Argument $values is missing from the Docblock of create" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="623" severity="error" message="No summary for method create()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="637" severity="error" message="Argument $id is missing from the Docblock of delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="637" severity="error" message="No summary for method delete()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="712" severity="error" message="Argument $data is missing from the Docblock of process" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="712" severity="error" message="No summary for method process()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="720" severity="error" message="No summary for method auto_generation()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="744" severity="error" message="No summary for method check_table()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="752" severity="error" message="No summary for method check_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="83" severity="error" message="No summary for property $data_base" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="84" severity="error" message="No summary for property $cache" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="86" severity="error" message="No summary for property $search_fields" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="99" severity="error" message="No summary for property $attributes" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="services/authentication.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Authentication" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="No summary for method is_logged_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="12" severity="error" message="No summary for method get_user()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="17" severity="error" message="No summary for method get_user_data()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="22" severity="error" message="No summary for method log_out()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="30" severity="error" message="Argument $user is missing from the Docblock of log_in" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="30" severity="error" message="Argument $password is missing from the Docblock of log_in" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="30" severity="error" message="No summary for method log_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="38" severity="error" message="No summary for method get_log_in()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="43" severity="error" message="No summary for method get_language()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="48" severity="error" message="No summary for method load_authentication_method()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $authentication_method" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="configuration.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Configuration" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="12" severity="error" message="No summary for method obtener_api()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="23" severity="error" message="No summary for method get_configuration()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="30" severity="error" message="No summary for method get_index()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="39" severity="error" message="Argument $properties is missing from the Docblock of get_app_settings" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="Argument $default is missing from the Docblock of get_app_settings" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="No summary for method get_app_settings()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="72" severity="error" message="No summary for method get_full_configuration()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="83" severity="error" message="No summary for method get_current_configuration()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="94" severity="error" message="No summary for method debug_enabled()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="102" severity="error" message="No summary for method get_root()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="110" severity="error" message="No summary for method get_host()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="118" severity="error" message="No summary for method get_controller_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="125" severity="error" message="No summary for method get_model_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="132" severity="error" message="No summary for method get_service_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="139" severity="error" message="No summary for method get_view_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="146" severity="error" message="No summary for method get_languages_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="153" severity="error" message="No summary for method get_available_languages()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="160" severity="error" message="No summary for method get_default_language()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="167" severity="error" message="No summary for method get_layout_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="174" severity="error" message="No summary for method get_authentication()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="182" severity="error" message="No summary for method get_authorisation()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="190" severity="error" message="No summary for method get_helpers()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="198" severity="error" message="No summary for method get_database_configuration()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="206" severity="error" message="No summary for method get_cache()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="214" severity="error" message="No summary for method load_app_settings()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="233" severity="error" message="No summary for method load_configuration()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="272" severity="error" message="Argument $element is missing from the Docblock of get_configuration_path" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="272" severity="error" message="Argument $required is missing from the Docblock of get_configuration_path" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="272" severity="error" message="No summary for method get_configuration_path()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="306" severity="error" message="Argument $element is missing from the Docblock of get_configuration_element" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="306" severity="error" message="Argument $required is missing from the Docblock of get_configuration_element" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="306" severity="error" message="No summary for method get_configuration_element()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $api" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="6" severity="error" message="No summary for property $configuration" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="7" severity="error" message="No summary for property $app_settings" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="cache/cache.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Cache" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="7" severity="error" message="Argument $table_name is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="7" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="11" severity="error" message="Argument $name is missing from the Docblock of get_identifier" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="11" severity="error" message="No summary for method get_identifier()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="15" severity="error" message="No summary for method clear()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="16" severity="error" message="Argument $path is missing from the Docblock of get" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="16" severity="error" message="No summary for method get()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="17" severity="error" message="Argument $path is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="17" severity="error" message="Argument $data is missing from the Docblock of set" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="17" severity="error" message="No summary for method set()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $table_name" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="db/database.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Database" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="9" severity="error" message="Argument $provider is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="Argument $server is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="Argument $user is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="Argument $password is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="Argument $data_base is missing from the Docblock of __construct" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="9" severity="error" message="No summary for method __construct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="24" severity="error" message="Argument $provider is missing from the Docblock of get_connection" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="Argument $server is missing from the Docblock of get_connection" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="Argument $user is missing from the Docblock of get_connection" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="Argument $password is missing from the Docblock of get_connection" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="Argument $data_base is missing from the Docblock of get_connection" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="24" severity="error" message="No summary for method get_connection()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="35" severity="error" message="Argument $model is missing from the Docblock of get_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="35" severity="error" message="No summary for method get_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="39" severity="error" message="Argument $model is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="Argument $condition is missing from the Docblock of get_count" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="39" severity="error" message="No summary for method get_count()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="43" severity="error" message="Argument $model is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="43" severity="error" message="Argument $condition is missing from the Docblock of get_query_by_condition" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="43" severity="error" message="No summary for method get_query_by_condition()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="47" severity="error" message="Argument $model is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="47" severity="error" message="Argument $field is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="47" severity="error" message="Argument $value is missing from the Docblock of get_query_by_value" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="47" severity="error" message="No summary for method get_query_by_value()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="51" severity="error" message="Argument $model is missing from the Docblock of get_filter" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="51" severity="error" message="No summary for method get_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="55" severity="error" message="No summary for method get_default_filter()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="59" severity="error" message="Argument $model is missing from the Docblock of get_order" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="59" severity="error" message="No summary for method get_order()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="63" severity="error" message="Argument $table is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="63" severity="error" message="Argument $columns is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="63" severity="error" message="Argument $id is missing from the Docblock of get_update" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="63" severity="error" message="No summary for method get_update()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="67" severity="error" message="Argument $table is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="67" severity="error" message="Argument $columns is missing from the Docblock of get_insert" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="67" severity="error" message="No summary for method get_insert()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="71" severity="error" message="Argument $table is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="71" severity="error" message="Argument $id is missing from the Docblock of get_delete" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="71" severity="error" message="No summary for method get_delete()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="75" severity="error" message="No summary for method replace_parameters()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="86" severity="error" message="Argument $sql is missing from the Docblock of prepare" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="86" severity="error" message="Argument $parameters is missing from the Docblock of prepare" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="86" severity="error" message="No summary for method prepare()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="122" severity="error" message="Argument $q is missing from the Docblock of send_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="122" severity="error" message="Argument $parameters is missing from the Docblock of send_query" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="122" severity="error" message="No summary for method send_query()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="133" severity="error" message="Argument $q is missing from the Docblock of run_scalar" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="133" severity="error" message="Argument $parameters is missing from the Docblock of run_scalar" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="133" severity="error" message="No summary for method run_scalar()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="149" severity="error" message="Argument $q is missing from the Docblock of run" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="149" severity="error" message="Argument $indice is missing from the Docblock of run" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="149" severity="error" message="Argument $parameters is missing from the Docblock of run" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="149" severity="error" message="No summary for method run()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="170" severity="error" message="Argument $database is missing from the Docblock of change_database" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="170" severity="error" message="No summary for method change_database()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="174" severity="error" message="No summary for method get_id()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="178" severity="error" message="No summary for method get_error()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="182" severity="error" message="Argument $data is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="182" severity="error" message="Argument $fields_structure is missing from the Docblock of format_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="182" severity="error" message="No summary for method format_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="186" severity="error" message="Argument $table is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="186" severity="error" message="Argument $fields is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="186" severity="error" message="Argument $primary_key is missing from the Docblock of check_table" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="186" severity="error" message="No summary for method check_table()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="190" severity="error" message="Argument $table is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="190" severity="error" message="Argument $fields is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="190" severity="error" message="Argument $primary_key is missing from the Docblock of check_fields" source="phpDocumentor.file.PPC:ERR-50015"/>
+    <error line="190" severity="error" message="No summary for method check_fields()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="194" severity="error" message="No summary for method __destruct()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="5" severity="error" message="No summary for property $provider" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="6" severity="error" message="No summary for property $parameters" source="phpDocumentor.file.PPC:ERR-50007"/>
+    <error line="7" severity="error" message="No summary for property $_con" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="router.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Router" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="5" severity="error" message="No summary for method run()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="14" severity="error" message="No summary for method load()" source="phpDocumentor.file.PPC:ERR-50008"/>
+    <error line="27" severity="error" message="No summary for method get_paths()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+  <file name="view.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+  </file>
+  <file name="services/helper.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="4" severity="error" message="No summary for class \Singular\Helper" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="5" severity="error" message="No summary for method get_helpers()" source="phpDocumentor.file.PPC:ERR-50008"/>
+  </file>
+</checkstyle>

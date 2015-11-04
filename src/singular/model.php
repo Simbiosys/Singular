@@ -1,17 +1,47 @@
 <?php
+  /**
+  * Singular model
+  */
   namespace Singular;
 
+  /**
+  * Singular's Basic Model
+  */
   class BasicModel {
+    /** @var string|null $query Default query for the model. */
     protected $query = NULL;
+    /** @var Array|null $query_fields Fields to include in any query. */
     protected $query_fields = NULL;
+    /** @var string|null $table Model's table. */
     protected $table = NULL;
+    /** @var Array|null $filter Filter to apply to any query. */
     protected $filter = NULL;
+    /** @var Array|null $order Order criteria. */
     protected $order = NULL;
-
+    /** @var Array|null $dependencies List of dependencies on other models. */
     protected $dependencies = NULL;
+    /** @var Array|null $fields The fields that this model contains. */
     protected $fields = NULL;
+    /** @var string|null $primary_key Primary key. */
     protected $primary_key = NULL;
 
+    /**
+      * Constructor.
+      *
+      * @param Array $params Method parameters.
+			* <ul>
+			*		<li><strong>query:</strong> Default query for the model.</li>
+			*		<li><strong>query_fields:</strong> Fields to include in any query.</li>
+			*		<li><strong>table:</strong> Model's table.</li>
+			*		<li><strong>filter:</strong> Filter to apply to any query.</li>
+			*		<li><strong>order:</strong> Order criteria.</li>
+			*		<li><strong>dependencies:</strong> List of dependencies on other models.</li>
+      *		<li><strong>fields:</strong> The fields that this model contains.</li>
+      *		<li><strong>primary_key:</strong> Primary key.</li>
+			*	</ul>
+      *
+      * @return void
+      */
     public function __construct($params) {
       if (isset($params["query"])) {
         $this->query = $params["query"];
@@ -46,45 +76,99 @@
       }
     }
 
+    /**
+      * Returns the table of this model.
+      *
+      * @return string
+      */
     public function get_table() {
       return $this->table;
     }
 
+    /**
+      * Returns the query of this model.
+      *
+      * @return string
+      */
     public function get_query() {
       return $this->query;
     }
 
+    /**
+      * Returns the filter of this model.
+      *
+      * @return Array
+      */
     public function get_filter() {
       return $this->filter;
     }
 
+    /**
+      * Returns the order criteria of this model.
+      *
+      * @return Array
+      */
     public function get_order() {
       return $this->order;
     }
 
+    /**
+      * Returns the fields that appears in any query.
+      *
+      * @return Array
+      */
     public function get_query_fields() {
       return $this->query_fields;
     }
 
+    /**
+      * Returns the dependencies of this model on other models.
+      *
+      * @return Array
+      */
     public function get_dependencies() {
       return $this->dependencies;
     }
 
+    /**
+      * Returns the fields that this model contains.
+      *
+      * @return string
+      */
     public function get_fields() {
       return $this->fields;
     }
 
+    /**
+      * Returns the primary key.
+      *
+      * @return string
+      */
     public function get_primary_key() {
       return $this->primary_key;
     }
   }
 
+  /**
+  * Singular's Model. Any application model should inherit from this class
+  */
   class Model extends BasicModel {
+    /** @var Database $data_base Points to Singular's database instance. */
     protected $data_base;
+    /** @var Cache|null $cache Points to the cache instance, when enabled. */
     protected $cache = NULL;
-
+    /** @var Array $search_fields Fields to search in in the 'search' function. */
     protected $search_fields = array();
+    /** @var Array $attributes Attributes. */
+    protected $attributes = array();
 
+    /**
+      * Constructor.
+      *
+      * @param Array $values Values to initialise the model.
+      *
+      * @return void
+      */
     public function __construct($values = NULL) {
       $this->get_connection();
       $this->get_cache();
@@ -96,37 +180,57 @@
       $this->init();
     }
 
-    protected $attributes = array(
-
-    );
-
+    /**
+      * Sets values to this model's attributes.
+      *
+      * @param Array $values Values to initialise the model.
+      *
+      * @return void
+      */
     public function set($values) {
       foreach ($values as $key => $value) {
         $this->attributes[$key] = $value;
       }
     }
 
+    /**
+      * Sets a value to an attribute.
+      *
+      * @param string $name Attribute's name.
+      * @param string $value Attribute's value.
+      *
+      * @return void
+      */
     public function set_attribute($name, $value) {
       $this->attributes[$name] = $value;
     }
 
+    /**
+      * Gets the value of an attribute.
+      *
+      * @param string $name Attribute's name.
+      *
+      * @return string
+      */
     public function get_attribute($name) {
       return isset($this->attributes[$name]) ? $this->attributes[$name] : NULL;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                          DATABASE CONNECTION
-    ////////////////////////////////////////////////////////////////////////////
-
+    /**
+      * Gets the database connection.
+      *
+      * @return DataBaseProvider
+      */
     protected function get_connection() {
       $configuration = Configuration::get_database_configuration();
       $this->data_base = Database::get_connection($configuration["provider"], $configuration["server"], $configuration["user"], $configuration["password"], $configuration["data_base"]);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                                CACHE
-    ////////////////////////////////////////////////////////////////////////////
-
+    /**
+      * Gets the cache instance when enabled.
+      *
+      * @return Cache
+      */
     protected function get_cache() {
       if (empty($this->cache)) {
         $cache = Configuration::get_cache();
@@ -144,36 +248,82 @@
     //                        QUERY AUXILIARY METHODS
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+      * When overwritten the child class can perform initial tasks.
+      *
+      * @return void
+      */
     protected function init() {
       // Lets you perform initial tasks
       $this->filter = $this->data_base->get_default_filter();
     }
 
+    /**
+      * Return the model's query.
+      *
+      * @return string
+      */
     protected function get_the_query() {
       $this->auto_generation();
 
       return $this->data_base->get_query($this);
     }
 
+    /**
+      * Return the model's filter.
+      *
+      * @return string
+      */
     protected function get_the_filter() {
       return $this->data_base->get_filter($this);
     }
 
+    /**
+      * Return the model's order criteria.
+      *
+      * @return string
+      */
     protected function get_the_order() {
       return $this->data_base->get_order($this);
     }
 
+    /**
+      * Wraps data under a key.
+      *
+      * @param Array $data The whole data container.
+      * @param string $model The surrounding key.
+      * @param Array $info The inner data to wrap.
+      *
+      * @return Array
+      */
     protected function wrap_data(&$data, $model, $info) {
       $data[$model] = $info;
 
       return $data;
     }
 
+    /**
+      * Returns True when the received array is associative.
+      *
+      * @param Array $array Array to check.
+      *
+      * @return boolean
+      */
     private function is_assoc(array $array) {
       $keys = array_keys($array);
       return array_keys($keys) !== $keys;
     }
 
+    /**
+      * Sets the dependencies of this model into the data.
+      *
+      * @param string $entity Entity's name.
+      * @param string $id Model's id.
+      * @param Array $data The whole data container.
+      * @param string $cache_identifier The identifier used to store cache data.
+      *
+      * @return Array
+      */
     protected function set_dependencies($entity, $id, &$data, $cache_identifier) {
       $object = new $entity();
       $dependencies = $object->dependencies;
@@ -184,7 +334,6 @@
 
       foreach ($dependencies as $dependency) {
         $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
-
         $filter = isset($dependency["filter"]) ? $dependency["filter"] : NULL;
         $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
         $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
@@ -213,11 +362,25 @@
       return $data;
     }
 
+    /**
+      * Gets the table's name associated to an entity.
+      *
+      * @param string $entity Entity's name.
+      *
+      * @return string
+      */
     private function get_table_by_entity($entity) {
       $object = new $entity();
       return $object->get_table();
     }
 
+    /**
+      * Returns the cached data when available.
+      *
+      * @param string $identifier Stored data identifier.
+      *
+      * @return Array|null
+      */
     private function get_cached_data($identifier) {
       $cache = $this->get_cache();
 
@@ -235,10 +398,27 @@
     //                                 SEARCH
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+      * When overwritten the child class can specify the source of the search data.
+      * This function returns the items to search in.
+      *
+      * @param Array $condition Search condition.
+      *
+      * @return Array
+      */
     protected function get_search_results($condition = NULL) {
       return $this->get_all($condition);
     }
 
+    /**
+      * Searchs the data returned by 'get_search_results' and returns the
+      * occurrences.
+      *
+      * @param Array $terms Words to search in the items.
+      * @param Array $condition Optional search condition.
+      *
+      * @return Array
+      */
     public function search($terms, $condition = NULL) {
       $search_fields = $this->search_fields;
       $table = $this->table;

@@ -1,10 +1,30 @@
 <?php
+	/**
+	* Singular's view class.
+	* Every application view should inherit from this class
+	*/
 	namespace Singular;
 
+	/**
+  * Singular's view class.
+	* Every application view should inherit from this class
+  */
 	class View {
-    ////////////////////////////////////////////////////////////////////////////
-    //                            Render template
-    ////////////////////////////////////////////////////////////////////////////
+		/**
+      * This method renders a template.
+      *
+      * @param Array $parameters Method parameters.
+			* <ul>
+			*		<li><strong>template:</strong> template to render.</li>
+			*		<li><strong>page_title:</strong> HTML document title.</li>
+			*		<li><strong>page_navigation:</strong> Application navigation for this page.</li>
+			*		<li><strong>data:</strong> Data to show in the view (JSON).</li>
+			*		<li><strong>extra:</strong> Extra data to send to the view.</li>
+			*		<li><strong>layout:</strong> HTML layout to apply.</li>
+			*	</ul>
+      *
+      * @return void
+      */
     public static function render($parameters) {
 			$template = isset($parameters["template"]) ? $parameters["template"] : "";
 			$page_title = isset($parameters["page_title"]) ? $parameters["page_title"] : NULL;
@@ -40,8 +60,6 @@
 					$source = "$path/$template.hbs";
 				}
 			}
-
-			//$template_path = "$view_path/compiled/$template$sufix";
 
       if (Configuration::debug_enabled() || !file_exists($template_path)) {
         $compiled = NULL;
@@ -100,22 +118,31 @@
       ));
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                     Check compiled folder exists
-    ////////////////////////////////////////////////////////////////////////////
+		/**
+      * Checks that compiled-view folder exists, creates if not.
+      *
+      * @param string $compiled_path Path for compiled views.
+      *
+      * @return void
+      */
     private static function check_compiled_folder($compiled_path) {
 			if (empty($compiled_path)) {
 				return;
 			}
-			
+
 	    if (!file_exists($compiled_path)) {
 	      mkdir($compiled_path, 0777, TRUE);
 	    }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                            Get page info
-    ////////////////////////////////////////////////////////////////////////////
+		/**
+      * Generates page info to send to the view
+      *
+      * @param string $subtitle This page's title.
+			* @param string $navigation This page's navigation.
+      *
+      * @return Array
+      */
     private static function get_page_info($subtitle = "", $navigation = "") {
       $usuario = isset($_SESSION["login"]) ? $_SESSION["login"] : NULL;
 
@@ -151,10 +178,23 @@
       return array_merge($options, $custom_options);
     }
 
+		/**
+      * This method when overwritten in child classes allows the programmer to
+			* add custom data to 'page' object that is sent to the view
+      *
+      * @param string $defaults Default data.
+      *
+      * @return Array
+      */
 		protected function add_custom_page_info($defaults) {
 		  return array();
 		}
 
+		/**
+      * Returns language labels for the user-selected language.
+      *
+      * @return Array
+      */
 		public static function get_labels() {
 		  $language = Authentication::get_language();
 		  $path = Configuration::get_languages_path();
@@ -168,6 +208,13 @@
 		  }
 		}
 
+		/**
+      * Returns the value for a label in the user-selected language.
+      *
+      * @param string $key Label key to obtain.
+      *
+      * @return string
+      */
 		public static function get_label($key) {
 			$labels = self::get_labels();
 
