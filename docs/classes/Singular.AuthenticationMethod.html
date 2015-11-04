@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">452</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">161</span>
                                 </a>
                             </li>
                             <li>
@@ -144,19 +144,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-135595111"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1891900884"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-135595111" class="accordion-body collapse in">
+            <div id="namespace-1891900884" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1831827708"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-44170740"></a>
                                 <a href="../namespaces/Singular.html" style="margin-left: 30px; padding-left: 0">Singular</a>
             </div>
-            <div id="namespace-1831827708" class="accordion-body collapse ">
+            <div id="namespace-44170740" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -177,7 +177,7 @@
                                                     <li class="class"><a href="../classes/Singular.Helper.html">Helper</a></li>
                                                     <li class="class"><a href="../classes/Singular.MemcacheCache.html">MemcacheCache</a></li>
                                                     <li class="class"><a href="../classes/Singular.Model.html">Model</a></li>
-                                                    <li class="class"><a href="../classes/Singular.ProveedorMySQL.html">ProveedorMySQL</a></li>
+                                                    <li class="class"><a href="../classes/Singular.MySQLProvider.html">MySQLProvider</a></li>
                                                     <li class="class"><a href="../classes/Singular.Router.html">Router</a></li>
                                                     <li class="class"><a href="../classes/Singular.Utils.html">Utils</a></li>
                                                     <li class="class"><a href="../classes/Singular.View.html">View</a></li>
@@ -207,7 +207,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Singular</small>AuthenticationMethod</h1>
-                    <p><em></em></p>
+                    <p><em>Singular&#039;s Abstract Authentication Method Class</em></p>
                     
                     
                                         
@@ -311,13 +311,13 @@
             <a id="property_identifier" name="property_identifier" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$identifier</h3>
-                <pre class="signature">$identifier : </pre>
+                <pre class="signature">$identifier : string|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                string|null
+                &mdash; Application&#039;s identifier, prevents several applications in the same server share the session.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -343,8 +343,8 @@
             <article class="method">
                 <h3 class="public ">log_out()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">log_out() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">log_out() : void</pre>
+                <p><em>Logs out.</em></p>
                 
 
                 
@@ -370,21 +370,21 @@
             <article class="method">
                 <h3 class="public ">set_user()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">set_user(  <span class="argument">$user</span>,   <span class="argument">$data = NULL</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">set_user(string  <span class="argument">$user</span>, Object|null  <span class="argument">$data = NULL</span>) : void</pre>
+                <p><em>Stores user&#039;s information in session.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$user </td>
-                                <td></td>
+                                <td><p>User's account.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>Object|null</td>
                                 <td>$data </td>
-                                <td></td>
+                                <td><p>User's data to store.</p></td>
                             </tr>
                                             </table>
                 
@@ -410,16 +410,16 @@
             <article class="method">
                 <h3 class="public ">set_user_data()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">set_user_data(  <span class="argument">$data</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">set_user_data(Object  <span class="argument">$data</span>) : void</pre>
+                <p><em>Stores user&#039;s information in session.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>Object</td>
                                 <td>$data </td>
-                                <td></td>
+                                <td><p>User's data to store.</p></td>
                             </tr>
                                             </table>
                 
@@ -445,13 +445,15 @@
             <article class="method">
                 <h3 class="public ">get_user()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_user() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_user() : Object</pre>
+                <p><em>Gets the session-stored user.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -472,13 +474,15 @@
             <article class="method">
                 <h3 class="public ">get_user_data()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_user_data() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_user_data() : Object</pre>
+                <p><em>Gets the session-stored user&#039;s data.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -499,13 +503,15 @@
             <article class="method">
                 <h3 class="public ">is_logged_in()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">is_logged_in() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">is_logged_in() : boolean</pre>
+                <p><em>Return True if the user has logged in.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -526,21 +532,21 @@
             <article class="method">
                 <h3 class="public ">set_user_attribute()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">set_user_attribute(  <span class="argument">$name</span>,   <span class="argument">$value</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">set_user_attribute(string  <span class="argument">$name</span>, Object  <span class="argument">$value</span>) : void</pre>
+                <p><em>Sets a user&#039;s attribute.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$name </td>
-                                <td></td>
+                                <td><p>Attribute's name.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>Object</td>
                                 <td>$value </td>
-                                <td></td>
+                                <td><p>Attribute's value.</p></td>
                             </tr>
                                             </table>
                 
@@ -566,16 +572,16 @@
             <article class="method">
                 <h3 class="public ">get_user_attribute()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_user_attribute(  <span class="argument">$name</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_user_attribute(string  <span class="argument">$name</span>) : void</pre>
+                <p><em>Gets a user&#039;s attribute.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$name </td>
-                                <td></td>
+                                <td><p>Attribute's name.</p></td>
                             </tr>
                                             </table>
                 
@@ -601,13 +607,15 @@
             <article class="method">
                 <h3 class="public ">get_identifier()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_identifier() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_identifier() : string</pre>
+                <p><em>Gets the identifier associated to the application.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -628,16 +636,16 @@
             <article class="method">
                 <h3 class="public ">set_language()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">set_language(  <span class="argument">$language</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">set_language(string  <span class="argument">$language</span>) : void</pre>
+                <p><em>Sets the language.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$language </td>
-                                <td></td>
+                                <td><p>Language to set.</p></td>
                             </tr>
                                             </table>
                 
@@ -663,13 +671,15 @@
             <article class="method">
                 <h3 class="public ">get_language()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_language() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_language() : string</pre>
+                <p><em>Gets the selected language.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -690,21 +700,21 @@
             <article class="method">
                 <h3 class="public ">log_in()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">log_in(  <span class="argument">$user</span>,   <span class="argument">$password</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">log_in(string  <span class="argument">$user</span>, string  <span class="argument">$password</span>) : void</pre>
+                <p><em>Logs in.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$user </td>
-                                <td></td>
+                                <td><p>User's account.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$password </td>
-                                <td></td>
+                                <td><p>User's password.</p></td>
                             </tr>
                                             </table>
                 
@@ -731,13 +741,15 @@
             <article class="method">
                 <h3 class="public ">get_log_in()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_log_in() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_log_in() : string</pre>
+                <p><em>Returns the path to the &#039;log in&#039;.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -805,7 +817,7 @@
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/imac02/pear/share/pear/phpDocumentor/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-November 4th, 2015 at 07:57.
+November 4th, 2015 at 12:36.
                 </section>
             </section>
         </section>

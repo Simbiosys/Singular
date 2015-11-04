@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">452</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">161</span>
                                 </a>
                             </li>
                             <li>
@@ -144,19 +144,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-439844261"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-173189955"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-439844261" class="accordion-body collapse in">
+            <div id="namespace-173189955" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1562544990"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1241964899"></a>
                                 <a href="../namespaces/Singular.html" style="margin-left: 30px; padding-left: 0">Singular</a>
             </div>
-            <div id="namespace-1562544990" class="accordion-body collapse ">
+            <div id="namespace-1241964899" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -177,7 +177,7 @@
                                                     <li class="class"><a href="../classes/Singular.Helper.html">Helper</a></li>
                                                     <li class="class"><a href="../classes/Singular.MemcacheCache.html">MemcacheCache</a></li>
                                                     <li class="class"><a href="../classes/Singular.Model.html">Model</a></li>
-                                                    <li class="class"><a href="../classes/Singular.ProveedorMySQL.html">ProveedorMySQL</a></li>
+                                                    <li class="class"><a href="../classes/Singular.MySQLProvider.html">MySQLProvider</a></li>
                                                     <li class="class"><a href="../classes/Singular.Router.html">Router</a></li>
                                                     <li class="class"><a href="../classes/Singular.Utils.html">Utils</a></li>
                                                     <li class="class"><a href="../classes/Singular.View.html">View</a></li>
@@ -207,7 +207,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Singular</small>Configuration</h1>
-                    <p><em></em></p>
+                    <p><em>Singular&#039;s Configuration Class</em></p>
                     
                     
                                         
@@ -324,13 +324,13 @@
             <a id="property_api" name="property_api" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$api</h3>
-                <pre class="signature">$api : </pre>
+                <pre class="signature">$api : Object|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                Object|null
+                &mdash; Slim instance.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -348,13 +348,13 @@
             <a id="property_configuration" name="property_configuration" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$configuration</h3>
-                <pre class="signature">$configuration : </pre>
+                <pre class="signature">$configuration : Object|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                Object|null
+                &mdash; Singleton&#039;s instance for framework settings.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -372,13 +372,13 @@
             <a id="property_app_settings" name="property_app_settings" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$app_settings</h3>
-                <pre class="signature">$app_settings : </pre>
+                <pre class="signature">$app_settings : Object|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                Object|null
+                &mdash; Singleton&#039;s instance for application settings.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -404,13 +404,15 @@
             <article class="method">
                 <h3 class="public ">get_api()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_api() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_api() : Object</pre>
+                <p><em>Returns Slim API instance.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -431,13 +433,15 @@
             <article class="method">
                 <h3 class="public ">get_configuration()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_configuration() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_configuration() : Object</pre>
+                <p><em>Returns the framework configuration for the active mode.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -458,13 +462,15 @@
             <article class="method">
                 <h3 class="public ">get_index()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_index() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_index() : string</pre>
+                <p><em>Returns the host.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -485,26 +491,28 @@
             <article class="method">
                 <h3 class="public ">get_app_settings()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_app_settings(  <span class="argument">$properties = NULL</span>,   <span class="argument">$default = NULL</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_app_settings(Object|null  <span class="argument">$properties = NULL</span>, string|null  <span class="argument">$default = NULL</span>) : Object</pre>
+                <p><em>Returns the app configuration.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>Object|null</td>
                                 <td>$properties </td>
-                                <td></td>
+                                <td><p>Property chain to follow.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string|null</td>
                                 <td>$default </td>
-                                <td></td>
+                                <td><p>Default value.</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -525,13 +533,15 @@
             <article class="method">
                 <h3 class="public ">debug_enabled()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">debug_enabled() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">debug_enabled() : boolean</pre>
+                <p><em>Returns True if debug is enabled in active mode.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -552,13 +562,15 @@
             <article class="method">
                 <h3 class="public ">get_root()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_root() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_root() : string</pre>
+                <p><em>Returns the root for active mode.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -579,13 +591,15 @@
             <article class="method">
                 <h3 class="public ">get_host()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_host() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_host() : string</pre>
+                <p><em>Returns the host for active mode.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -606,13 +620,15 @@
             <article class="method">
                 <h3 class="public ">get_controller_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_controller_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_controller_path() : string</pre>
+                <p><em>Returns the path where app controllers are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -633,13 +649,15 @@
             <article class="method">
                 <h3 class="public ">get_model_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_model_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_model_path() : string</pre>
+                <p><em>Returns the path where app models are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -660,13 +678,15 @@
             <article class="method">
                 <h3 class="public ">get_service_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_service_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_service_path() : string</pre>
+                <p><em>Returns the path where app services are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -687,13 +707,15 @@
             <article class="method">
                 <h3 class="public ">get_view_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_view_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_view_path() : string</pre>
+                <p><em>Returns the path where app views are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -714,13 +736,15 @@
             <article class="method">
                 <h3 class="public ">get_languages_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_languages_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_languages_path() : string</pre>
+                <p><em>Returns the path where app language files are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -741,13 +765,15 @@
             <article class="method">
                 <h3 class="public ">get_available_languages()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_available_languages() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_available_languages() : Array</pre>
+                <p><em>Returns the list of available languages for the app.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Array
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -768,13 +794,15 @@
             <article class="method">
                 <h3 class="public ">get_default_language()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_default_language() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_default_language() : string</pre>
+                <p><em>Returns app default language.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -795,13 +823,15 @@
             <article class="method">
                 <h3 class="public ">get_layout_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_layout_path() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_layout_path() : string</pre>
+                <p><em>Returns the path where app layouts are stored.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -822,13 +852,15 @@
             <article class="method">
                 <h3 class="public ">get_authentication()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_authentication() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_authentication() : string</pre>
+                <p><em>Returns the app authentication configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -849,13 +881,15 @@
             <article class="method">
                 <h3 class="public ">get_authorisation()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_authorisation() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_authorisation() : string</pre>
+                <p><em>Returns the app authorisation configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -876,13 +910,15 @@
             <article class="method">
                 <h3 class="public ">get_helpers()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_helpers() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_helpers() : string</pre>
+                <p><em>Returns the app helper configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -903,13 +939,15 @@
             <article class="method">
                 <h3 class="public ">get_database_configuration()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_database_configuration() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_database_configuration() : Object</pre>
+                <p><em>Returns the app database configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -930,13 +968,15 @@
             <article class="method">
                 <h3 class="public ">get_cache()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_cache() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_cache() : Object</pre>
+                <p><em>Returns the app cache configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -957,13 +997,15 @@
             <article class="method">
                 <h3 class="private ">get_full_configuration()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_full_configuration() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_full_configuration() : Object</pre>
+                <p><em>Returns the whole framework configuration.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -984,13 +1026,15 @@
             <article class="method">
                 <h3 class="private ">get_current_configuration()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_current_configuration() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_current_configuration() : Object</pre>
+                <p><em>Returns the framework configuration for the active mode.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1011,13 +1055,15 @@
             <article class="method">
                 <h3 class="private ">load_app_settings()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">load_app_settings() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">load_app_settings() : Object</pre>
+                <p><em>Loads app settings.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1038,13 +1084,15 @@
             <article class="method">
                 <h3 class="private ">load_configuration()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">load_configuration() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">load_configuration() : Object</pre>
+                <p><em>Loads and checks the framework configuration file.</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1065,26 +1113,28 @@
             <article class="method">
                 <h3 class="private ">get_configuration_path()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_configuration_path(  <span class="argument">$element</span>,   <span class="argument">$required = TRUE</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_configuration_path(string  <span class="argument">$element</span>, boolean  <span class="argument">$required = TRUE</span>) : string|null</pre>
+                <p><em>Returns a configuration path, prefixes the root path.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$element </td>
-                                <td></td>
+                                <td><p>Configuration's key.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>boolean</td>
                                 <td>$required </td>
-                                <td></td>
+                                <td><p>Determines whether the key is mandatory.</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1105,26 +1155,28 @@
             <article class="method">
                 <h3 class="private ">get_configuration_element()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_configuration_element(  <span class="argument">$element</span>,   <span class="argument">$required = TRUE</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">get_configuration_element(string  <span class="argument">$element</span>, boolean  <span class="argument">$required = TRUE</span>) : Object|null</pre>
+                <p><em>Returns a configuration element.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$element </td>
-                                <td></td>
+                                <td><p>Configuration's key.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>boolean</td>
                                 <td>$required </td>
-                                <td></td>
+                                <td><p>Determines whether the key is mandatory.</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    Object|null
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1191,7 +1243,7 @@
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/imac02/pear/share/pear/phpDocumentor/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-November 4th, 2015 at 07:57.
+November 4th, 2015 at 12:36.
                 </section>
             </section>
         </section>

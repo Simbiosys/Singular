@@ -500,6 +500,18 @@
       return $occurrences;
     }
 
+    /**
+      * Function that loops the results obtained by a query.
+      *
+      * @param string $entity Entity's name.
+      * @param string $table Table's name.
+      * @param string $query Query to peform.
+      * @param Array $params Query parameters.
+      * @param string $cache_identifier Identifier to store cached data.
+      * @param boolean $wrap_data Determines whether the data must be wrapped or not with the entity's name.
+      *
+      * @return Array
+      */
     private function process_query_results($entity, $table, $query, $params, $cache_identifier, $wrap_data = TRUE) {
       $results = $this->data_base->run($query, NULL, $params);
 
@@ -546,6 +558,15 @@
       return $objs;
     }
 
+    /**
+      * Split the data to save into groups based on the entity they belong to.
+      *
+      * @param Array $entities Data to group.
+      * @param boolean $exists Determines whether the object exists so it will
+      * be updated or should be created.
+      *
+      * @return Array
+      */
     private function filter_by_entity($entities, $exists) {
       $filtered_data = array();
 
@@ -597,12 +618,26 @@
       return $filtered_data;
     }
 
+    /**
+      * Returns True if the passed table is a dependency to this model.
+      *
+      * @param string $table Table's name.
+      *
+      * @return boolean
+      */
     private function is_dependency($table) {
       $dependencies = $this->dependencies;
 
       return isset($dependencies[$table]);
     }
 
+    /**
+      * Returns the dependent table foreign key.
+      *
+      * @param string $table Table's name.
+      *
+      * @return string
+      */
     private function get_dependency_key($table) {
       $dependencies = $this->dependencies;
       $dependency = isset($dependencies[$table]) ? $dependencies[$table] : array();
@@ -614,12 +649,27 @@
     //                             QUERY METHODS
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+      * Returns the object with a specified identifier
+      *
+      * @param string $id Identifier to find.
+      *
+      * @return Array|null
+      */
     public function find($id) {
       $results = $this->find_all_by_value('id', $id);
 
       return count($results) > 0 ? $results[0] : NULL;
     }
 
+    /**
+      * Returns all the registers that have a field with a specified value.
+      *
+      * @param string $field Field's name.
+      * @param string $value Field's value.
+      *
+      * @return Array
+      */
     public function find_all_by_value($field, $value) {
       $this->auto_generation();
 
@@ -637,6 +687,13 @@
       return $this->process_query_results(NULL, $this->table, $query, array($value), $cache_identifier);
     }
 
+    /**
+      * Returns the number of occurrences for a condition.
+      *
+      * @param Array $condition Condition to search.
+      *
+      * @return integer
+      */
     public function number($condition = NULL) {
       $query = $this->data_base->get_count($this, $condition);
       $result = $this->data_base->run($query, NULL, $params);
@@ -650,12 +707,32 @@
       return isset($result["count"]) ? $result["count"] : NULL;
     }
 
+    /**
+      * Returns the number of occurrences for the 'search' function.
+      *
+      * @param Array $terms Words to search.
+      * @param Array $condition Condition to search.
+      *
+      * @return integer
+      */
     public function number_search($terms, $condition = NULL) {
       $occurrences = $this->search($terms, $condition);
 
       return count($occurrences);
     }
 
+    /**
+      * Returns all the occurrences for a condition.
+      *
+      * @param Array $params Condition to search.
+      * <ul>
+      * <li><strong>condition:</strong> Condition to search.</li>
+      * <li><strong>start:</strong> Register number to start with (used with pagination).</li>
+      * <li><strong>limit:</strong> Number of register to return (used with pagination).</li>
+      * </ul>
+      *
+      * @return Array
+      */
     public function get_all($params = NULL) {
       $condition = $params;
       $start = 0;
@@ -690,6 +767,14 @@
       }
     }
 
+    /**
+      * Saves a record, insert or update depending on the existence of the id.
+      *
+      * @param string|null $the_id Register's identifier.
+      * @param Array $value Data to store.
+      *
+      * @return Array
+      */
     public function save($the_id, $values) {
       $this->auto_generation();
       $this->get_connection();
@@ -792,6 +877,14 @@
       );
     }
 
+    /**
+      * Updates a record.
+      *
+      * @param string $id Register's identifier.
+      * @param Array $value Data to store.
+      *
+      * @return Array
+      */
     public function update($id, $values) {
       $result = $this->save($id, $values);
 
@@ -800,6 +893,13 @@
       }
     }
 
+    /**
+      * Creates a new record.
+      *
+      * @param Array $value Data to store.
+      *
+      * @return Array
+      */
     public function create($values) {
       if (!isset($values[$this->table])) {
         $values[$this->table] = array();
@@ -814,6 +914,13 @@
       return $result;
     }
 
+    /**
+      * Deletes a record.
+      *
+      * @param string $id Register's identifier.
+      *
+      * @return void
+      */
     public function delete($id) {
       $this->get_connection();
       $query = $this->data_base->get_delete($this->table, $id);
@@ -889,6 +996,13 @@
     //                             DATA PROCESSING
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+      * When overwritten lets the new model modify any record returned by a query
+      *
+      * @param Array $data Each query register.
+      *
+      * @return Array
+      */
     protected function process($data) {
       return $data;
     }
@@ -897,6 +1011,11 @@
     //                             AUTO GENERATION
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+      * Model database table autogeneration.
+      *
+      * @return void
+      */
     protected function auto_generation() {
       $this->check_table();
       $this->check_fields();
@@ -921,6 +1040,11 @@
       }
     }
 
+    /**
+      * Checks if the table exists and creates it if not.
+      *
+      * @return void
+      */
     protected function check_table() {
       $table = $this->table;
       $fields = $this->fields;
@@ -929,6 +1053,11 @@
       $this->data_base->check_table($table, $fields, $primary_key);
     }
 
+    /**
+      * Checks table fields, creates new ones and modifies the ones that differ,
+      *
+      * @return void
+      */
     protected function check_fields() {
       $table = $this->table;
       $fields = $this->fields;

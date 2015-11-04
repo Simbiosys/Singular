@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">452</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">161</span>
                                 </a>
                             </li>
                             <li>
@@ -144,19 +144,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1119779904"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-255481403"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1119779904" class="accordion-body collapse in">
+            <div id="namespace-255481403" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1804954289"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1612211316"></a>
                                 <a href="../namespaces/Singular.html" style="margin-left: 30px; padding-left: 0">Singular</a>
             </div>
-            <div id="namespace-1804954289" class="accordion-body collapse ">
+            <div id="namespace-1612211316" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -177,7 +177,7 @@
                                                     <li class="class"><a href="../classes/Singular.Helper.html">Helper</a></li>
                                                     <li class="class"><a href="../classes/Singular.MemcacheCache.html">MemcacheCache</a></li>
                                                     <li class="class"><a href="../classes/Singular.Model.html">Model</a></li>
-                                                    <li class="class"><a href="../classes/Singular.ProveedorMySQL.html">ProveedorMySQL</a></li>
+                                                    <li class="class"><a href="../classes/Singular.MySQLProvider.html">MySQLProvider</a></li>
                                                     <li class="class"><a href="../classes/Singular.Router.html">Router</a></li>
                                                     <li class="class"><a href="../classes/Singular.Utils.html">Utils</a></li>
                                                     <li class="class"><a href="../classes/Singular.View.html">View</a></li>
@@ -207,7 +207,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Singular</small>Database</h1>
-                    <p><em></em></p>
+                    <p><em>* Singular&#039;s Database Class</em></p>
                     
                     
                                         
@@ -274,7 +274,6 @@
                                                             </section>
                             <section class="span4">
                                                                     <a href="../classes/Singular.Database.html#property_provider" class="">$provider</a><br />
-                                                                    <a href="../classes/Singular.Database.html#property_parameters" class="">$parameters</a><br />
                                                                     <a href="../classes/Singular.Database.html#property__con" class="">$_con</a><br />
                                                             </section>
                             <section class="span4">
@@ -322,37 +321,13 @@
             <a id="property_provider" name="property_provider" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$provider</h3>
-                <pre class="signature">$provider : </pre>
+                <pre class="signature">$provider : Object|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_parameters" name="property_parameters" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$parameters</h3>
-                <pre class="signature">$parameters : </pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                
-                                            </article>
+                Object|null
+                &mdash; Database&#039;s provider.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -370,13 +345,13 @@
             <a id="property__con" name="property__con" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$_con</h3>
-                <pre class="signature">$_con : </pre>
+                <pre class="signature">$_con : Object|null</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                Object|null
+                &mdash; Database&#039;s connection.                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -403,8 +378,19 @@
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$provider</span>,   <span class="argument">$server</span>,   <span class="argument">$user</span>,   <span class="argument">$password</span>,   <span class="argument">$data_base</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Constructor
+      *
+      * @param string $provider Provider class name.</em></p>
+                <ul>
+<li>@param string $server Database server.
+<pre><code>    * @param string $user Database user account.
+    * @param string $password Database password.
+    * @param string $data_base Database name.</code></pre>
+<p>*</p>
+<ul>
+<li>@return void</li>
+</ul></li>
+</ul>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -457,8 +443,15 @@
                 <h3 class="public ">get_connection()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_connection(  <span class="argument">$provider</span>,   <span class="argument">$server</span>,   <span class="argument">$user</span>,   <span class="argument">$password</span>,   <span class="argument">$data_base</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the existing database connection or establishes a new one.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $provider Provider class name.
+        * @param string $server Database server.
+        * @param string $user Database user account.
+        * @param string $password Database password.
+        * @param string $data_base Database name.
+  *
+  * @return Object</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -512,8 +505,11 @@
                 <h3 class="public ">get_query()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_query(  <span class="argument">$model</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the query of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -546,8 +542,12 @@
                 <h3 class="public ">get_count()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_count(  <span class="argument">$model</span>,   <span class="argument">$condition = NULL</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the number of occurrences for a condition and a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+        * @param Array $condition Condition to query.
+  *
+  * @return integer</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -585,8 +585,12 @@
                 <h3 class="public ">get_query_by_condition()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_query_by_condition(  <span class="argument">$model</span>,   <span class="argument">$condition</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the query of a model for a condition.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+        * @param Array $condition Condition to query.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -624,8 +628,13 @@
                 <h3 class="public ">get_query_by_value()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_query_by_value(  <span class="argument">$model</span>,   <span class="argument">$field</span>,   <span class="argument">$value</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the query of a model for a key-value pair.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+        * @param string $field Field's name.
+        * @param string $field Field's value.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -668,8 +677,11 @@
                 <h3 class="public ">get_filter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_filter(  <span class="argument">$model</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the filter of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -702,8 +714,11 @@
                 <h3 class="public ">get_default_filter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_default_filter() </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the default filter of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+  *
+  * @return string</code></pre>
 
                 
                 
@@ -728,8 +743,11 @@
                 <h3 class="public ">get_order()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_order(  <span class="argument">$model</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the order criteria of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -762,8 +780,13 @@
                 <h3 class="public ">get_update()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_update(  <span class="argument">$table</span>,   <span class="argument">$columns</span>,   <span class="argument">$id</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the update query of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+        * @param Array $columns Columns to update.
+        * @param string $id Register identifier.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -806,8 +829,12 @@
                 <h3 class="public ">get_insert()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_insert(  <span class="argument">$table</span>,   <span class="argument">$columns</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the insert query of a model.</em></p>
+                <p>*</p>
+<pre><code>  * @param Model $model Model instance.
+        * @param Array $columns Columns to update.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -845,8 +872,12 @@
                 <h3 class="public ">get_delete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_delete(  <span class="argument">$table</span>,   <span class="argument">$id</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Returns the delete query of a table.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $table Model table.
+        * @param string $id Register identifier.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -884,8 +915,12 @@
                 <h3 class="public ">run_scalar()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">run_scalar(  <span class="argument">$q</span>,   <span class="argument">$parameters = NULL</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Runs a query that returns a scalar.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $q Query to execute.
+        * @param string $parameters Parameters to replace in the query.
+  *
+  * @return Object</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -923,8 +958,12 @@
                 <h3 class="public ">run()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">run(  <span class="argument">$q</span>,   <span class="argument">$indice = NULL</span>,   <span class="argument">$parameters = NULL</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Runs a query.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $q Query to execute.
+        * @param string $parameters Parameters to replace in the query.
+  *
+  * @return Array</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -967,8 +1006,11 @@
                 <h3 class="public ">change_database()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">change_database(  <span class="argument">$database</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Changes the currect database.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $database Database's name.
+  *
+  * @return void</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1001,8 +1043,9 @@
                 <h3 class="public ">get_id()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_id() </pre>
-                <p><em></em></p>
-                
+                <p><em>* Gets the last id.</em></p>
+                <p>*</p>
+<pre><code>  * @return string</code></pre>
 
                 
                 
@@ -1027,8 +1070,9 @@
                 <h3 class="public ">get_error()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">get_error() </pre>
-                <p><em></em></p>
-                
+                <p><em>* Gets the thrown error.</em></p>
+                <p>*</p>
+<pre><code>  * @return Object</code></pre>
 
                 
                 
@@ -1053,8 +1097,12 @@
                 <h3 class="public ">format_fields()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">format_fields(  <span class="argument">$data</span>,   <span class="argument">$fields_structure</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Formats data according to a field structure.</em></p>
+                <p>*</p>
+<pre><code>  * @param Array $data Data to format.
+        * @param Array $fields_structure Field structure to follow.
+  *
+  * @return Array</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1092,8 +1140,13 @@
                 <h3 class="public ">check_table()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">check_table(  <span class="argument">$table</span>,   <span class="argument">$fields</span>,   <span class="argument">$primary_key</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Checks the existance of a table and creates it if necessary.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $table Table to check.
+        * @param Array $fields Table fields.
+        * @param string $primary_key Table primary key.
+  *
+  * @return Object</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1136,8 +1189,13 @@
                 <h3 class="public ">check_fields()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">check_fields(  <span class="argument">$table</span>,   <span class="argument">$fields</span>,   <span class="argument">$primary_key</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Checks the existance of one table fields and creates them if necessary.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $table Table to check.
+        * @param Array $fields Table fields.
+        * @param string $primary_key Table primary key.
+  *
+  * @return Object</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1180,8 +1238,9 @@
                 <h3 class="public ">__destruct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__destruct() </pre>
-                <p><em></em></p>
-                
+                <p><em>* Destructor.</em></p>
+                <p>*</p>
+<pre><code>  * @return void</code></pre>
 
                 
                 
@@ -1206,8 +1265,9 @@
                 <h3 class="private ">replace_parameters()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">replace_parameters() </pre>
-                <p><em></em></p>
-                
+                <p><em>* Replaces the parameters of a query.</em></p>
+                <p>*</p>
+<pre><code>  * @return Object</code></pre>
 
                 
                 
@@ -1232,8 +1292,12 @@
                 <h3 class="private ">prepare()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">prepare(  <span class="argument">$sql</span>,   <span class="argument">$parameters</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Prepares a query to be run.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $sql Query to execute.
+        * @param string $parameters Parameters to replace in the query.
+  *
+  * @return string</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1271,8 +1335,12 @@
                 <h3 class="private ">send_query()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">send_query(  <span class="argument">$q</span>,   <span class="argument">$parameters</span>) </pre>
-                <p><em></em></p>
-                
+                <p><em>* Runs a query.</em></p>
+                <p>*</p>
+<pre><code>  * @param string $q Query to execute.
+        * @param string $parameters Parameters to replace in the query.
+  *
+  * @return Array</code></pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -1355,7 +1423,7 @@
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/imac02/pear/share/pear/phpDocumentor/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-November 4th, 2015 at 07:57.
+November 4th, 2015 at 12:36.
                 </section>
             </section>
         </section>

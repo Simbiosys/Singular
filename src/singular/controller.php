@@ -1,55 +1,89 @@
 <?php
+  /**
+  * Singular's Controller
+  */
   namespace Singular;
 
+  /**
+  * Singular's Controller Class
+  */
   class Controller {
-    protected static $flash_message = NULL;
-
-    ////////////////////////////////////////////////////////////////////////////
-    //                     GET: requires authentication
-    //                          Checks authorisation
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * GET: requires authentication. Checks authorisation
+      *
+      * @param string $path URL path.
+      * @param string $entity Entity's name to check authorisation.
+      * @param string $action Action's name to check authorisation.
+      * @param string $handler Handler to execute when the user visits this path.
+      *
+      * @return void
+      */
     public static function get_private($path, $entity, $action, $handler) {
       $api = Configuration::get_api();
       $api->get($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //               PUBLIC GET: it doesn't check authentication
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * PUBLIC GET: it doesn't check authentication
+      *
+      * @param string $path URL path.
+      * @param string $handler Handler to execute when the user visits this path.
+      *
+      * @return void
+      */
     public static function get_public($path, $handler) {
       $api = Configuration::get_api();
       $api->get($path, $handler);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                     POST: requires authentication
-    //                          Checks authorisation
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * POST: requires authentication. Checks authorisation
+      *
+      * @param string $path URL path.
+      * @param string $entity Entity's name to check authorisation.
+      * @param string $action Action's name to check authorisation.
+      * @param string $handler Handler to execute when the user visits this path.
+      *
+      * @return void
+      */
     public static function post_private($path, $entity, $action, $handler) {
       $api = Configuration::get_api();
       $api->post($path, self::check_authentication_and_authorisation($entity, $action), $handler);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                PUBLIC POST: it doesn't check authentication
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * PUBLIC POST: it doesn't check authentication
+      *
+      * @param string $path URL path.
+      * @param string $handler Handler to execute when the user visits this path.
+      *
+      * @return void
+      */
     public static function post_public($path, $handler) {
       $api = Configuration::get_api();
       $api->post($path, $handler);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                                Redirect
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * Redirects to a path
+      *
+      * @param string $path URL path.
+      *
+      * @return void
+      */
     public static function redirect($path) {
       $index_path = Configuration::get_index();
       $api = Configuration::get_api();
       $api->redirect("$index_path$path");
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                         Get Data By Entity
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * Groups request data by entity.
+      *
+      * @param string $default_model Default model.
+      *
+      * @return Array
+      */
     public static function get_data_by_entity($default_model) {
       $parameters = \Singular\Controller::get_post();
 
@@ -108,10 +142,13 @@
       return $data;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                           Get variables
-    ////////////////////////////////////////////////////////////////////////////
-    // Prevent dot replacing
+    /**
+      * Groups request data. Prevents dot replacing of $_POST and $_GET.
+      *
+      * @param Object $source Source.
+      *
+      * @return Array
+      */
     private static function get_input($source) {
       $pairs = explode("&", $source == 'POST' ? file_get_contents("php://input") : $_SERVER['QUERY_STRING']);
 
@@ -127,43 +164,82 @@
       return $vars;
     }
 
+    /**
+      * Returns POST data
+      *
+      * @return Object
+      */
     public static function get_post() {
       return self::get_input('POST');
     }
 
+    /**
+      * Return GET data.
+      *
+      * @return Object
+      */
     public static function get_get() {
       return self::get_input('GET');
     }
 
+    /**
+      * Returns a POST variable.
+      *
+      * @param string $name Variable's name.
+      * @param Object|null $default Default value to assign.
+      *
+      * @return Object
+      */
     public static function get_post_variable($name, $default = NULL) {
       $post = self::get_input('POST');
 
       return isset($post[$name]) ? $post[$name] : $default;
     }
 
+    /**
+      * Returns a GET variable.
+      *
+      * @param string $name Variable's name.
+      * @param Object|null $default Default value to assign.
+      *
+      * @return Object
+      */
     public static function get_get_variable($name, $default = NULL) {
       $get = self::get_input('GET');
 
       return isset($get[$name]) ? $get[$name] : $default;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                             Flash message
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * Sets a flash message.
+      *
+      * @param string $message Message to send to the view.
+      *
+      * @return void
+      */
     public static function flash($message) {
       Flash::set_message($message);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                             Debug message
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * Sets a debug message.
+      *
+      * @param string $message Message to send to the view.
+      *
+      * @return void
+      */
     public static function debug($message) {
       Debug::set_message($message);
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //                   Authentication and Authorisation
-    ////////////////////////////////////////////////////////////////////////////
+    /**
+      * Checks if the user is logged in and has access to an action
+      *
+      * @param string $entity Entity to check authorisation.
+      * @param string $action Action to check authorisation.
+      *
+      * @return void
+      */
     private static function check_authentication_and_authorisation($entity, $action) {
       return function () use ($entity, $action) {
         // Redirect if no session started

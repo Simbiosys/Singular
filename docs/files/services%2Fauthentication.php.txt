@@ -108,3 +108,4 @@
       return static::$authentication_method;
     }
   }
+
