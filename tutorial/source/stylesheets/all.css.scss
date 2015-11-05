@@ -27,6 +27,11 @@ h2 {
   margin-top: 0;
 }
 
+h3 {
+  margin-top: 0;
+  color: #666;
+}
+
 .doc {
   font-size: 14px;
   margin: 0;
@@ -88,6 +93,8 @@ aside {
   float: left;
   width: 200px;
   padding: 0 0 20px 0;
+  position: fixed;
+  margin-top: -30px;
 
   ul {
     list-style: none;
@@ -113,12 +120,46 @@ aside {
 .code {
   padding: 0;
   margin: 0 0 -10px 0;
+  font-family: 'Source Code Pro', monospace;
+  overflow: auto;
 
   code {
+    font-family: 'Source Code Pro', monospace;
     background-color: #e5e5e5;
     padding: 0px;
     font-size: 1rem;
     display: block;
     margin: 0;
+  }
+
+  .folder {
+    color: #0174DF;
+  }
+
+  .php {
+    color: #DF01D7;
+  }
+
+  .json {
+    color: #04B4AE;
+  }
+
+  .imp {
+    color: #0174DF;
+  }
+}
+
+.note {
+  background-color: #F5ECCE;
+  padding: 10px 15px 10px 40px;
+  position: relative;
+
+  &:before {
+    content: "!";
+    font-size: 2.5em;
+    color: #DBA901;
+    position: absolute;
+    left: 18px;
+    top: 3px;
   }
 }

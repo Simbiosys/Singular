@@ -13,8 +13,8 @@
   "languages": "/lang",
   "settings": "/config/app.json",
   "index": "/index.php",
-  "available_languages": ["es"],
-  "default_language": "es",
+  "available_languages": ["en"],
+  "default_language": "en",
   "mode": "development",
   "modes": {
     "development": {
@@ -28,7 +28,7 @@
         "data_base": "",
         "provider": "\\singular\\MySQLProvider"
       },
-      "cache": "\\Singular\\MemcacheCache",
+      "cache": "\\Singular\\FileCache",
       "cache_server": "localhost",
       "cache_port": "11211",
       "authentication": "AppAuthentication",

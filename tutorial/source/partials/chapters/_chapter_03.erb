@@ -1,0 +1,83 @@
+<h2>Application structure</h2>
+
+<p>
+  <h3>Folders</h3>
+
+  <ul>
+    <li><strong>base</strong>: Contains all the framework files. It is recommended not to touch it.</li>
+    <li><strong>config</strong>: Application config files are contained in this folder.</li>
+    <li><strong>controllers</strong>: Singular will automatically load all the controllers in this folder.</li>
+    <li><strong>lang</strong>: Here you can store the i8n language files.</li>
+    <li><strong>models</strong>: Singular will automatically load all the models in this folder.</li>
+    <li><strong>services</strong>: Singular will automatically load all the services in this folder.</li>
+    <li><strong>views</strong>: This directory contains all the views of the application.</li>
+    <li><strong>web</strong>: This folder contains all the static resources like css, fonts, img or js.</li>
+  </ul>
+
+  <h3>singular.json</h3>
+
+  This file defines the main configuration of your application.
+
+  <pre class="code">
+    <code>
+      {
+        "version": "0.0.1",
+        "controllers": "/controllers",
+        "models": "/models",
+        "services": "/services",
+        "views": {
+          "server": "/views/server",
+          "client": "/views/client",
+          "partials": "/views/server/partials",
+          "compiled": "/views/compiled"
+        },
+        "layouts": "/views/server/layouts",
+        "languages": "/lang",
+        "settings": "/config/app.json",
+        "index": "/index.php",
+        "available_languages": ["en"],
+        "default_language": "en",
+        "mode": "development",
+        "modes": {
+          "development": {
+            "debug": true,
+            "root": "/",
+            "host": "localhost",
+            "database": {
+              "server": "",
+              "user": "",
+              "password": "",
+              "data_base": "",
+              "provider": "\\singular\\MySQLProvider"
+            },
+            "cache": "\\Singular\\FileCache",
+            "cache_server": "localhost",
+            "cache_port": "11211",
+            "authentication": "AppAuthentication",
+            "authorisation": "AppAuthorisation",
+            "helpers": "AppHelpers"
+          },
+          "production": {
+
+          }
+        }
+      }
+    </code>
+  </pre>
+
+  <ul>
+    <li><strong>version</strong>: It's the version of your application. This number could be appended as a querystring parameter to static resources as css or js to avoid browser cache.</li>
+    <li><strong>controllers</strong>: Defines the folder where controllers are stored.</li>
+    <li><strong>models</strong>: Defines the folder where models are stored.</li>
+    <li><strong>services</strong>: Defines the folder where services are stored.</li>
+    <li><strong>views</strong>: Defines the folder where views are stored.</li>
+    <li><strong>layouts</strong>: Defines the folder where layouts are stored.</li>
+    <li><strong>languages</strong>: Defines the folder where language files are stored.</li>
+    <li><strong>settings</strong>: Sets the location of the application config file.</li>
+    <li><strong>index</strong>: Sets the starting point of the application.</li>
+    <li><strong>available_languages</strong>: Defines the available languages in the language folder.</li>
+    <li><strong>default_language</strong>: Sets the default language for the application.</li>
+    <li><strong>mode</strong>: Sets the current enabled mode.</li>
+    <li><strong>modes</strong>: Defines custom modes that lets you choose the current one. You can define one mode for development, another one for production, etc.</li>
+  </ul>
+</p>

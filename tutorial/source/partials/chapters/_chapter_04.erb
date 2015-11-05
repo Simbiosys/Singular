@@ -1,0 +1,36 @@
+<h2>Initial tasks</h2>
+
+<p>
+  <h3>View folder</h3>
+
+  All the views are compiled before being sent to the browser. If <strong>debug</strong> is set to <strong>true</strong> in the current mode, all the views will be always compiled before sending. If debug is not enabled they will be only compiled the first time, next times the stored file will be used.
+<p>
+
+<p class="note">
+  Compiled views are stored in <strong>/views/compiled</strong>. It's important that the <strong>/view</strong> folder has write permissions.
+</p>
+
+<p>
+  <h3>Root settings</h3>
+
+  In the <strong>singular.json</strong> you have to set the <strong>root settings</strong> of your application. In each mode config you need to set the 2 following keys:
+
+  <ul>
+    <li><strong>root</strong>: Points to the file-system path of our application.</li>
+    <li><strong>host</strong>: Points to the host where the application is located.</li>
+  </ul>
+<p>
+
+In my application I have these values:
+
+<pre class="code">
+  <code>
+    ...
+      "modes": {
+        "development": {
+          "debug": true,
+          <strong class="imp">"root": "/Applications/XAMPP/xamppfiles/htdocs/notes"</strong>,
+          <strong class="imp">"host": "http://localhost/notes"</strong>,
+    ...
+  </code>
+</pre>
