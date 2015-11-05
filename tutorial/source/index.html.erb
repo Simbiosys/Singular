@@ -1,0 +1,38 @@
+---
+title: Singular Framework Tutorial
+
+chapter_count: 2
+---
+
+<%= partial 'header' %>
+
+<div class="welcome">
+
+  <p class="doc">
+    <%= link_to "Read Online Documentation", "http://middlemanapp.com/" %>
+  </p>
+
+  <main>
+    <aside>
+      <nav>
+        <ul>
+          <% current_page.data.chapter_count.to_i.times do |num| %>
+            <li>
+              <%= link_to "Chapter #{num + 1}", "#chapter_0#{num + 1}" %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </aside>
+    <article class="content">
+      <% current_page.data.chapter_count.to_i.times do |num| %>
+        <section class="chapter" id="chapter_0<%= num + 1 %>">
+          <%= partial "chapters/chapter_0#{num + 1}" %>
+        </section>
+      <% end %>
+    </article>
+  </main>
+
+</div>
+
+<%= partial 'footer' %>
