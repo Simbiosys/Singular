@@ -842,8 +842,12 @@
         else {
           $query = $this->data_base->get_insert($entity, $columns, $params);
         }
-
-        $result = $this->data_base->run($query, NULL, $filtered);
+		
+		$result = NULL;
+		
+		if ($query) {
+        	$result = $this->data_base->run($query, NULL, $filtered);
+        }
 
         if ($result) {
           $new_id = $this->data_base->get_id();
