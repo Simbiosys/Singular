@@ -1,0 +1,102 @@
+<h2>Editing A Note</h2>
+
+<p>
+  As we did for the creation, let's make a new form for editing notes. Add a new view, <strong>edit_note.hbs</strong>, to your project:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;New Note&lt;/h1&gt;
+        &lt;form method=&quot;POST&quot; action=&quot;{{page.host}}/notes/{{data.notes.id}}/save&quot; class=&quot;new-message&quot;&gt;
+        	&lt;label for=&quot;message&quot;&gt;Enter your message&lt;/label&gt;
+        	&lt;textarea id=&quot;message&quot; name=&quot;message&quot; placeholder=&quot;Enter your message here&quot;&gt;{{data.notes.message}}&lt;/textarea&gt;
+        	&lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+        &lt;/form&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+</pre>
+
+<p>
+  This view is really similar to the previous one. We added the previously saved value of the note as the textarea content, and we point the form to a new resource <strong>/notes/:note/save</strong>.
+</p>
+
+<p>
+  We need to add 2 new routes to our controller.
+</p>
+
+<pre class="code">
+  <code>
+    \Singular\Controller::get_public("/notes/:note", function($note_id) {
+      $model = new MyModel();
+      $note = $model->find($note_id);
+
+      \Singular\View::render(array(
+          "template" => "edit_note",
+          "data" => $note
+      ));
+    });
+
+    \Singular\Controller::post_public("/notes/:note/save", function($note_id) {
+      $model = new MyModel();
+      $note = $model->find($note_id);
+
+      if (!empty($note)) {
+        $message = \Singular\Controller::get_post_variable("message");
+
+        $model->update($note_id, array(
+        	"notes" => array(
+  			"message" => $message
+        	)
+        ));
+
+        \Singular\Controller::flash("Note updated successfully");
+      }
+
+      \Singular\Controller::redirect("/notes");
+    });
+  </code>
+</pre>
+
+<p>
+  The first route gets the saved note through the method <strong>find</strong> and sends it to the new view.
+</p>
+
+<p>
+  And the second route updates the note invoking the method <strong>update</strong>.
+</p>
+
+<p>
+  Finally, we need to make some changes to the view <strong>notes.hbs</strong> to link each note to its editing resource:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;table&gt;
+    	&lt;tbody&gt;
+    		{{#data}}
+    			&lt;tr&gt;
+    			 &lt;td&gt;
+    			  &lt;a href=&quot;{{@root.page.host}}/notes/{{notes.id}}&quot;&gt;
+    			    {{notes.message}}
+    			  &lt;/a&gt;
+    			 &lt;/td&gt;
+    			&lt;/tr&gt;
+    		{{/data}}
+    	&lt;/tbody&gt;
+    &lt;/table&gt;
+  </code>
+</pre>
+
+<p>
+  Now each message is link to the edition. Note that to access the top-level page element inside the loop we have used the Handlebars prefix <strong>@root</strong>.
+</p>

@@ -1,0 +1,97 @@
+<h2>Creating New Notes</h2>
+
+<p>
+  First, let's create a new view to create new notes. Copy the following code into a view called <strong>new_note.hbs</strong>
+</p>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;New Note&lt;/h1&gt;
+        &lt;form method=&quot;POST&quot; action=&quot;{{page.host}}/notes/new&quot; class=&quot;new-message&quot;&gt;
+        	&lt;label for=&quot;message&quot;&gt;Enter your message&lt;/label&gt;
+        	&lt;textarea id=&quot;message&quot; name=&quot;message&quot; placeholder=&quot;Enter your message here&quot;&gt;&lt;/textarea&gt;
+        	&lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+        &lt;/form&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+</pre>
+
+<p>
+  In this view we have a form that posts the note <strong>message</strong> to the resource <strong>/notes/new</strong>.
+</p>
+
+<p>
+  To enable this functionality we need 2 new routes, the one that this form uses as action of its posting, and one that presents this form to the user. Copy this new code to <strong>controller.php</strong>.
+</p>
+
+<pre class="code">
+  <code>
+    \Singular\Controller::get_public("/notes/new", function() {
+      \Singular\View::render(array(
+          "template" => "new_note"
+      ));
+    });
+
+    \Singular\Controller::post_public("/notes/new", function() {
+    	$message = \Singular\Controller::get_post_variable("message");
+
+      $model = new MyModel();
+
+      $model->create(array(
+        "notes" => array(
+  		"message" => $message
+        )
+      ));
+
+      \Singular\Controller::flash("Note saved successfully");
+
+      \Singular\Controller::redirect("/notes");
+    });
+  </code>
+</pre>
+
+<p>
+  In this first route we just only render the new view to let the user create new notes.
+</p>
+
+<p>
+  The second route receives the data sent by the form. To get request data we use the Singular method <strong>get_post_variable</strong> for POST variables and <strong>get_get_variable</strong> for GET variables. This methods checks whether the variable exists or not.
+</p>
+
+<p>
+  Then we create a model object and send the new message to the method <strong>create</strong>. Keep in mind that fields must be wrapped with their model, that's why we wrap it around with <strong>notes</strong>.
+</p>
+
+<p>
+  After that, we use the method <strong>flash</strong> to send a confirmation message to the view. Finally, we <strong>redirect</strong> the browser to the <strong>/notes</strong> resource.
+</p>
+
+<p>
+  To enable flash messages we need to add this code to the top of the body in <strong>notes.hbs</strong>
+</p>
+
+<pre class="code">
+  <code>
+    {{#if page.flash}}
+      &lt;div class=&quot;flash&quot;&gt;
+        {{page.flash}}
+      &lt;/div&gt;
+    {{/if}}
+  </code>
+</pre>
+
+<p>
+  This codes shows the flash message contained in the object <strong>page</strong> only when it's available. The following image shows the result of saving a new note.
+</p>
+
+<%= image_tag 'browser_3.png' %>

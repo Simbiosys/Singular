@@ -7,29 +7,76 @@ chapter_count: 4
 <%= partial 'header' %>
 
 <div class="welcome">
-
+<!--
   <p class="doc">
     <%= link_to "Read Online Documentation", "http://middlemanapp.com/" %>
   </p>
-
+-->
   <main>
     <aside>
       <nav>
         <ul>
-          <% current_page.data.chapter_count.to_i.times do |num| %>
-            <li>
-              <%= link_to "Chapter #{num + 1}", "#chapter_0#{num + 1}" %>
-            </li>
-          <% end %>
+          <li>
+            <%= link_to "Install", "#install" %>
+          </li>
+          <li>
+            <%= link_to "Usage", "#usage" %>
+          </li>
+          <li>
+            <%= link_to "Application Structure", "#application_structure" %>
+          </li>
+          <li>
+            <%= link_to "Initial Tasks", "#initial_tasks" %>
+          </li>
+          <li>
+            <%= link_to "Your First Model", "#first_model" %>
+          </li>
+          <li>
+            <%= link_to "Creating New Notes", "#creating_notes" %>
+          </li>
+          <li>
+            <%= link_to "Deleting A Note", "#deleting_a_note" %>
+          </li>
+          <li>
+            <%= link_to "Labelling", "#labelling" %>
+          </li>
+          <li>
+            <%= link_to "Dependencies", "#dependencies" %>
+          </li>
         </ul>
       </nav>
     </aside>
     <article class="content">
-      <% current_page.data.chapter_count.to_i.times do |num| %>
-        <section class="chapter" id="chapter_0<%= num + 1 %>">
-          <%= partial "chapters/chapter_0#{num + 1}" %>
-        </section>
-      <% end %>
+      <section class="chapter" id="install">
+        <%= partial "chapters/chapter_01" %>
+      </section>
+      <section class="chapter" id="usage">
+        <%= partial "chapters/chapter_02" %>
+      </section>
+      <section class="chapter" id="application_structure">
+        <%= partial "chapters/chapter_03" %>
+      </section>
+      <section class="chapter" id="initial_tasks">
+        <%= partial "chapters/chapter_04" %>
+      </section>
+      <section class="chapter" id="first_model">
+        <%= partial "chapters/chapter_05" %>
+      </section>
+      <section class="chapter" id="creating_notes">
+        <%= partial "chapters/chapter_06" %>
+      </section>
+      <section class="chapter" id="editing_a_note">
+        <%= partial "chapters/chapter_07" %>
+      </section>
+      <section class="chapter" id="deleting_a_note">
+        <%= partial "chapters/chapter_08" %>
+      </section>
+      <section class="chapter" id="labelling">
+        <%= partial "chapters/chapter_09" %>
+      </section>
+      <section class="chapter" id="dependencies">
+        <%= partial "chapters/chapter_10" %>
+      </section>
     </article>
   </main>
 

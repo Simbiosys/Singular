@@ -1,0 +1,271 @@
+<h2>Dependencies</h2>
+
+<p>
+  Sometimes, our models have dependencies on other models. To illustrate this we'll change our model to let notes have translations.
+</p>
+
+<p>
+  Change <strong>model.php</strong> to look like this:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;?php
+
+    class MyModel extends \Singular\Model {
+      protected $table = "notes";
+      protected $order = array("creation ASC");
+      protected $filter = NULL;
+
+      protected $query_fields = array("*");
+
+      protected $fields = array(
+        "id" => array(
+          "type" => "integer",
+          "null" => FALSE,
+          "auto_increment" => TRUE
+        ),
+        "creation" => array(
+          "type" => "timestamp",
+          "default" => "CURRENT_TIMESTAMP"
+        )
+      );
+
+      protected $dependencies = array(
+        "notes_translations" => array(
+          "entity" => "MyModelTranslations",
+          "key" => "notes_id",
+          "filter" => NULL,
+          "order" => "",
+          "dependent" => TRUE
+        )
+      );
+
+      protected $primary_key = "id";
+
+      public function process($data) {
+        return $data;
+      }
+    }
+
+    class MyModelTranslations extends \Singular\Model {
+      protected $table = "notes_translations";
+
+      protected $fields = array(
+        "id" => array(
+          "type" => "integer",
+          "null" => FALSE,
+          "auto_increment" => TRUE
+        ),
+        "notes_id" => array(
+          "type" => "integer",
+          "null" => FALSE
+        ),
+        "message" => array(
+          "type" => "string",
+          "size" => 200,
+          "null" => FALSE,
+          "default" => ""
+        ),
+        "language" => array(
+          "type" => "string",
+          "size" => "3"
+        )
+      );
+
+      protected $primary_key = "id";
+    }
+  </code>
+</pre>
+
+<p>
+  We have created a new model <strong>MyModelTranslations</strong> to store all the information relative to the i8n of our notes. It contains a field to store the language of the translation and also a foreign key, <strong>notes_id</strong>, to vinculate each translation to its note.
+</p>
+
+<p>
+  In the model <strong>MyModel</strong> we deleted the field <strong>message</strong> as now it belongs to <strong>MyModelTranslations</strong>. And we have also added a new property <strong>$dependencies</strong> to link a model to its dependencies.
+</p>
+
+<p>
+  This <strong>$dependencies</strong> property has the following settings:
+</p>
+
+<ul>
+  <li><strong>entity:</strong> points to the dependent model.</li>
+  <li><strong>key:</strong> it's the foreign key of the dependent model that is linked to this model.</li>
+  <li><strong>filter:</strong> any filter to apply to this model.</li>
+  <li><strong>order:</strong> order criteria to apply to model rows.</li>
+  <li><strong>dependent:</strong> if set to True enables cascade delete, so any deletion of the model will delete its dependent model rows.</li>
+</ul>
+
+<p>
+  We need to change the controller routes that create and update notes to adapt them to this new model.
+</p>
+
+<pre class="code">
+  <code>
+    \Singular\Controller::post_public("/notes/new", function() {
+      $message_en = \Singular\Controller::get_post_variable("message_en");
+      $message_es = \Singular\Controller::get_post_variable("message_es");
+
+      $model = new MyModel();
+
+      $model->create(array(
+        "notes_translations" => array(
+        		array(
+        	 		"message" => $message_en,
+        	 		"language" => "en"
+        	 	),
+        	 	array(
+        	 		"message" => $message_es,
+        	 		"language" => "es"
+        	 	)
+        	)
+      ));
+
+      \Singular\Controller::flash("Note saved successfully");
+
+      \Singular\Controller::redirect("/notes");
+    });
+
+    \Singular\Controller::post_public("/notes/:note/save", function($note_id) {
+      $model = new MyModel();
+      $note = $model->find($note_id);
+
+      if (!empty($note)) {
+        $message_en = \Singular\Controller::get_post_variable("message_en");
+        $message_es = \Singular\Controller::get_post_variable("message_es");
+
+        $translation_en =
+          \Singular\Controller::get_post_variable("translation_en");
+        $translation_es =
+          \Singular\Controller::get_post_variable("translation_es");
+
+        $model->update($note_id, array(
+        	"notes_translations" => array(
+        		array(
+        	 		"message" => $message_en,
+        	 		"language" => "en",
+        	 		"id" => $translation_en
+        	 	),
+        	 	array(
+        	 		"message" => $message_es,
+        	 		"language" => "es",
+        	 		"id" => $translation_es
+        	 	)
+        	)
+        ));
+
+        \Singular\Controller::flash("Note updated successfully");
+      }
+
+      \Singular\Controller::redirect("/notes");
+    });
+  </code>
+</pre>
+
+<p>
+  Now this handlers wrap data in <strong>notes_translations</strong> as message belongs to the model <strong>MyModelTranslations</strong>.
+</p>
+
+<p>
+  We also have to change our views to reflect this changes.
+</p>
+
+<h3>notes.hbs</h3>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+      	{{#if page.flash}}
+      		&lt;div class=&quot;flash&quot;&gt;
+      			{{page.flash}}
+      		&lt;/div&gt;
+      	{{/if}}
+        &lt;h1&gt;{{labels.title}}&lt;/h1&gt;
+        &lt;a href=&quot;{{page.host}}/notes/new&quot;&gt;Create a new note&lt;/a&gt;
+        &lt;table&gt;
+        	&lt;tbody&gt;
+        		{{#data}}
+        			&lt;tr&gt;
+        				&lt;td&gt;
+        					&lt;a href=&quot;{{@root.page.host}}/notes/{{notes.id}}&quot;&gt;
+        						{{#notes_translations}}
+        							{{message}}
+        						{{/notes_translations}}
+        					&lt;/a&gt;
+        				&lt;/td&gt;
+        				&lt;td&gt;
+        					&lt;a href=&quot;{{@root.page.host}}/notes/{{notes.id}}/delete&quot;&gt;
+        						delete
+        					&lt;/a&gt;
+        				&lt;/td&gt;
+        			&lt;/tr&gt;
+        		{{/data}}
+        	&lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+</pre>
+
+<h3>edit_note.hbs</h3>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;New Note&lt;/h1&gt;
+        &lt;form method=&quot;POST&quot; action=&quot;{{page.host}}/notes/{{data.notes.id}}/save&quot; class=&quot;new-message&quot;&gt;
+        	{{#data.notes_translations}}
+        		&lt;label for=&quot;note_{{language}}&quot;&gt;Enter your message ({{language}})&lt;/label&gt;
+        		&lt;textarea id=&quot;note_{{language}}&quot; name=&quot;message_{{language}}&quot; placeholder=&quot;Enter your message here&quot;&gt;{{message}}&lt;/textarea&gt;
+        		&lt;input type=&quot;hidden&quot; name=&quot;translation_{{language}}&quot; value=&quot;{{id}}&quot; /&gt;
+            {{/data.notes_translations}}
+        	&lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+        &lt;/form&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+</pre>
+
+<h3>new_note.hbs</h3>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;New Note&lt;/h1&gt;
+        &lt;form method=&quot;POST&quot; action=&quot;{{page.host}}/notes/new&quot; class=&quot;new-message&quot;&gt;
+        	&lt;label for=&quot;message_en&quot;&gt;Enter your message (English)&lt;/label&gt;
+        	&lt;textarea id=&quot;message_en&quot; name=&quot;message_en&quot; placeholder=&quot;Enter your message here&quot;&gt;&lt;/textarea&gt;
+        	&lt;label for=&quot;message_es&quot;&gt;Enter your message (Spanish)&lt;/label&gt;
+        	&lt;textarea id=&quot;message_es&quot; name=&quot;message_es&quot; placeholder=&quot;Enter your message here&quot;&gt;&lt;/textarea&gt;
+        	&lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+        &lt;/form&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+</pre>

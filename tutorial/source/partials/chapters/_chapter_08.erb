@@ -1,0 +1,40 @@
+<h2>Deleting A Note</h2>
+
+<p>
+  We need to create a new route to delete notes.
+</p>
+
+<pre class="code">
+  <code>
+    \Singular\Controller::get_public("/notes/:note/delete", function($nota_id) {
+      $model = new MyModel();
+      $model->delete($nota_id);
+
+      \Singular\Controller::flash("Note deleted successfully");
+
+      \Singular\Controller::redirect("/notes");
+    });
+  </code>
+</pre>
+
+<p>
+  This route receives the identifier of the note to delete and invokes the method <strong>delete</strong>. After that, it sends a flash message to the view and redirects to <strong>/notes</strong>.
+</p>
+
+<p>
+  And now we add a link to this resource for each note in the <strong>/notes</strong> view.
+</p>
+
+<pre class="code">
+  <code>
+    &lt;td&gt;
+      &lt;a href=&quot;{{@root.page.host}}/notes/{{notes.id}}/delete&quot;&gt;
+        delete
+      &lt;/a&gt;
+    &lt;/td&gt;
+  </code>
+</pre>
+
+<p>
+  We are now ready to delete!
+</p>

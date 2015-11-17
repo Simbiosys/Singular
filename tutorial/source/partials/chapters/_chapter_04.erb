@@ -1,4 +1,4 @@
-<h2>Initial tasks</h2>
+<h2>Initial Tasks</h2>
 
 <p>
   <h3>View folder</h3>
@@ -7,7 +7,7 @@
 <p>
 
 <p class="note">
-  Compiled views are stored in <strong>/views/compiled</strong>. It's important that the <strong>/view</strong> folder has write permissions.
+  Compiled views are stored in <strong>/views/compiled</strong>. It's important to ensure that the <strong>/view</strong> folder has write permissions.
 </p>
 
 <p>
@@ -21,16 +21,26 @@
   </ul>
 <p>
 
-In my application I have these values:
+<p>
+  In my application I have these values:
 
-<pre class="code">
-  <code>
-    ...
-      "modes": {
-        "development": {
-          "debug": true,
-          <strong class="imp">"root": "/Applications/XAMPP/xamppfiles/htdocs/notes"</strong>,
-          <strong class="imp">"host": "http://localhost/notes"</strong>,
-    ...
-  </code>
-</pre>
+  <pre class="code">
+    <code>
+      ...
+        "modes": {
+          "development": {
+            "debug": true,
+            <strong class="imp">"root": "/Applications/XAMPP/xamppfiles/htdocs/notes"</strong>,
+            <strong class="imp">"host": "http://localhost/notes"</strong>,
+      ...
+    </code>
+  </pre>
+
+  After doing these tasks your first application is ready to preview.
+
+  <%= image_tag 'browser_1.png' %>
+</p>
+
+<p class="note">
+  If your application is not directly at the root of your host, and is in a folder you need to edit the file <strong>.htaccess</strong> and change <strong>RewriteBase</strong> to point to that folder.
+</p>

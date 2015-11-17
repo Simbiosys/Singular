@@ -5,6 +5,7 @@
 body {
   background: #fff;
   font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 .main-header {
@@ -25,6 +26,7 @@ h1 {
 
 h2 {
   margin-top: 0;
+  text-transform: capitalize;
 }
 
 h3 {
@@ -87,6 +89,12 @@ main {
 .chapter {
   background-color: #fff;
   padding: 10px 20px;
+
+  img {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+  }
 }
 
 aside {
@@ -94,7 +102,6 @@ aside {
   width: 200px;
   padding: 0 0 20px 0;
   position: fixed;
-  margin-top: -30px;
 
   ul {
     list-style: none;
@@ -104,6 +111,7 @@ aside {
 
   li {
     margin-bottom: 10px;
+    text-transform: capitalize;
   }
 
   a {
@@ -127,7 +135,7 @@ aside {
     font-family: 'Source Code Pro', monospace;
     background-color: #e5e5e5;
     padding: 0px;
-    font-size: 1rem;
+    font-size: 0.9em;
     display: block;
     margin: 0;
   }
@@ -162,4 +170,8 @@ aside {
     left: 18px;
     top: 3px;
   }
+}
+
+strong {
+  color: #555;
 }

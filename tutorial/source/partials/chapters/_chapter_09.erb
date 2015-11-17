@@ -1,0 +1,31 @@
+<h2>Labelling</h2>
+
+<p>
+  We should keep labels all together in a file. This way we could have different labels for different languages.
+</p>
+
+<p>
+  Singular provides a way to do this. There's a <strong>/lang</strong> folder where we could store these files. Let's create a filled in it called <strong>en.json</strong>.
+</p>
+
+<pre class="code">
+  <code>
+    {
+    	"title": "My notes"
+    }
+  </code>
+</pre>
+
+<p>
+  Now we can use this label in our views. Edit <strong>notes.hbs</strong> and change the <strong>h1</strong> value to:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;h1&gt;{{labels.title}}&lt;/h1&gt;
+  </code>
+</pre>
+
+<p>
+  And easily we could have a different title for each language. Now you could extract all the static texts of our application and store them in a lang file. 
+</p>

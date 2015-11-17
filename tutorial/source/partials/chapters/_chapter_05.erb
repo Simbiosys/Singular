@@ -1,0 +1,167 @@
+<h2>Your First Model</h2>
+
+<p>
+  To illustrate the use of this framework we are going to create a to-do list application.
+</p>
+
+<p>
+  First of all, you need to edit the configuration in <strong>singular.json</strong> to set your database settings. In the active mode, development in your case, you need to set the server, user, password and database to connect to.
+</p>
+
+<p>
+  In my application I have these values:
+</p>
+
+<pre class="code">
+  <code>
+    ...
+      "modes": {
+        "development": {
+          ...
+          <strong class="imp">"database": {
+            "server": "localhost",
+            "user": "root",
+            "password": "********",
+            "data_base": "notes",
+            "provider": "\\singular\\MySQLProvider"
+          },</strong>
+    ...
+  </code>
+</pre>
+
+<p>
+  Edit the file <strong>controllers/controller.php</strong> and paste the following code:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;?php
+
+      class MyModel extends \Singular\Model {
+        protected $table = "notes";
+        protected $order = array("creation ASC");
+        protected $filter = NULL;
+
+        protected $query_fields = array("*");
+
+        protected $fields = array(
+          "id" => array(
+            "type" => "integer",
+            "null" => FALSE,
+            "auto_increment" => TRUE
+          ),
+          "message" => array(
+            "type" => "string",
+            "size" => 200,
+            "null" => FALSE,
+            "default" => ""
+          ),
+          "creation" => array(
+            "type" => "timestamp",
+            "default" => "CURRENT_TIMESTAMP"
+          )
+        );
+
+        protected $primary_key = "id";
+
+        public function process($data) {
+          return $data;
+        }
+      }
+  </code>
+</pre>
+
+<p>
+  This class models an entity of your domain. Singular models should inherit from <strong>\Singular\Model</strong>. The class has the following attributes:
+</p>
+
+<ul>
+  <li><strong>$table</strong>: specifies the name of the table in your database.</li>
+  <li><strong>$order</strong>: it's an array that contains the ordering conditions.</li>
+  <li><strong>$filter</strong>: it's an array that contains filter conditions. A filter condition is a WHERE condition in a SQL query. Keep in mind that these conditions will apply always to your model, so don't specify them if you only want to filter results in some cases. You will be always able to filter any query you do.</li>
+  <li><strong>$query_fields</strong>: This array have the fields that will be returned in every query.</li>
+  <li><strong>$fields</strong>: here we will define all the fields of our model. The name of the field represents the key in this associative array, each value sets the field structure.</li>
+  <li><strong>$primary_key</strong>: represents the primary key of this model.</li>
+</ul>
+
+<p>
+  In this model there's also a method called <strong>process</strong> that lets you decorate the data that are returned from any query. You could format any datum or append new data. i.e.:
+</p>
+
+<pre class="code">
+  <code>
+    public function process($data) {
+      $data["new_field"] = "Hello World";
+
+      return $data;
+    }
+  </code>
+</pre>
+
+<p>
+  This method is invoked for each row of the query results.
+</p>
+
+<p>
+  Let's create a new controller route to view all the notes in our database. Add the following code to the file <strong>controllers/controller.php</strong>.
+</p>
+
+<pre class="code">
+  <code>
+    \Singular\Controller::get_public("/notes", function() {
+        $model = new MyModel();
+
+        \Singular\View::render(array(
+            "template" => "notes",
+            "data" => $model->get_all()
+        ));
+    });
+  </code>
+</pre>
+
+<p>
+  This route we have just defined creates a handler for public connections to the resource <strong>/notes</strong>. In this handler we first create a new instance of the class <strong>MyModel</strong> we created in the previous step. After that we render a view using the method <strong>render</strong> of the Singular's class <strong>View</strong>. We pass two parameters to this method, the template's name and the data we want to show. These data is returned by the model's method <strong>get_all()</strong> that returns all the rows of the model. This method could also receive a condition as a parameter to filter the results.
+</p>
+
+<p>
+  As you may have noticed, we set the template as <strong>notes</strong> and we don't have it, so let's create it. Create a new file called <strong>notes.hbs</strong> in the folder <strong>/views/server</strong> and place these code in it:
+</p>
+
+<pre class="code">
+  <code>
+    &lt;!DOCTYPE HTML&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{page.title}}&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;{{page.web}}/css/style.css&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Notes&lt;/h1&gt;
+        &lt;table&gt;
+        	&lt;tbody&gt;
+        		{{#data}}
+        			&lt;tr&gt;
+        				&lt;td&gt;
+        					{{notes.message}}
+        				&lt;/td&gt;
+        			&lt;/tr&gt;
+        		{{/data}}
+        	&lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+
+  </code>
+</pre>
+
+<p>
+  This is a <a href="http://handlebarsjs.com/" target="_blank">Handlebars</a> template that loops the data through the object <strong>data</strong>. Page info, as the title, is available in the object <strong>page</strong>. Model fields are prefixed so to access the <strong>message</strong> of a note you need to use its wrapper <strong>notes</strong> as it's shown in the example.
+</p>
+
+<p>
+  In the following image we see the browser result of visiting this new resource <strong>/notes</strong>. To illustrate the example I have inserted a new row in the database table to show how it works. Soon we'll be able to create new notes through this awesome application.
+</p>
+
+<%= image_tag 'browser_2.png' %>

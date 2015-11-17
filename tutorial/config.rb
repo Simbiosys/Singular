@@ -55,6 +55,8 @@ set :images_dir, 'images'
 
 set :partials_dir, 'partials'
 
+set :relative_links, true
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -71,4 +73,7 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+
+  activate :asset_host
+  set :asset_host, "http://192.168.1.102/singular-tutorial"
 end
