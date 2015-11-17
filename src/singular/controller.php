@@ -150,18 +150,25 @@
       * @return Array
       */
     private static function get_input($source) {
-      $pairs = explode("&", $source == 'POST' ? file_get_contents("php://input") : $_SERVER['QUERY_STRING']);
-
-      $vars = array();
-
-      foreach ($pairs as $pair) {
-          $nv = explode("=", $pair);
-          $name = urldecode($nv[0]);
-          $value = urldecode($nv[1]);
-          $vars[$name] = $value;
+      if ($source == 'POST') {
+        parse_str(file_get_contents("php://input"), $data);
+        // Cast it to an object
+        return $data;
       }
+      else {
+        $pairs = explode("&", $_SERVER['QUERY_STRING']);
 
-      return $vars;
+        $vars = array();
+
+        foreach ($pairs as $pair) {
+            $nv = explode("=", $pair);
+            $name = urldecode($nv[0]);
+            $value = urldecode($nv[1]);
+            $vars[$name] = $value;
+        }
+
+        return $vars;
+      }
     }
 
     /**
