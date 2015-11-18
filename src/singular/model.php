@@ -318,13 +318,13 @@
       * Sets the dependencies of this model into the data.
       *
       * @param string $entity Entity's name.
-      * @param string $id Model's id.
+      * @param Array $fields Model's fields data.
       * @param Array $data The whole data container.
       * @param string $cache_identifier The identifier used to store cache data.
       *
       * @return Array
       */
-    protected function set_dependencies($entity, $id, &$data, $cache_identifier) {
+    protected function set_dependencies($entity, $fields, &$data, $cache_identifier) {
       $object = new $entity();
       $dependencies = $object->dependencies;
 
@@ -339,7 +339,10 @@
         $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
 
         $table = $this->get_table_by_entity($entity);
-        $key = $this->get_dependency_key($table);
+
+        $key = $this->get_dependency_key($object, $table);
+        $key_parent = $this->get_dependency_key_parent($object, $table);
+        $id = isset($fields[$key_parent]) ? $fields[$key_parent] : NULL;
 
         $condition = "$key = '$id'";
 
@@ -520,30 +523,28 @@
 
       $objs = NULL;
 
-      if (empty($entity)) {
-        $entity = $obj;
+      if (!empty($entity)) {
+        $obj = $entity = new $entity();
       }
       else {
-        $entity = new $entity();
+        $entity = $obj;
       }
 
       if ($results) {
         for ($i = 0; $i < sizeof($results); $i++) {
           $fields = $this->data_base->format_fields($results[$i], $this->fields);
-          $id = isset($fields["id"]) ? $fields["id"] : NULL;
-
           $data = array();
 
           $processed_fields = $obj->process($fields);
 
           if ($wrap_data) {
-            $this->wrap_data($data, $table, $processed_fields);
+            $obj->wrap_data($data, $table, $processed_fields);
           }
           else {
             $data = $processed_fields;
           }
 
-          $this->set_dependencies($entity, $id, $data, $cache_identifier);
+          $obj->set_dependencies($entity, $fields, $data, $cache_identifier);
 
           $objs[] = $data;
         }
@@ -638,11 +639,26 @@
       *
       * @return string
       */
-    private function get_dependency_key($table) {
-      $dependencies = $this->dependencies;
+    private function get_dependency_key($obj, $table) {
+      $dependencies = $obj->dependencies;
       $dependency = isset($dependencies[$table]) ? $dependencies[$table] : array();
 
+
       return isset($dependency["key"]) ? $dependency["key"] : $table . "_id";
+    }
+
+    /**
+      * Returns the dependent table parent foreign key.
+      *
+      * @param string $table Table's name.
+      *
+      * @return string
+      */
+    private function get_dependency_key_parent($obj, $table) {
+      $dependencies = $obj->dependencies;
+      $dependency = isset($dependencies[$table]) ? $dependencies[$table] : array();
+
+      return isset($dependency["key_parent"]) ? $dependency["key_parent"] : "id";
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -818,7 +834,7 @@
 
         // Set foreign key in dependent entities
         if ($this->is_dependency($entity)) {
-          $key = $this->get_dependency_key($entity);
+          $key = $this->get_dependency_key($this, $entity);
 
           if (!isset($filtered[$key])) {
             $filtered[$key] = $main_entity_id;
@@ -842,9 +858,9 @@
         else {
           $query = $this->data_base->get_insert($entity, $columns, $params);
         }
-		
+
 		$result = NULL;
-		
+
 		if ($query) {
         	$result = $this->data_base->run($query, NULL, $filtered);
         }
@@ -946,7 +962,7 @@
 
         if ($dependent) {
           $table = $this->get_table_by_entity($entity);
-          $key = $this->get_dependency_key($table);
+          $key = $this->get_dependency_key($this, $table);
           $condition = "$key = '$id'";
 
           $fake_model = new BasicModel(array(
