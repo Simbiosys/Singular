@@ -942,8 +942,23 @@
       * @return void
       */
     public function delete($id) {
+      $this->_delete("id = '$id'");
+    }
+
+    /**
+      * Deletes a record.
+      *
+      * @param string $condition Condition to apply.
+      *
+      * @return void
+      */
+    public function delete_by_condition($condition) {
+      $this->_delete($condition);
+    }
+
+    private function _delete($condition) {
       $this->get_connection();
-      $query = $this->data_base->get_delete($this->table, $id);
+      $query = $this->data_base->get_delete_by_condition($this->table, $condition);
       $result = $this->data_base->run($query, NULL, NULL);
 
       if (!$result) {
