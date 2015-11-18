@@ -78,6 +78,18 @@
     }
 
     /**
+      * Sets a content type
+      *
+      * @param string $content_type Content type.
+      *
+      * @return void
+      */
+    public static function set_content_type($content_type) {
+      $api = Configuration::get_api();
+      $api->response->headers->set('Content-Type', $content_type);
+    }
+
+    /**
       * Groups request data by entity.
       *
       * @param string $default_model Default model.
