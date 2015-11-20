@@ -450,7 +450,7 @@
           $term = strtolower($term);
           $found = FALSE;
 
-          foreach ($search_fields as $search_field) { var_dump($search_field);
+          foreach ($search_fields as $search_field) {
             if ($this->search_term($search_field, $result, $term, 0)) {
               $found = TRUE;
               break;
