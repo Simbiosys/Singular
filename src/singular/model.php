@@ -433,22 +433,11 @@
 
         $parts = explode(".", $search_field);
 
-        $search_field_table = "";
-        $search_field_name = "";
-
-        if (count($parts) > 1) {
-          $search_field_table = $parts[0];
-          $search_field_name = $parts[1];
-        }
-        else {
-          $search_field_table = $table;
-          $search_field_name = $parts[0];
+        if (count($parts) == 1) {
+          array_unshift($parts, $table);
         }
 
-        $search_fields[$i] = array(
-          "table" => $search_field_table,
-          "name" => $search_field_name
-        );
+        $search_fields[$i] = $parts;
       }
 
       $results = $this->get_search_results($condition);
@@ -461,31 +450,10 @@
           $term = strtolower($term);
           $found = FALSE;
 
-          foreach ($search_fields as $search_field) {
-            $table = $search_field["table"];
-            $name = $search_field["name"];
-
-            if (!isset($result[$table])) {
-              continue;
-            }
-
-            $data = $result[$table];
-
-            if ($this->is_assoc($data)) {
-              $data = array($data);
-            }
-
-            foreach ($data as $item) {
-              if (!isset($item[$name])) {
-                continue;
-              }
-
-              $item = strtolower($item[$name]);
-
-              if (strpos($item, $term) !== FALSE) {
-                $found = TRUE;
-                break;
-              }
+          foreach ($search_fields as $search_field) { var_dump($search_field);
+            if ($this->search_term($search_field, $result, $term, 0)) {
+              $found = TRUE;
+              break;
             }
           }
 
@@ -501,6 +469,45 @@
       }
 
       return $occurrences;
+    }
+
+    /**
+      * Inner recursive search function
+      *
+      * @param Array $search_field One search field parts. i.e.: [table, field]
+      * @param Array $data One row to search in.
+      * @param Array $term Term to check if exists in the search_field.
+      * @param Array $level Recursive level through the search_field length.
+      *
+      * @return Array
+      */
+    private function search_term($search_field, $data, $term, $level) {
+      if ($level >= count($search_field)) {
+
+        return strpos($data, $term) !== FALSE;
+      }
+
+      if ($this->is_assoc($data)) {
+        $data = array($data);
+      }
+
+      $part = $search_field[$level];
+
+      foreach ($data as $row) {
+        if (!isset($row[$part])) {
+          return FALSE;
+        }
+
+        $row = $row[$part];
+
+        $partial_result = $this->search_term($search_field, $row, $term, $level + 1);
+
+        if ($partial_result) {
+          return TRUE;
+        }
+      }
+
+      return FALSE;
     }
 
     /**
