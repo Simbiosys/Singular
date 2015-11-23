@@ -766,11 +766,13 @@
       $condition = $params;
       $start = 0;
       $limit = Configuration::get_app_settings("page_limit", NULL);
+      $query_fields = $this->get_query_fields();
 
       if (is_array($params)) {
         $condition = isset($params["condition"]) ? $params["condition"] : NULL;
         $start = isset($params["start"]) ? $params["start"] : $start;
         $limit = isset($params["limit"]) ? $params["limit"] : $limit;
+        $query_fields = isset($params["query_fields"]) ? $params["query_fields"] : $query_fields;
       }
 
       $this->auto_generation();
@@ -783,8 +785,6 @@
       }
 
       $this->get_connection();
-
-      $query_fields = isset($params["query_fields"]) ? $params["query_fields"] : $this->get_query_fields();
 
       $query = $this->data_base->get_query_by_condition($this, $query_fields, $condition);
 
