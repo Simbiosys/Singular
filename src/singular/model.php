@@ -266,7 +266,7 @@
     protected function get_the_query() {
       $this->auto_generation();
 
-      return $this->data_base->get_query($this);
+      return $this->data_base->get_query($this, $this->get_query_fields());
     }
 
     /**
@@ -354,7 +354,7 @@
           "order" => $order
         ));
 
-        $query = $this->data_base->get_query_by_condition($fake_model, $condition);
+        $query = $this->data_base->get_query_by_condition($fake_model, $fake_model->get_query_fields(), $condition);
 
         $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
         $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
@@ -440,6 +440,10 @@
         $search_fields[$i] = $parts;
       }
 
+      if (empty($condition)) {
+        $condition = array();
+      }
+
       $results = $this->get_search_results($condition);
       $occurrences = array();
 
@@ -483,8 +487,7 @@
       */
     private function search_term($search_field, $data, $term, $level) {
       if ($level >= count($search_field)) {
-
-        return strpos($data, $term) !== FALSE;
+        return strpos(strtolower($data), strtolower($term)) !== FALSE;
       }
 
       if ($this->is_assoc($data)) {
@@ -495,7 +498,7 @@
 
       foreach ($data as $row) {
         if (!isset($row[$part])) {
-          return FALSE;
+          continue;
         }
 
         $row = $row[$part];
@@ -778,7 +781,9 @@
 
       $this->get_connection();
 
-      $query = $this->data_base->get_query_by_condition($this, $condition);
+      $query_fields = isset($params["query_fields"]) ? $params["query_fields"] : $this->get_query_fields();
+
+      $query = $this->data_base->get_query_by_condition($this, $query_fields, $condition);
 
       $results = $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
 
@@ -866,9 +871,9 @@
           $query = $this->data_base->get_insert($entity, $columns, $params);
         }
 
-		$result = NULL;
+		    $result = NULL;
 
-		if ($query) {
+		    if ($query) {
         	$result = $this->data_base->run($query, NULL, $filtered);
         }
 
@@ -995,7 +1000,7 @@
             "order" => $order
           ));
 
-          $query = $this->data_base->get_query_by_condition($fake_model, $condition);
+          $query = $this->data_base->get_query_by_condition($fake_model, $fake_model->get_query_fields(), $condition);
           $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
           $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
