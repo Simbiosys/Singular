@@ -426,7 +426,10 @@
       $search_fields = $this->search_fields;
       $table = $this->table;
 
-      $terms = explode(" ", $terms);
+      preg_match_all('/"(?:\\\\.|[^\\\\"])*"|\S+/', $terms, $terms);
+      $terms = $terms[0];
+
+      //$terms = explode(" ", $terms);
 
       for ($i = 0; $i < count($search_fields); $i++) {
         $search_field = $search_fields[$i];
@@ -451,7 +454,7 @@
         $valid = TRUE;
 
         foreach ($terms as $term) {
-          $term = strtolower($term);
+          $term = rtrim(ltrim(strtolower($term), '"'), '"');
           $found = FALSE;
 
           foreach ($search_fields as $search_field) {
