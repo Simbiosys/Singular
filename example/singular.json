@@ -31,7 +31,8 @@
       "cache": null,
       "authentication": "AppAuthentication",
       "authorisation": "AppAuthorisation",
-      "helpers": "AppHelpers"
+      "helpers": "AppHelpers",
+      "autogen": true
     },
     "production": {
 	  "cache": "\\Singular\\MemcacheCache",

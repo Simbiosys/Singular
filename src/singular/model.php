@@ -1067,6 +1067,10 @@
       * @return void
       */
     protected function auto_generation() {
+      if (!Configuration::get_autogen()) {
+      	return;
+      }
+      
       $this->check_table();
       $this->check_fields();
 

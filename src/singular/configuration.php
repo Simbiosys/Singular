@@ -261,6 +261,16 @@
       $configuration = self::get_current_configuration();
       return $configuration['cache'];
     }
+    
+    /**
+      * Returns the app autogen configuration, TRUE if database tables are generated automatically based on the model fields.
+      *
+      * @return Object
+      */
+    public static function get_autogen() {
+      $configuration = self::get_current_configuration();
+      return isset($configuration['autogen']) ? $configuration['autogen'] : FALSE;
+    }
 
     /**
       * Loads app settings.
