@@ -791,3 +791,4 @@
 		public function get_null() {
 			return "NULL";
 		}
+	}
