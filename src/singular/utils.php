@@ -82,6 +82,8 @@
       	$callback($file);
       }
 
+      sort($dir_list);
+
       foreach ($dir_list as $dir) {
         self::process_files($dir, $extension_to_check, $callback);
       }
