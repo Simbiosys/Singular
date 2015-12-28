@@ -324,7 +324,7 @@
       *
       * @return Array
       */
-    protected function set_dependencies($entity, $fields, &$data, $cache_identifier) {
+/*    protected function set_dependencies($entity, $fields, &$data, $cache_identifier) {
       $object = new $entity();
       $dependencies = $object->dependencies;
 
@@ -360,6 +360,58 @@
         $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
         $data[$table] = $results;
+      }
+
+      return $data;
+    }
+*/
+    protected function get_all_dependencies($entity, $fields, $cache_identifier) {
+      $object = new $entity();
+      $dependencies = $object->dependencies;
+
+      $data = array();
+
+      if (empty($dependencies)) {
+        return $data;
+      }
+
+      foreach ($dependencies as $dependency) {
+        $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
+        $filter = isset($dependency["filter"]) ? $dependency["filter"] : NULL;
+        $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
+        $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
+
+        $table = $this->get_table_by_entity($entity);
+
+        $key = $this->get_dependency_key($object, $table);
+        $key_parent = $this->get_dependency_key_parent($object, $table);
+
+        $fake_model = new BasicModel(array(
+          "query" => NULL,
+          "query_fields" => NULL,
+          "table" => $table,
+          "filter" => $filter,
+          "order" => $order
+        ));
+
+        $query = $this->data_base->get_query($fake_model, $fake_model->get_query_fields());
+
+        $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
+        $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
+
+        if (!array_key_exists($table, $data)) {
+          $data[$table] = array();
+        }
+
+        foreach ($results as $result) {
+          $key_value = $result[$key];
+
+          if (!array_key_exists($key_value, $data[$table])) {
+            $data[$table][$key_value] = array();
+          }
+
+          array_push($data[$table][$key_value], $result);
+        }
       }
 
       return $data;
@@ -543,6 +595,8 @@
         $entity = $obj;
       }
 
+      $all_dependencies = $obj->get_all_dependencies($entity, $fields, $cache_identifier);
+
       if ($results) {
         for ($i = 0; $i < sizeof($results); $i++) {
           $fields = $this->data_base->format_fields($results[$i], $this->fields);
@@ -557,7 +611,13 @@
             $data = $processed_fields;
           }
 
-          $obj->set_dependencies($entity, $fields, $data, $cache_identifier);
+          $id = $fields["id"];
+
+          foreach ($all_dependencies as $dependency => $dependency_data) {
+            if (array_key_exists($id, $dependency_data)) {
+              $data[$dependency] = $dependency_data[$id];
+            }
+          }
 
           $objs[] = $data;
         }
@@ -1074,7 +1134,7 @@
       if (!Configuration::get_autogen()) {
       	return;
       }
-      
+
       $this->check_table();
       $this->check_fields();
 
