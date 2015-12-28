@@ -365,7 +365,7 @@
       return $data;
     }
 */
-    protected function get_all_dependencies($entity, $fields, $cache_identifier) {
+    protected function get_all_dependencies($entity, $cache_identifier) {
       $object = new $entity();
       $dependencies = $object->dependencies;
 
@@ -595,7 +595,7 @@
         $entity = $obj;
       }
 
-      $all_dependencies = $obj->get_all_dependencies($entity, $fields, $cache_identifier);
+      $all_dependencies = $obj->get_all_dependencies($entity, $cache_identifier);
 
       if ($results) {
         for ($i = 0; $i < sizeof($results); $i++) {
@@ -609,6 +609,10 @@
           }
           else {
             $data = $processed_fields;
+          }
+
+          if (!array_key_exists("id", $fields)) {
+            continue;
           }
 
           $id = $fields["id"];
@@ -931,7 +935,7 @@
           $query = $this->data_base->get_update($entity, $columns, $id);
         }
         else {
-          $query = $this->data_base->get_insert($entity, $columns, $params);
+          $query = $this->data_base->get_insert($entity, $columns);
         }
 
 		    $result = NULL;
