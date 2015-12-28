@@ -175,7 +175,7 @@
         foreach ($pairs as $pair) {
             $nv = explode("=", $pair);
             $name = urldecode($nv[0]);
-            $value = urldecode($nv[1]);
+            $value = count($nv) >= 2 ? urldecode($nv[1]) : "";
             $vars[$name] = $value;
         }
 
