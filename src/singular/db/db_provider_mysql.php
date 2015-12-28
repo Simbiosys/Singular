@@ -218,7 +218,7 @@
     public function number_of_rows($database_resource) {
       $number_of_rows = 0;
 
-      if ($database_resource) {
+      if ($database_resource && is_object($database_resource)) {
         $number_of_rows = $database_resource->num_rows;
       }
 
