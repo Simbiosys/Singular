@@ -942,8 +942,12 @@
 
       $result = $this->save(NULL, $values);
 
-      if ($result["error"]) {
-        Controller::debug("Insert error: " . $result["message"]);
+      if (array_key_exists("main", $result) && array_key_exists("error", $result["main"]) && $result["main"]["error"] === TRUE) {
+        Controller::debug("Insert error: " . $result["main"]["message"]);
+      }
+
+      if (array_key_exists("all", $result) && array_key_exists("error", $result["all"]) && $result["all"]["error"] === TRUE) {
+        Controller::debug("Insert error: " . $result["all"]["message"]);
       }
 
       return $result;
