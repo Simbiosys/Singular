@@ -402,15 +402,17 @@
         if (!array_key_exists($table, $data)) {
           $data[$table] = array();
         }
+		
+		if (!empty($results)) {
+			foreach ($results as $result) {
+			  $key_value = $result[$key];
 
-        foreach ($results as $result) {
-          $key_value = $result[$key];
+			  if (!array_key_exists($key_value, $data[$table])) {
+				$data[$table][$key_value] = array();
+			  }
 
-          if (!array_key_exists($key_value, $data[$table])) {
-            $data[$table][$key_value] = array();
-          }
-
-          array_push($data[$table][$key_value], $result);
+			  array_push($data[$table][$key_value], $result);
+			}
         }
       }
 
