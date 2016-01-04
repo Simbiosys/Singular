@@ -22,6 +22,17 @@
     private static function integer_formatter($data) {
       return intval($data);
     }
+    
+    	/**
+      * Formats data as double.
+      *
+      * @param Object $data Data to format.
+      *
+      * @return double
+      */
+    private static function double_formatter($data) {
+      return doubleval($data);
+    }
 
 		/**
       * Formats data as string.
@@ -77,7 +88,7 @@
     			return self::string_formatter($value);
     			break;
 
-    		case 'timstamp':
+    		case 'timestamp':
     			return self::timestamp_formatter($value);
     			break;
 
@@ -87,6 +98,10 @@
 
     		case 'binary':
     			return $value;
+    			break;
+    			
+    		case 'double':
+    			return self::double_formatter($value);
     			break;
     	}
     }
@@ -101,7 +116,8 @@
 			"string" => "varchar",
 			"timestamp" => "timestamp",
 			"boolean" => "boolean",
-			"binary" => "blob"
+			"binary" => "blob",
+			"double" => "double"
 		);
 
 		/**
