@@ -1102,6 +1102,7 @@
             ));
 
             $query = $this->data_base->get_query_by_condition($fake_model, $fake_model->get_query_fields(), $condition);
+            $cache_identifier = "condition_$condition";
             $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
             $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
