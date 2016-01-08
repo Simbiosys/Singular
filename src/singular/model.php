@@ -1039,7 +1039,7 @@
       * @return void
       */
     public function delete($id) {
-      $this->_delete("id = '$id'");
+      $this->_delete("id = '$id'", $id);
     }
 
     /**
@@ -1053,8 +1053,19 @@
       $this->_delete($condition);
     }
 
-    private function _delete($condition) {
+    private function _delete($condition, $id = NULL) {
       $this->get_connection();
+
+      $all_to_remove = array(
+        array("id" => $id)
+      );
+
+
+      if (empty($id)) {
+        $all_to_remove = $this->get_all($condition);
+        $all_to_remove = isset($all_to_remove[$this->table]) ? $all_to_remove[$this->table] : array();
+      }
+
       $query = $this->data_base->get_delete_by_condition($this->table, $condition);
       $result = $this->data_base->run($query, NULL, NULL);
 
@@ -1075,42 +1086,48 @@
         if ($dependent) {
           $table = $this->get_table_by_entity($entity);
           $key = $this->get_dependency_key($this, $table);
-          $condition = "$key = '$id'";
 
-          $fake_model = new BasicModel(array(
-            "query" => NULL,
-            "query_fields" => NULL,
-            "table" => $table,
-            "filter" => $filter,
-            "order" => $order
-          ));
+          for ($i = 0; $i < count($all_to_remove); $i++) {
+            $item = $all_to_remove[$i];
+            $id = $item["id"];
 
-          $query = $this->data_base->get_query_by_condition($fake_model, $fake_model->get_query_fields(), $condition);
-          $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
-          $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
+            $condition = "$key = '$id'";
 
-          $object = new $entity();
+            $fake_model = new BasicModel(array(
+              "query" => NULL,
+              "query_fields" => NULL,
+              "table" => $table,
+              "filter" => $filter,
+              "order" => $order
+            ));
 
-          if ($results) {
-            foreach ($results as $result) {
-              $element_id = isset($result["id"]) ? $result["id"] : NULL;
+            $query = $this->data_base->get_query_by_condition($fake_model, $fake_model->get_query_fields(), $condition);
+            $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
+            $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
-              if ($element_id) {
-                $query = $this->data_base->get_delete($object->table, $element_id);
-                $result = $this->data_base->run($query, NULL, NULL);
+            $object = new $entity();
 
-                if (!$result) {
-                  Controller::debug("Delete error: " . $this->data_base->get_error());
-                  return;
+            if ($results) {
+              foreach ($results as $result) {
+                $element_id = isset($result["id"]) ? $result["id"] : NULL;
+
+                if ($element_id) {
+                  $query = $this->data_base->get_delete($object->table, $element_id);
+                  $result = $this->data_base->run($query, NULL, NULL);
+
+                  if (!$result) {
+                    Controller::debug("Delete error: " . $this->data_base->get_error());
+                    return;
+                  }
                 }
               }
-            }
 
-            // Cache invalidation
-            $cache = $object->get_cache();
+              // Cache invalidation
+              $cache = $object->get_cache();
 
-            if ($cache) {
-              $cache->clear();
+              if ($cache) {
+                $cache->clear();
+              }
             }
           }
         }
