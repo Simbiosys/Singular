@@ -74,11 +74,8 @@
   //                             CREAR NUEVA NOTA
   //////////////////////////////////////////////////////////////////////////////
   \Singular\Controller::get_private("/notas/nuevo", "notas", "editar", function() {
-    $modelo_notas = new ModeloNotas();
-
     \Singular\View::render(array(
-        "template" => "notas_nuevo",
-        "data" => $modelo_notas->get_all()
+        "template" => "notas_nuevo"
     ));
   });
 

@@ -380,6 +380,8 @@
         $filter = isset($dependency["filter"]) ? $dependency["filter"] : NULL;
         $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
         $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
+        $key = isset($dependency["key"]) ? $dependency["key"] : "id";
+        $key_parent = isset($dependency["key_parent"]) ? $dependency["key_parent"] : "id";
 
         $table = $this->get_table_by_entity($entity);
 
@@ -400,19 +402,23 @@
         $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
 
         if (!array_key_exists($table, $data)) {
-          $data[$table] = array();
+          $data[$table] = array(
+            "key" => $key,
+            "key_parent" => $key_parent,
+            "data" => array()
+          );
         }
-		
-		if (!empty($results)) {
-			foreach ($results as $result) {
-			  $key_value = $result[$key];
 
-			  if (!array_key_exists($key_value, $data[$table])) {
-				$data[$table][$key_value] = array();
-			  }
+		    if (!empty($results)) {
+		       foreach ($results as $result) {
+		          $key_value = $result[$key];
 
-			  array_push($data[$table][$key_value], $result);
-			}
+		          if (!array_key_exists($key_value, $data[$table]["data"])) {
+			          $data[$table]["data"][$key_value] = array();
+		          }
+
+		          array_push($data[$table]["data"][$key_value], $result);
+		        }
         }
       }
 
@@ -617,9 +623,15 @@
             continue;
           }
 
-          $id = $fields["id"];
+          //$id = $fields["id"];
 
-          foreach ($all_dependencies as $dependency => $dependency_data) {
+          foreach ($all_dependencies as $dependency => $values) {
+            $key = $values["key"];
+            $parent_key = $values["key_parent"];
+            $dependency_data = $values["data"];
+
+            $id = $fields[$parent_key];
+
             if (array_key_exists($id, $dependency_data)) {
               $data[$dependency] = $dependency_data[$id];
             }
