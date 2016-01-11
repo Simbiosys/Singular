@@ -81,7 +81,7 @@
 				}
 
 				$compile_options = Array(
-          'flags' => \LightnCandy::FLAG_STANDALONE | \LightnCandy::FLAG_RUNTIMEPARTIAL | \LightnCandy::FLAG_PARENT | \LightnCandy::FLAG_SPVARS | \LightnCandy::FLAG_HANDLEBARS,
+          'flags' => \LightnCandy::FLAG_STANDALONE | \LightnCandy::FLAG_RUNTIMEPARTIAL | \LightnCandy::FLAG_PARENT | \LightnCandy::FLAG_SPVARS | \LightnCandy::FLAG_HANDLEBARS | \LightnCandy::FLAG_PARTIALNEWCONTEXT,
           'basedir' => $all_paths,
           'fileext' => Array(
             '.hbs'
