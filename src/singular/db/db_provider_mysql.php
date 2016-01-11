@@ -22,7 +22,7 @@
     private static function integer_formatter($data) {
       return intval($data);
     }
-    
+
     	/**
       * Formats data as double.
       *
@@ -99,7 +99,7 @@
     		case 'binary':
     			return $value;
     			break;
-    			
+
     		case 'double':
     			return self::double_formatter($value);
     			break;
@@ -439,7 +439,7 @@
 		* @return string
 		*/
 		public function get_query_by_condition($model, $query_fields, $condition) {
-			$result = $this->get_query($model, $query_fields);
+			$result = $this->get_query($model, $query_fields, FALSE);
 
 			$order = $model->get_order();
 
@@ -462,7 +462,7 @@
 		* @return string
 		*/
 		public function get_query_by_value($model, $field, $value) {
-			$result = $this->get_query($model, $model->get_query_fields());
+			$result = $this->get_query($model, $model->get_query_fields(), FALSE);
       $result .= " AND $field = ?";
       $result .= $this->get_order($model);
 
@@ -478,13 +478,17 @@
 		*/
 		public function get_filter($model) {
 			$filter = $model->get_filter();
-			$table = $model->get_table();
+			$deletion = $model->get_deletion();
 
       if (empty($filter)) {
         $filter = $this->get_default_filter();
       }
 
-      return " WHERE $filter AND $table.deleted = 0";
+			if (empty($deletion)) {
+				$deletion = $this->get_default_deletion($model);
+			}
+
+      return " WHERE $filter AND $deletion";
 		}
 
 		/**
@@ -494,6 +498,17 @@
 		*/
 		public function get_default_filter() {
 			return "1 = 1";
+		}
+
+		/**
+		* Gets the deleted filter.
+		*
+		* @return string
+		*/
+		public function get_default_deletion($model) {
+			$table = $model->get_table();
+
+			return "$table.deleted = 0";
 		}
 
 		/**
