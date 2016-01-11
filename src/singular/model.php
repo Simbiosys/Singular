@@ -16,6 +16,8 @@
     protected $table = NULL;
     /** @var Array|null $filter Filter to apply to any query. */
     protected $filter = NULL;
+    /** @var Array|null $deletion Deletion to apply to any query. */
+    protected $deletion = NULL;
     /** @var Array|null $order Order criteria. */
     protected $order = NULL;
     /** @var Array|null $dependencies List of dependencies on other models. */
@@ -57,6 +59,10 @@
 
       if (isset($params["filter"])) {
         $this->filter = $params["filter"];
+      }
+
+      if (isset($params["deletion"])) {
+        $this->deletion = $params["deletion"];
       }
 
       if (isset($params["order"])) {
@@ -101,6 +107,15 @@
       */
     public function get_filter() {
       return $this->filter;
+    }
+
+    /**
+      * Returns the deletion of this model.
+      *
+      * @return Array
+      */
+    public function get_deletion() {
+      return $this->deletion;
     }
 
     /**
@@ -256,6 +271,7 @@
     protected function init() {
       // Lets you perform initial tasks
       $this->filter = $this->data_base->get_default_filter();
+      $this->deletion = $this->data_base->get_default_deletion($this);
     }
 
     /**
@@ -266,7 +282,7 @@
     protected function get_the_query() {
       $this->auto_generation();
 
-      return $this->data_base->get_query($this, $this->get_query_fields());
+      return $this->data_base->get_query($this, $this->get_query_fields(), FALSE);
     }
 
     /**
@@ -378,6 +394,7 @@
       foreach ($dependencies as $dependency) {
         $entity = isset($dependency["entity"]) ? $dependency["entity"] : NULL;
         $filter = isset($dependency["filter"]) ? $dependency["filter"] : NULL;
+        $deletion = isset($dependency["deletion"]) ? $dependency["deletion"] : NULL;
         $order = isset($dependency["order"]) ? $dependency["order"] : NULL;
         $dependent = isset($dependency["dependent"]) ? $dependency["dependent"] : FALSE;
         $key = isset($dependency["key"]) ? $dependency["key"] : "id";
@@ -393,10 +410,11 @@
           "query_fields" => NULL,
           "table" => $table,
           "filter" => $filter,
+          "deletion" => $deletion,
           "order" => $order
         ));
 
-        $query = $this->data_base->get_query($fake_model, $fake_model->get_query_fields());
+        $query = $this->data_base->get_query($fake_model, $fake_model->get_query_fields(), FALSE);
 
         $dependency_cache_identifier = $cache_identifier . "_" . $table . "_" . $key . "_" . $filter;
         $results = $this->process_query_results($entity, $table, $query, NULL, $dependency_cache_identifier, FALSE);
