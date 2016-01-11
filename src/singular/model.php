@@ -843,13 +843,14 @@
     public function get_all($params = NULL) {
       $condition = $params;
       $start = 0;
-      $limit = Configuration::get_app_settings("page_limit", NULL);
+      $limit = NULL;
+      $settings_limit = Configuration::get_app_settings("page_limit", NULL);
       $query_fields = $this->get_query_fields();
 
       if (is_array($params)) {
         $condition = isset($params["condition"]) ? $params["condition"] : NULL;
         $start = isset($params["start"]) ? $params["start"] : $start;
-        $limit = isset($params["limit"]) ? $params["limit"] : $limit;
+        $limit = isset($params["limit"]) ? $params["limit"] : $settings_limit;
         $query_fields = isset($params["query_fields"]) ? $params["query_fields"] : $query_fields;
       }
 
@@ -869,7 +870,12 @@
       $results = $this->process_query_results(NULL, $this->table, $query, NULL, $cache_identifier);
 
       if (!empty($results)) {
-        return array_slice($results, $start, $limit);
+        if ($start != 0 || $limit != NULL) {
+          return array_slice($results, $start, $limit);
+        }
+        else {
+          return $results;
+        }
       }
       else {
         return array();
