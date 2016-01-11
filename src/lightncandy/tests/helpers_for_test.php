@@ -1,7 +1,7 @@
 <?php
 
-// Class for customized LCRun
-class MyLCRunClass extends LCRun3 {
+// Class for customized Runtime
+class MyLCRunClass extends \LightnCandy\Runtime {
     public static function raw($cx, $v) {
         return '[[DEBUG:raw()=>' . var_export($v, true) . ']]';
     }
@@ -96,11 +96,11 @@ function	meetup_date_format4(){
 
 
 function test_array ($input) {
-   return is_array($input[0]) ? 'IS_ARRAY' : 'NOT_ARRAY';
+   return is_array($input) ? 'IS_ARRAY' : 'NOT_ARRAY';
 }
 
 function test_join ($input) {
-   return join('.', $input[0]);
+   return join('.', $input);
 }
 
 // Custom helpers for handlebars (should be used in hbhelpers)
@@ -130,6 +130,16 @@ function mylogic ($input, $yes, $no, $options) {
     } else {
         return $options['inverse']($no);
     }
+}
+
+function my_private_each ($context, $options) {
+    $data = $options['data'];
+    $out = '';
+    foreach ($context as $idx => $cx) {
+        $data['index'] = $idx;
+        $out .= $options['fn']($cx, Array('data' => $data));
+    }
+    return $out;
 }
 
 function mydash ($a, $b) {
