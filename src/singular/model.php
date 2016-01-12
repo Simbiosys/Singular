@@ -963,6 +963,12 @@
           }
         }
 
+        if (empty($filtered)) {
+          $filtered = array();
+        }
+
+        $filtered["updating"] = new Unescaped($this->data_base->get_now());
+
         $columns = NULL;
 
         if (!empty($filtered)) {
@@ -1241,12 +1247,38 @@
       $fields = $this->fields;
       $primary_key = $this->primary_key;
 
+      // ID
+      if (!isset($fields["id"])) {
+        $fields["id"] = array(
+          "type" => "integer",
+          "null" => FALSE,
+          "auto_increment" => TRUE
+        );
+      }
+
       // Deleted
       if (!isset($fields["deleted"])) {
         $fields["deleted"] = array(
           "type" => "boolean",
           "null" => FALSE,
           "default" => "0"
+        );
+      }
+
+      // Creation
+      if (!isset($fields["creation"])) {
+        $fields["creation"] = array(
+          "type" => "timestamp",
+          "null" => FALSE,
+          "default" => "CURRENT_TIMESTAMP"
+        );
+      }
+
+      // Update
+      if (!isset($fields["updating"])) {
+        $fields["updating"] = array(
+          "type" => "timestamp",
+          "null" => FALSE
         );
       }
 

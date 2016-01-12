@@ -822,4 +822,13 @@
 		public function get_null() {
 			return "NULL";
 		}
+
+		/**
+		* Gets the NOW function.
+		*
+		* @return string
+		*/
+		public function get_now() {
+			return "now()";
+		}
 	}
