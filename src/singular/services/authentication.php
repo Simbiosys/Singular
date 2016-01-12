@@ -107,4 +107,24 @@
 
       return static::$authentication_method;
     }
+
+    /**
+      * Returns user id
+      *
+      * @return string
+      */
+    public static function get_user_id() {
+      $authentication_method = self::load_authentication_method();
+      return empty($authentication_method) ? NULL : $authentication_method->get_user_id();
+    }
+
+    /**
+      * Returns user name
+      *
+      * @return string
+      */
+    public static function get_user_name() {
+      $authentication_method = self::load_authentication_method();
+      return empty($authentication_method) ? NULL : $authentication_method->get_user_name();
+    }
   }

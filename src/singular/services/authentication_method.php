@@ -157,6 +157,24 @@
     }
 
     /**
+      * Gets user id.
+      *
+      * @return string
+      */
+    public static function get_user_id() {
+      return NULL;
+    }
+
+    /**
+      * Gets user name.
+      *
+      * @return string
+      */
+    public static function get_user_name() {
+      return NULL;
+    }
+
+    /**
       * Logs in.
       *
       * @param string $user User's account.

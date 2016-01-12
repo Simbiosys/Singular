@@ -580,7 +580,7 @@
 		* @return string
 		*/
 		public function get_delete($table, $id) {
-			return "UPDATE $table SET deleted = 1 WHERE id = '$id'";
+			return "UPDATE $table SET deleted = 1, deletion = now() WHERE id = '$id'";
 		}
 
 		/**
@@ -592,7 +592,7 @@
 		* @return string
 		*/
 		public function get_delete_by_condition($table, $condition) {
-			return "UPDATE $table SET deleted = 1 WHERE $condition";
+			return "UPDATE $table SET deleted = 1, deletion = now() WHERE $condition";
 		}
 
 		////////////////////////////////////////////////////////////////////////////
@@ -626,6 +626,7 @@
 
 			if ($result === FALSE) {
 				var_dump($this->database_resource->error);
+				var_dump($sql_query);
 			}
 
 			return $result;
