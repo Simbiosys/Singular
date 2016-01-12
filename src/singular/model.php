@@ -1046,7 +1046,7 @@
       *
       * @return Array
       */
-    public function create($values) {
+    public function create($values = array()) {
       if (!isset($values[$this->table])) {
         $values[$this->table] = array();
       }
